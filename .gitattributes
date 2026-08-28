@@ -1,0 +1,10 @@
+# 统一换行：入库一律 LF，检出按平台自动转换
+* text=auto eol=lf
+
+# 二进制文件不做换行转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text eol=lf

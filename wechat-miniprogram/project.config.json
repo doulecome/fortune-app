@@ -1,0 +1,16 @@
+{
+  "description": "国风算命 web-view 小程序",
+  "miniprogramRoot": "./",
+  "appid": "touristappid",
+  "projectname": "fortune-miniprogram",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.0.0"
+}

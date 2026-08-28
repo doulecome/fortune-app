@@ -1,0 +1,14 @@
+{
+  "name": "玄机阁 · 真算命盘",
+  "short_name": "玄机阁",
+  "description": "八字命盘 · 中西占卜 · 黄历择日 · 生肖星座运势，依真实历法推演",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f0e5",
+  "theme_color": "#8a6d3b",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

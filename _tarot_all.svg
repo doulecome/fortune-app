@@ -1,0 +1,379 @@
+<svg width="0" height="0" xmlns="http://www.w3.org/2000/svg"><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg0愚者" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl0愚者" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd0愚者" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg0愚者)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl0愚者)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd0愚者)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd0愚者)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd0愚者)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">0 愚者</text>
+    <g ><path d="M36 212 L164 212 L150 190 L50 190 Z" fill="rgba(233,196,121,.10)"/><circle cx="138" cy="74" r="14" fill="#e9c479" opacity=".95"/><line x1="138" y1="74" x2="161.8" y2="74.0" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="138" y1="74" x2="154.8" y2="90.8" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="138" y1="74" x2="138.0" y2="97.8" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="138" y1="74" x2="121.2" y2="90.8" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="138" y1="74" x2="114.2" y2="74.0" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="138" y1="74" x2="121.2" y2="57.2" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="138" y1="74" x2="138.0" y2="50.2" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="138" y1="74" x2="154.8" y2="57.2" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><path d="M50 190 q40 -34 114 -30" fill="none" stroke="#e9c479" stroke-width="1.4" opacity=".5"/><g><circle cx="96" cy="128" r="9" fill="#e8c49b"/><path d="M88 142 q8 -6 16 0 l-2 40 q-6 4 -12 0 z" fill="#e9c479" stroke="#e9c479" stroke-width="1.2"/><line x1="88" y1="143" x2="72" y2="170" stroke="#e9c479" stroke-width="2.4"/><circle cx="69" cy="174" r="4" fill="#f6efdc"/><line x1="104" y1="143" x2="112" y2="170" stroke="#e9c479" stroke-width="2.4"/><line x1="94" y1="182" x2="90" y2="206" stroke="#e9c479" stroke-width="3.6"/><line x1="98" y1="182" x2="102" y2="206" stroke="#e9c479" stroke-width="3.6"/><line x1="88" y1="180" x2="72" y2="206" stroke="#e9c479" stroke-width="3"/><line x1="90" y1="180" x2="72" y2="196" stroke="#e9c479" stroke-width="3"/></g><path d="M40 206 L68 206" stroke="#e9c479" stroke-width="1.4"/><path d="M40 206 l3 -6 M44 206 l-3 -6" stroke="#e9c479" stroke-width="1.4"/><g stroke="#e9c479" stroke-width="1.4" fill="none" transform="translate(128,196) scale(1)"><path d="M0 0 q-6 2 -11 -2"/><ellipse cx="6" cy="2" rx="9" ry="5" fill="#e9c479" opacity=".55"/><path d="M7 -1 l3 -4 M9 1 l4 -2"/><path d="M14 4 l0 10 M6 6 l-2 9 M16 6 l2 9"/></g><circle cx="60" cy="120" r="3" fill="#c24234"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd0愚者)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg1魔术师" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl1魔术师" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd1魔术师" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg1魔术师)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl1魔术师)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd1魔术师)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd1魔术师)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd1魔术师)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">1 魔术师</text>
+    <g ><g><circle cx="100" cy="124" r="9" fill="#e8c49b"/><path d="M91 140 q9 -7 18 0 l-2 34 q-7 4 -14 0 z" fill="#e8c49b" stroke="#e9c479" stroke-width="1.2"/><line x1="91" y1="142" x2="80" y2="162" stroke="#e9c479" stroke-width="2.4"/><line x1="109" y1="142" x2="120" y2="162" stroke="#e9c479" stroke-width="2.4"/><line x1="96" y1="174" x2="95" y2="198" stroke="#e9c479" stroke-width="4"/><line x1="104" y1="174" x2="105" y2="198" stroke="#e9c479" stroke-width="4"/></g><line x1="100" y1="96" x2="100" y2="52" stroke="#e9c479" stroke-width="1.6"/><path d="M100 52 q8 -6 16 0" fill="none" stroke="#e9c479" stroke-width="1.4"/><line x1="100" y1="140" x2="100" y2="178" stroke="#e9c479" stroke-width="1.4"/><g transform="rotate(180 100 128)"><path d="M100 128 q-26 0 -34 -34 M100 128 q26 0 34 -34" fill="none" stroke="#e9c479" stroke-width="1.4" opacity=".85"/></g><rect x="66" y="168" width="68" height="26" rx="6" fill="none" stroke="#e9c479" stroke-width="1.4"/><circle cx="82" cy="181" r="6" fill="none" stroke="#e9c479" stroke-width="1.4"/><path d="M82 177 l4 -6 M82 177 l-4 -6 M82 177 l0 6" stroke="#e9c479" stroke-width="1.4"/><text x="100" y="185" fill="#c24234" font-size="11" text-anchor="middle">♂</text><path d="M116 175 l4 6 M116 175 l-4 6 M114 181 l4 0 M114 181 l4 -10" stroke="#7aa0d8" stroke-width="1.3"/><rect x="122" y="173" width="8" height="8" fill="none" stroke="#e9c479" stroke-width="1.4"/><path d="M72 168 q6 -8 14 0" fill="none" stroke="#f6efdc" stroke-width="1.5" opacity=".6"/><path d="M114 168 q6 -8 14 0" fill="none" stroke="#f6efdc" stroke-width="1.5" opacity=".6"/><path d="M56 206 L66 196 L74 206 L84 196 L92 206 L100 196 L108 206 L118 196 L126 206 L136 196 L144 206" fill="none" stroke="#e9c479" stroke-width="1.4" opacity=".6"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd1魔术师)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg2女祭司" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl2女祭司" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd2女祭司" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg2女祭司)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl2女祭司)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd2女祭司)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd2女祭司)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd2女祭司)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">2 女祭司</text>
+    <g ><rect x="64" y="84" width="10" height="130" fill="url(#hxGold)" opacity=".28"/><rect x="64" y="84" width="10" height="130" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="62" y="80" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="62" y="213" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="126" y="84" width="10" height="130" fill="url(#hxGold)" opacity=".28"/><rect x="126" y="84" width="10" height="130" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="124" y="80" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="124" y="213" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="64" y="80" width="10" height="22" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="126" y="80" width="10" height="22" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="68" y="72" width="3" height="10" fill="#e9c479"/><rect x="129" y="72" width="3" height="10" fill="#e9c479"/><path d="M74 214 L126 214" stroke="#e9c479" stroke-width="1.6"/><text x="100" y="105" fill="#7aa0d8" font-size="13" text-anchor="middle">♌</text><text x="100" y="105" fill="none"/><g><circle cx="100" cy="102" r="9" fill="#e8c49b"/><path d="M89 118 q5 -4 11 -2 q6 -2 11 2 l3 32 q-11 6 -14 0 q-3 6 -14 0 z" fill="#7aa0d8" stroke="#e9c479" stroke-width="1.3"/><path d="M89 118 q5 -4 11 -2 q6 -2 11 2" fill="none" stroke="#e9c479" stroke-width="1" opacity=".6"/></g><path d="M92 96 l8 -6 l8 6" fill="none" stroke="#e9c479" stroke-width="1.4"/><path d="M92 96 l8 -28 l8 28" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="90" y="140" width="20" height="34" fill="none" stroke="#e9c479" stroke-width="1.4"/><path d="M94 148 l12 6 M94 160 l12 6" stroke="#e9c479" stroke-width="1.3"/><circle cx="100" cy="206" r="13" fill="#e9c479"/><circle cx="96.1" cy="202.8" r="13" fill="#0f2a33"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd2女祭司)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg3皇后" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl3皇后" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd3皇后" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg3皇后)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl3皇后)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd3皇后)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd3皇后)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd3皇后)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">3 皇后</text>
+    <g ><path d="M40 208 L160 208 L166 216 L34 216 Z" fill="rgba(143,168,132,.35)"/><path d="M46 208 q0 -6 4 -6 M54 208 q0 -10 4 -10 M62 208 q0 -7 4 -7" stroke="#f6efdc" stroke-width="1.5" opacity=".6"/><path d="M154 208 q0 -6 -4 -6 M146 208 q0 -10 -4 -10 M138 208 q0 -7 -4 -7" stroke="#f6efdc" stroke-width="1.5" opacity=".6"/><circle cx="116" cy="102" r="15" fill="#c24234" opacity=".75"/><path d="M116 92 q6 6 0 14 q-6 -8 0 -14z" fill="#f6efdc"/><text x="116" y="100" text-anchor="middle" fill="#f6efdc" font-size="12">♀</text><g><circle cx="92" cy="110" r="9" fill="#e0b288"/><path d="M81 126 q5 -4 11 -2 q6 -2 11 2 l3 32 q-11 6 -14 0 q-3 6 -14 0 z" fill="#8fa884" stroke="#e9c479" stroke-width="1.3"/><path d="M81 126 q5 -4 11 -2 q6 -2 11 2" fill="none" stroke="#e9c479" stroke-width="1" opacity=".6"/></g><path d="M83 110 q9 -8 18 0 l0 6 q-9 8 -18 0 z" fill="#e9c479" stroke="#e9c479" stroke-width="1"/><path d="M92 150 l-6 10 M92 150 l6 10" stroke="#e9c479" stroke-width="2"/><circle cx="92" cy="142" r="6" fill="none" stroke="#e9c479" stroke-width="1.4"/><path d="M88 142 l8 0 M92 138 l0 8" stroke="#e9c479" stroke-width="1.3"/><path d="M70 200 q30 26 60 0" fill="none" stroke="#e9c479" stroke-width="1.4" opacity=".7"/><circle cx="70" cy="200" r="4" fill="#e9c479"/><path d="M150.0 127.0 L151.3 130.2 L154.8 130.5 L152.1 132.7 L152.9 136.0 L150.0 134.3 L147.1 136.0 L147.9 132.7 L145.2 130.5 L148.7 130.2 Z" fill="#e9c479"/><path d="M60.0 135.0 L61.3 138.2 L64.8 138.5 L62.1 140.7 L62.9 144.0 L60.0 142.3 L57.1 144.0 L57.9 140.7 L55.2 138.5 L58.7 138.2 Z" fill="#e9c479"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd3皇后)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg4皇帝" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl4皇帝" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd4皇帝" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg4皇帝)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl4皇帝)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd4皇帝)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd4皇帝)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd4皇帝)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">4 皇帝</text>
+    <g ><path d="M56 168 l15 -64 l15 64 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><path d="M86 176 l17 -56 l17 56 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><path d="M120 168 l16 -64 l16 64 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><rect x="58" y="146" width="84" height="62" rx="8" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="70" y="120" width="60" height="8" rx="3" fill="none" stroke="#e9c479" stroke-width="1.4"/><path d="M100 128 v64 M100 150 l-14 -10 M100 150 l14 -10" stroke="#e9c479" stroke-width="1.4" fill="none"/><g><circle cx="100" cy="122" r="9" fill="#e8c49b"/><path d="M89 138 q5 -4 11 -2 q6 -2 11 2 l3 32 q-11 6 -14 0 q-3 6 -14 0 z" fill="#c24234" stroke="#e9c479" stroke-width="1.3"/><path d="M89 138 q5 -4 11 -2 q6 -2 11 2" fill="none" stroke="#e9c479" stroke-width="1" opacity=".6"/></g><path d="M91 116 l9 -7 l9 7 M91 116 l9 2 l9 -2 M91 116 v-6 M109 116 v-6" stroke="#e9c479" stroke-width="1.2" fill="none"/><path d="M74 176 l7 -7 M126 176 l-7 -7" stroke="#e9c479" stroke-width="2.2"/><path d="M120 200 q-20 10 -40 0" fill="none" stroke="#e9c479" stroke-width="1.4" opacity=".6"/><circle cx="70" cy="140" r="4" fill="#e9c479"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd4皇帝)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg5恋人" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl5恋人" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd5恋人" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg5恋人)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl5恋人)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd5恋人)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd5恋人)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd5恋人)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">5 恋人</text>
+    <g ><g fill="#f6efdc" opacity="0.95"><ellipse cx="100" cy="62" rx="11.9" ry="4.8999999999999995"/><ellipse cx="92.3" cy="63.8" rx="7" ry="3.8500000000000005"/><ellipse cx="107.7" cy="63.8" rx="7" ry="3.8500000000000005"/><ellipse cx="96.5" cy="59.5" rx="4.8999999999999995" ry="3.5"/><ellipse cx="103.5" cy="59.5" rx="4.8999999999999995" ry="3.5"/></g><circle cx="100" cy="84" r="9" fill="#e8c49b"/><path d="M100 94 l0 8 M100 102 l-7 10 M100 102 l7 10" stroke="#f6efdc" stroke-width="1.5" opacity=".65"/><g><circle cx="72" cy="116" r="9" fill="#e8c49b"/><path d="M61 132 q5 -4 11 -2 q6 -2 11 2 l3 32 q-11 6 -14 0 q-3 6 -14 0 z" fill="#8fa884" stroke="#e9c479" stroke-width="1.3"/><path d="M61 132 q5 -4 11 -2 q6 -2 11 2" fill="none" stroke="#e9c479" stroke-width="1" opacity=".6"/></g><path d="M72 96 l-12 26 M72 96 l12 -16 M72 96 l-8 10 M72 96 l8 12" stroke="#e9c479" stroke-width="1.6" fill="none"/><g><circle cx="128" cy="116" r="9" fill="#e0b288"/><path d="M117 132 q5 -4 11 -2 q6 -2 11 2 l3 32 q-11 6 -14 0 q-3 6 -14 0 z" fill="#c24234" stroke="#e9c479" stroke-width="1.3"/><path d="M117 132 q5 -4 11 -2 q6 -2 11 2" fill="none" stroke="#e9c479" stroke-width="1" opacity=".6"/></g><path d="M128 96 l12 26 M128 96 l-12 -16 M128 96 l8 10 M128 96 l-8 12" stroke="#e9c479" stroke-width="1.6" fill="none"/><path d="M84 150 l-8 34 M68 184 l-12 12 M92 184 l4 12" stroke="#e9c479" stroke-width="2.4"/><path d="M116 150 l8 34 M132 184 l12 12 M108 184 l-4 12" stroke="#e9c479" stroke-width="2.4"/><path d="M40 212 L160 212 L152 200 L48 200 Z" fill="rgba(233,196,121,.08)"/><path d="M80 200 q0 -8 4 -8" stroke="#f6efdc" stroke-width="1.5" opacity=".6"/><path d="M52 212 l6 -6 M148 212 l-6 -6" stroke="#e9c479" stroke-width="1.3"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd5恋人)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg6战车" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl6战车" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd6战车" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg6战车)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl6战车)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd6战车)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd6战车)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd6战车)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">6 战车</text>
+    <g ><path d="M100.0 75.0 L102.4 80.7 L108.6 81.2 L103.9 85.3 L105.3 91.3 L100.0 88.0 L94.7 91.3 L96.1 85.3 L91.4 81.2 L97.6 80.7 Z" fill="#e9c479"/><rect x="46" y="92" width="108" height="7" rx="3" fill="none" stroke="#e9c479" stroke-width="1.4"/><line x1="46" y1="92" x2="46" y2="82" stroke="#e9c479" stroke-width="1.4"/><line x1="154" y1="92" x2="154" y2="82" stroke="#e9c479" stroke-width="1.4"/><rect x="90" y="80" width="20" height="14" fill="none" stroke="#e9c479" stroke-width="1.4"/><circle cx="100" cy="96" r="9" fill="#e8c49b"/><line x1="100" y1="105" x2="100" y2="116" stroke="#e9c479" stroke-width="1.6"/><rect x="38" y="116" width="124" height="62" rx="9" fill="none" stroke="#e9c479" stroke-width="1.4"/><path d="M38 150 L72 150 L72 116 M162 150 L128 150 L128 116" stroke="#e9c479" stroke-width="1.6" fill="none"/><path d="M62 136.0 L63.8 140.2 L68.0 142 L63.8 143.8 L62 148.0 L60.2 143.8 L56.0 142 L60.2 140.2 Z" fill="#e9c479"/><path d="M138 136.0 L139.8 140.2 L144.0 142 L139.8 143.8 L138 148.0 L136.2 143.8 L132.0 142 L136.2 140.2 Z" fill="#e9c479"/><path d="M100 132.0 L101.8 136.2 L106.0 138 L101.8 139.8 L100 144.0 L98.2 139.8 L94.0 138 L98.2 136.2 Z" fill="#7aa0d8"/><line x1="46" y1="178" x2="46" y2="198" stroke="#e9c479" stroke-width="2.2"/><line x1="154" y1="178" x2="154" y2="198" stroke="#e9c479" stroke-width="2.2"/><path d="M50 198 L150 198" stroke="#e9c479" stroke-width="1.4"/><g transform="translate(66,190) scale(-1 0.8)" stroke="#e9c479" stroke-width="1.4" fill="none"><circle cx="18" cy="-6" r="6" fill="#e9c479" opacity=".5"/><path d="M-14 8 q14 -10 26 0 l3 8 q-6 2 -12 0 M-8 8 l4 12 M8 8 l-3 12"/></g><g transform="translate(134,190) scale(-1 0.8)" stroke="#e9c479" stroke-width="1.4" fill="none"><circle cx="18" cy="-6" r="6" fill="#e9c479" opacity=".5"/><path d="M-14 8 q14 -10 26 0 l3 8 q-6 2 -12 0 M-8 8 l4 12 M8 8 l-3 12"/></g><path d="M96 178 q4 -10 8 0 M104 178 q-4 -10 -8 0" stroke="#e9c479" stroke-width="1.4" fill="none"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd6战车)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg7力量" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl7力量" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd7力量" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg7力量)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl7力量)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd7力量)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd7力量)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd7力量)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">7 力量</text>
+    <g ><g><circle cx="132" cy="150" r="9" fill="#e9c479" opacity=".8"/><circle cx="127.5" cy="150" r="9" fill="#e9c479" opacity=".4"/><circle cx="136.5" cy="150" r="9" fill="#e9c479" opacity=".4"/><circle cx="132" cy="150" r="4.5" fill="#0f2a33"/></g><path d="M124 158 q-8 6 -20 0 M126 168 l-4 12 M124 168 l-8 14 M142 156 l4 16 M140 176 l6 10" stroke="#c9975e" stroke-width="1.4" fill="none"/><g><circle cx="104" cy="124" r="9" fill="#e8c49b"/><path d="M93 140 q5 -4 11 -2 q6 -2 11 2 l3 32 q-11 6 -14 0 q-3 6 -14 0 z" fill="#f6efdc" stroke="#e9c479" stroke-width="1.3"/><path d="M93 140 q5 -4 11 -2 q6 -2 11 2" fill="none" stroke="#e9c479" stroke-width="1" opacity=".6"/></g><path d="M100 138 l-16 12 M100 138 l-12 8 M100 152 l-10 22 M100 152 l-8 24" stroke="#e9c479" stroke-width="2" fill="none"/><path d="M95 114 q-14 -16 -4 -24 q10 -8 24 0 q14 8 4 24" fill="none" stroke="#e9c479" stroke-width="1.4"/><circle cx="99" cy="96" r="2" fill="#c24234"/><path d="M56 206 L144 206" stroke="#e9c479" stroke-width="1.4"/><path d="M60.0 145.0 L61.3 148.2 L64.8 148.5 L62.1 150.7 L62.9 154.0 L60.0 152.3 L57.1 154.0 L57.9 150.7 L55.2 148.5 L58.7 148.2 Z" fill="#e9c479"/><path d="M144.0 145.0 L145.3 148.2 L148.8 148.5 L146.1 150.7 L146.9 154.0 L144.0 152.3 L141.1 154.0 L141.9 150.7 L139.2 148.5 L142.7 148.2 Z" fill="#f6efdc"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd7力量)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg8隐士" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl8隐士" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd8隐士" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg8隐士)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl8隐士)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd8隐士)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd8隐士)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd8隐士)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">8 隐士</text>
+    <g ><path d="M60 160 l17 -78 l17 78 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><path d="M118 150 l20 -92 l20 92 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><path d="M88 150 l15 -80 l15 80 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><path d="M152 170 q-52 -22 -100 0" fill="none" stroke="#e9c479" stroke-width="1.4" opacity=".35"/><g><circle cx="92" cy="120" r="9" fill="#e8c49b"/><path d="M81 136 q5 -4 11 -2 q6 -2 11 2 l3 32 q-11 6 -14 0 q-3 6 -14 0 z" fill="#cfcfc2" stroke="#e9c479" stroke-width="1.3"/><path d="M81 136 q5 -4 11 -2 q6 -2 11 2" fill="none" stroke="#e9c479" stroke-width="1" opacity=".6"/></g><line x1="92" y1="112" x2="62" y2="150" stroke="#e9c479" stroke-width="2.2"/><path d="M100 112 l0 -18 l10 0 l0 -8 l-10 0 l0 -6" stroke="#e9c479" stroke-width="1.6" fill="none"/><circle cx="100" cy="70" r="9" fill="#e9c479"/><path d="M100 79 l0 14 M91 90 l18 0 M91 90 l-8 10 M109 90 l8 10 M100 104 l0 12" stroke="#e9c479" stroke-width="1.4" fill="none"/><path d="M100 61 l3 6 l-3 2 l-3 -2 z" fill="#f6efdc" opacity=".9"/><path d="M92 122 l-16 14" stroke="#e9c479" stroke-width="2"/><path d="M150.0 91.0 L151.3 94.2 L154.8 94.5 L152.1 96.7 L152.9 100.0 L150.0 98.3 L147.1 100.0 L147.9 96.7 L145.2 94.5 L148.7 94.2 Z" fill="#e9c479"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd8隐士)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg9命运之轮" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl9命运之轮" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd9命运之轮" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg9命运之轮)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl9命运之轮)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd9命运之轮)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd9命运之轮)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd9命运之轮)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">9 命运之轮</text>
+    <g ><circle cx="100" cy="150" r="44" fill="none" stroke="#e9c479" stroke-width="1.4" stroke-width="2.2"/><circle cx="100" cy="150" r="30" fill="none" stroke="#e9c479" stroke-width="1.4" stroke-width="1.3"/><circle cx="100" cy="150" r="30" fill="rgba(233,196,121,.10)"/><path d="M100 106 l0 88 M56 150 l88 0 M69 119 l62 62 M69 181 l62 -62" stroke="#e9c479" stroke-width="0.9" opacity=".6"/><text x="100" y="158" text-anchor="middle" fill="#f6efdc" font-size="24" opacity=".95">轮</text><path d="M100 88 q14 14 28 0 q0 20 -14 30" fill="#e9c479" opacity=".75"/><path d="M100 214 q-14 -14 -28 0 q0 -20 14 -30" fill="#e9c479" opacity=".55"/><circle cx="100" cy="150" r="11" fill="none" stroke="#e9c479" stroke-width="1.4"/><path d="M100 150 l0 -11 M100 150 l9 6 M100 150 l-9 6" stroke="#e9c479" stroke-width="1.4"/><circle cx="100" cy="88" r="9" fill="#e8c49b"/><path d="M56 150 q-18 -6 -16 -26 M144 150 q18 -6 16 -26" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".7"/><path d="M50 114.0 L51.8 118.2 L56.0 120 L51.8 121.8 L50 126.0 L48.2 121.8 L44.0 120 L48.2 118.2 Z" fill="#e9c479"/><path d="M150 114.0 L151.8 118.2 L156.0 120 L151.8 121.8 L150 126.0 L148.2 121.8 L144.0 120 L148.2 118.2 Z" fill="#e9c479"/><path d="M82 208 l-8 10 M118 208 l8 10" stroke="#f6efdc" stroke-width="1.5" opacity=".5"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd9命运之轮)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg10正义" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl10正义" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd10正义" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg10正义)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl10正义)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd10正义)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd10正义)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd10正义)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">10 正义</text>
+    <g ><rect x="60" y="96" width="10" height="114" fill="url(#hxGold)" opacity=".28"/><rect x="60" y="96" width="10" height="114" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="58" y="92" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="58" y="209" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="130" y="96" width="10" height="114" fill="url(#hxGold)" opacity=".28"/><rect x="130" y="96" width="10" height="114" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="128" y="92" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="128" y="209" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="68" y="88" width="3" height="10" fill="#e9c479"/><rect x="129" y="88" width="3" height="10" fill="#e9c479"/><g><circle cx="100" cy="112" r="9" fill="#e8c49b"/><path d="M89 128 q5 -4 11 -2 q6 -2 11 2 l3 32 q-11 6 -14 0 q-3 6 -14 0 z" fill="#c24234" stroke="#e9c479" stroke-width="1.3"/><path d="M89 128 q5 -4 11 -2 q6 -2 11 2" fill="none" stroke="#e9c479" stroke-width="1" opacity=".6"/></g><path d="M98 112 l8 0 M98 120 l8 0" stroke="#e9c479" stroke-width="1.2"/><line x1="100" y1="122" x2="146" y2="150" stroke="#e9c479" stroke-width="1.8"/><path d="M146 150 l-8 4 l2 -10 z" fill="#e9c479"/><line x1="100" y1="118" x2="60" y2="150" stroke="#e9c479" stroke-width="1.6"/><path d="M60 150 h34 M60 144 h28 M60 156 h24" stroke="#e9c479" stroke-width="1.3"/><path d="M76 150 q0 -26 40 -26 q-8 0 -8 8 q0 -14 -32 -14 q0 14 -12 14 z" fill="#e9c479" opacity=".15"/><rect x="66" y="200" width="20" height="14" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="114" y="200" width="20" height="14" fill="none" stroke="#e9c479" stroke-width="1.4"/><path d="M100 85.0 L101.5 88.5 L105.0 90 L101.5 91.5 L100 95.0 L98.5 91.5 L95.0 90 L98.5 88.5 Z" fill="#e9c479"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd10正义)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg11倒吊人" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl11倒吊人" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd11倒吊人" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg11倒吊人)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl11倒吊人)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd11倒吊人)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd11倒吊人)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd11倒吊人)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">11 倒吊人</text>
+    <g ><line x1="40" y1="120" x2="160" y2="120" stroke="#e9c479" stroke-width="1.6"/><path d="M100 120 l0 18 M100 150 l-8 14 M100 164 l8 10 M100 150 l8 14 M100 164 l-8 10" stroke="#e9c479" stroke-width="1.6" fill="none"/><path d="M84 136 q8 -5 16 0 M84 136 l0 16 q-8 5 -16 0 z" fill="#e9c479" opacity=".15"/><circle cx="100" cy="140" r="3" fill="#e9c479"/><g transform="rotate(180 100 132)"><g><circle cx="100" cy="116" r="9" fill="#e8c49b"/><path d="M89 132 q5 -4 11 -2 q6 -2 11 2 l3 32 q-11 6 -14 0 q-3 6 -14 0 z" fill="#7aa0d8" stroke="#e9c479" stroke-width="1.3"/><path d="M89 132 q5 -4 11 -2 q6 -2 11 2" fill="none" stroke="#e9c479" stroke-width="1" opacity=".6"/></g></g><path d="M96 108 q6 -6 10 0 M84 96 q6 -6 12 0" stroke="#f6efdc" stroke-width="1.5" opacity=".7"/><circle cx="100" cy="150" r="16" fill="none" stroke="#e9c479" stroke-width="1.4" stroke-dasharray="3 3" opacity=".7"/><path d="M60 110 l4 8 M140 110 l-4 8" stroke="#e9c479" stroke-width="1.4"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd11倒吊人)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg12死神" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl12死神" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd12死神" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg12死神)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl12死神)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd12死神)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd12死神)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd12死神)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">12 死神</text>
+    <g ><rect x="40" y="128" width="92" height="42" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".6"/><path d="M40 128 l0 42 M132 128 l0 42" stroke="#cfcfc2" stroke-width="1" opacity=".5"/><g transform="translate(112,172) scale(0.95)"><circle cx="24" cy="-26" r="7" fill="#0f2a33"/><rect x="-16" y="-16" width="40" height="34" rx="8" fill="rgba(255,255,255,.10)"/><path d="M-16 -10 q-22 -8 -20 -30 M20 -10 q22 -8 20 -30" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/></g><path d="M58 96 l10 8 M70 100 l6 10 M80 110 l4 10" stroke="#e9c479" stroke-width="2.2" fill="none"/><path d="M58 92 l14 0 M60 98 l16 0" stroke="#e9c479" stroke-width="1.4"/><path d="M52 216 L62 196 L72 216 Z" fill="#0f2a33"/><path d="M62 196 l14 0 l0 20" fill="none" stroke="#cfcfc2" stroke-width="1.3"/><path d="M72 202 l-8 10 M72 202 l8 8" stroke="#e9c479" stroke-width="1.5"/><circle cx="82" cy="196" r="5" fill="#e9c479"/><path d="M76 196 a5 5 0 0 1 8 3" stroke="#f6efdc" stroke-width="1.3" fill="none"/><path d="M150 120 q0 30 -20 40 M152 138 q-10 14 -26 16" stroke="#f6efdc" stroke-width="1.5" opacity=".5"/><circle cx="136" cy="70" r="6" fill="#e9c479" opacity=".95"/><line x1="136" y1="70" x2="146.2" y2="70.0" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="136" y1="70" x2="143.2" y2="77.2" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="136" y1="70" x2="136.0" y2="80.2" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="136" y1="70" x2="128.8" y2="77.2" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="136" y1="70" x2="125.8" y2="70.0" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="136" y1="70" x2="128.8" y2="62.8" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="136" y1="70" x2="136.0" y2="59.8" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="136" y1="70" x2="143.2" y2="62.8" stroke="#e9c479" stroke-width="1.2" opacity=".75"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd12死神)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg13节制" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl13节制" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd13节制" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg13节制)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl13节制)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd13节制)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd13节制)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd13节制)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">13 节制</text>
+    <g ><rect x="54" y="120" width="10" height="100" fill="url(#hxGold)" opacity=".28"/><rect x="54" y="120" width="10" height="100" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="52" y="116" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="52" y="219" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="142" y="120" width="10" height="100" fill="url(#hxGold)" opacity=".28"/><rect x="142" y="120" width="10" height="100" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="140" y="116" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="140" y="219" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><path d="M54 120 L142 120" stroke="#e9c479" stroke-width="1.4"/><circle cx="100" cy="104" r="9" fill="#e8c49b"/><path d="M100 96 l-6 -14 M100 96 l6 -14 M94 82 l12 0 M94 82 l0 -8 M106 82 l0 -8" stroke="#e9c479" stroke-width="1.5" fill="none"/><path d="M92 120 q-16 -19.2 -38.4 -4.8 M92 120 q-11.2 -12.8 -27.2 -3.2" fill="none" stroke="#e9c479" stroke-width="1.4" opacity=".8"/><path d="M108 120 q-16 -19.2 -38.4 -4.8 M108 120 q-11.2 -12.8 -27.2 -3.2" fill="none" stroke="#e9c479" stroke-width="1.4" opacity=".8"/><g><circle cx="100" cy="132" r="9" fill="#e8c49b"/><path d="M89 148 q5 -4 11 -2 q6 -2 11 2 l3 32 q-11 6 -14 0 q-3 6 -14 0 z" fill="#7aa0d8" stroke="#e9c479" stroke-width="1.3"/><path d="M89 148 q5 -4 11 -2 q6 -2 11 2" fill="none" stroke="#e9c479" stroke-width="1" opacity=".6"/></g><line x1="100" y1="128" x2="100" y2="142" stroke="#e9c479" stroke-width="1.4"/><path d="M72 176 l10 -4 M72 176 l-8 6 M72 176 a6 4 0 1 1 0 -8 l14 0 l0 8 z" fill="rgba(122,160,216,.35)" stroke="#7aa0d8" stroke-width="1.2"/><path d="M72 182 l-10 10" stroke="#7aa0d8" stroke-width="1.5"/><path d="M128 176 l-10 -4 M128 176 l8 6 M120 176 a6 4 0 1 1 0 -8 l14 0 l0 8 z" fill="rgba(122,160,216,.35)" stroke="#7aa0d8" stroke-width="1.2"/><path d="M136 182 l8 8" stroke="#7aa0d8" stroke-width="1.5"/><path d="M100 168 l32 30 M100 168 l30 -28" stroke="#e9c479" stroke-width="1.2" opacity=".6" fill="none"/><path d="M60 214 L140 214" stroke="#e9c479" stroke-width="1.3"/><circle cx="100" cy="70" r="13" fill="#e9c479" opacity=".95"/><line x1="100" y1="70" x2="122.1" y2="70.0" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="70" x2="115.6" y2="85.6" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="70" x2="100.0" y2="92.1" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="70" x2="84.4" y2="85.6" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="70" x2="77.9" y2="70.0" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="70" x2="84.4" y2="54.4" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="70" x2="100.0" y2="47.9" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="70" x2="115.6" y2="54.4" stroke="#e9c479" stroke-width="1.2" opacity=".75"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd13节制)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg14恶魔" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl14恶魔" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd14恶魔" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg14恶魔)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl14恶魔)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd14恶魔)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd14恶魔)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd14恶魔)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">14 恶魔</text>
+    <g ><path d="M78 92 L122 92 L130 168 L100 186 L70 168 Z" fill="rgba(194,66,52,.35)"/><circle cx="100" cy="108" r="9" fill="#e8c49b"/><path d="M90 104 q-10 -16 -4 -24 M110 104 q10 -16 4 -24" stroke="#e9c479" stroke-width="1.4" fill="none"/><circle cx="100" cy="108" r="2.2" fill="#c24234"/><circle cx="94" cy="108" r="2.2" fill="#c24234"/><path d="M98 114 l4 0 M100 112 l0 5" stroke="#e9c479" stroke-width="1.3"/><g><circle cx="100" cy="134" r="9" fill="#e0b288"/><path d="M89 150 q5 -4 11 -2 q6 -2 11 2 l3 32 q-11 6 -14 0 q-3 6 -14 0 z" fill="#c24234" stroke="#e9c479" stroke-width="1.3"/><path d="M89 150 q5 -4 11 -2 q6 -2 11 2" fill="none" stroke="#e9c479" stroke-width="1" opacity=".6"/></g><path d="M100 128 l0 10 M100 138 l-10 -6 M100 138 l10 -6" stroke="#e9c479" stroke-width="1.6" fill="none"/><path d="M100 180 l-20 22 M100 180 l20 22 M100 180 l-26 12 M100 180 l26 12" stroke="#e9c479" stroke-width="2.4"/><path d="M100 128 l-26 12 M100 128 l26 12 M100 128 l-34 6 M100 128 l34 6" stroke="#e9c479" stroke-width="1.4"/><path d="M100.0 141.0 L102.4 146.7 L108.6 147.2 L103.9 151.3 L105.3 157.3 L100.0 154.1 L94.7 157.3 L96.1 151.3 L91.4 147.2 L97.6 146.7 Z" fill="#c24234"/><path d="M64 206 L136 206" stroke="#e9c479" stroke-width="1.5"/><circle cx="58" cy="196" r="9" fill="#e8c49b"/><circle cx="142" cy="196" r="9" fill="#e8c49b"/><line x1="66" y1="204" x2="58" y2="214" stroke="#e9c479" stroke-width="1.4"/><line x1="134" y1="204" x2="142" y2="214" stroke="#e9c479" stroke-width="1.4"/><path d="M40 214 L160 214" stroke="#e9c479" stroke-width="1.3"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd14恶魔)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg15高塔" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl15高塔" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd15高塔" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg15高塔)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl15高塔)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd15高塔)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd15高塔)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd15高塔)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">15 高塔</text>
+    <g ><path d="M84 70 L116 70 L112 150 L88 150 Z" fill="rgba(233,196,121,.12)"/><path d="M84 70 L116 70 L116 84 L84 84 Z" fill="none" stroke="#e9c479" stroke-width="1.4"/><line x1="82" y1="150" x2="118" y2="150" stroke="#e9c479" stroke-width="1.6"/><path d="M88 150 l-5 8 M112 150 l5 8 M82 158 l-5 8 M118 158 l5 8" stroke="#e9c479" stroke-width="1.4"/><path d="M82 86 l-10 6 M76 92 l-12 4 M66 98 l-10 4" stroke="#e9c479" stroke-width="1.8" fill="none"/><path d="M84 60 l-22 -30 M116 60 l22 -20" stroke="#7aa0d8" stroke-width="1.8"/><path d="M100 49.0 L102.1 53.9 L107.0 56 L102.1 58.1 L100 63.0 L97.9 58.1 L93.0 56 L97.9 53.9 Z" fill="#e9c479"/><path d="M96 96 l6 0 M86 110 l4 0 M112 106 l-4 0" stroke="#e9c479" stroke-width="1.2" opacity=".7"/><circle cx="64" cy="84" r="6" fill="#e9c479" opacity=".95"/><line x1="64" y1="84" x2="74.2" y2="84.0" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="64" y1="84" x2="71.2" y2="91.2" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="64" y1="84" x2="64.0" y2="94.2" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="64" y1="84" x2="56.8" y2="91.2" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="64" y1="84" x2="53.8" y2="84.0" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="64" y1="84" x2="56.8" y2="76.8" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="64" y1="84" x2="64.0" y2="73.8" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="64" y1="84" x2="71.2" y2="76.8" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><path d="M50 210 q-8 -24 8 -34" stroke="#f6efdc" stroke-width="1.5" opacity=".7"/><path d="M62 216 q10 -18 0 -30" stroke="#f6efdc" stroke-width="1.5" opacity=".7"/><circle cx="56" cy="176" r="4" fill="#e8c49b"/><circle cx="64" cy="190" r="5" fill="#e8c49b"/><path d="M142 216 q10 -18 0 -30" stroke="#f6efdc" stroke-width="1.5" opacity=".7"/><circle cx="148" cy="84" r="3" fill="#c24234"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd15高塔)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg16星星" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl16星星" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd16星星" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg16星星)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl16星星)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd16星星)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd16星星)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd16星星)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">16 星星</text>
+    <g ><path d="M100 71.0 L102.7 77.3 L109.0 80 L102.7 82.7 L100 89.0 L97.3 82.7 L91.0 80 L97.3 77.3 Z" fill="#e9c479"/><path d="M66 47.0 L67.5 50.5 L71.0 52 L67.5 53.5 L66 57.0 L64.5 53.5 L61.0 52 L64.5 50.5 Z" fill="#e9c479"/><path d="M100 114.0 L101.2 116.8 L104.0 118 L101.2 119.2 L100 122.0 L98.8 119.2 L96.0 118 L98.8 116.8 Z" fill="#e9c479"/><path d="M134 47.0 L135.5 50.5 L139.0 52 L135.5 53.5 L134 57.0 L132.5 53.5 L129.0 52 L132.5 50.5 Z" fill="#e9c479"/><path d="M84 36.0 L85.2 38.8 L88.0 40 L85.2 41.2 L84 44.0 L82.8 41.2 L80.0 40 L82.8 38.8 Z" fill="#e9c479"/><path d="M116 36.0 L117.2 38.8 L120.0 40 L117.2 41.2 L116 44.0 L114.8 41.2 L112.0 40 L114.8 38.8 Z" fill="#e9c479"/><path d="M66 92.0 L67.2 94.8 L70.0 96 L67.2 97.2 L66 100.0 L64.8 97.2 L62.0 96 L64.8 94.8 Z" fill="#e9c479"/><path d="M134 92.0 L135.2 94.8 L138.0 96 L135.2 97.2 L134 100.0 L132.8 97.2 L130.0 96 L132.8 94.8 Z" fill="#e9c479"/><path d="M44 200 l20 -72 l20 72 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><path d="M118 200 l21 -78 l21 78 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><rect x="76" y="150" width="10" height="60" fill="url(#hxGold)" opacity=".28"/><rect x="76" y="150" width="10" height="60" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="74" y="146" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="74" y="209" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="128" y="150" width="10" height="60" fill="url(#hxGold)" opacity=".28"/><rect x="128" y="150" width="10" height="60" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="126" y="146" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><rect x="126" y="209" width="14" height="5" rx="1.5" fill="none" stroke="#e9c479" stroke-width="1.4"/><g transform="translate(100,156)"><circle cx="0" cy="-10" r="8" fill="#e8c49b"/><path d="M-8 2 q8 -5 16 0 l-1 34 q-7 4 -14 0 z" fill="#f6efdc" stroke="#e9c479" stroke-width="1.1"/><line x1="-1" y1="36" x2="-4" y2="46" stroke="#e9c479" stroke-width="1.6"/><line x1="3" y1="36" x2="4" y2="46" stroke="#e9c479" stroke-width="1.6"/><line x1="-1" y1="-2" x2="-14" y2="8" stroke="#e9c479" stroke-width="1.8"/><circle cx="-16" cy="8" r="6" fill="rgba(122,160,216,.4)" stroke="#7aa0d8" stroke-width="1.1"/><path d="M-16 14 l0 6 M-20 16 l8 0" stroke="#e9c479" stroke-width="1.3"/></g><path d="M76 176 l14 0 l0 -6" stroke="#7aa0d8" stroke-width="1.4" fill="none"/><circle cx="92" cy="176" r="5" fill="rgba(122,160,216,.4)" stroke="#7aa0d8" stroke-width="1.1"/><path d="M58 176 l14 0 l0 -8" stroke="#7aa0d8" stroke-width="1.2" fill="none"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd16星星)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg17月亮" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl17月亮" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd17月亮" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg17月亮)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl17月亮)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd17月亮)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd17月亮)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd17月亮)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">17 月亮</text>
+    <g ><circle cx="100" cy="74" r="20" fill="#e9c479"/><circle cx="94.0" cy="69.0" r="20" fill="#0f2a33"/><circle cx="96" cy="70" r="3" fill="#e9c479"/><circle cx="96" cy="70" r="1" fill="#0f2a33"/><path d="M58 150 l17 -70 l17 70 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><path d="M116 150 l17 -74 l17 74 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><rect x="60" y="176" width="20" height="34" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".7"/><rect x="120" y="182" width="20" height="28" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".7"/><g stroke="#e9c479" stroke-width="1.4" fill="none" transform="translate(90,196) scale(0.8)"><path d="M0 0 q-6 2 -11 -2"/><ellipse cx="6" cy="2" rx="9" ry="5" fill="#e9c479" opacity=".55"/><path d="M7 -1 l3 -4 M9 1 l4 -2"/><path d="M14 4 l0 10 M6 6 l-2 9 M16 6 l2 9"/></g><g stroke="#e9c479" stroke-width="1.4" fill="none" transform="translate(112,196) scale(0.8)"><path d="M0 0 q-6 2 -11 -2"/><ellipse cx="6" cy="2" rx="9" ry="5" fill="#e9c479" opacity=".55"/><path d="M7 -1 l3 -4 M9 1 l4 -2"/><path d="M14 4 l0 10 M6 6 l-2 9 M16 6 l2 9"/></g><path d="M88 206 h24 M86 212 h28" stroke="#f6efdc" stroke-width="1.1" opacity=".5" fill="none"/><path d="M100 176 q0 22 -6 34" stroke="#e9c479" stroke-width="1.1" fill="none" opacity=".55"/><path d="M148 36.0 L149.2 38.8 L152.0 40 L149.2 41.2 L148 44.0 L146.8 41.2 L144.0 40 L146.8 38.8 Z" fill="#e9c479"/><path d="M52 40.0 L53.2 42.8 L56.0 44 L53.2 45.2 L52 48.0 L50.8 45.2 L48.0 44 L50.8 42.8 Z" fill="#e9c479"/><path d="M130 56.0 L131.2 58.8 L134.0 60 L131.2 61.2 L130 64.0 L128.8 61.2 L126.0 60 L128.8 58.8 Z" fill="#e9c479"/><path d="M76 52.0 L77.2 54.8 L80.0 56 L77.2 57.2 L76 60.0 L74.8 57.2 L72.0 56 L74.8 54.8 Z" fill="#e9c479"/><path d="M70 232 q-8 -4 -8 -12 M70 232 q8 -4 8 -12 M70 232 l-8 18 M70 232 l8 18" stroke="#e9c479" stroke-width="1.3" fill="none"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd17月亮)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg18太阳" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl18太阳" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd18太阳" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg18太阳)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl18太阳)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd18太阳)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd18太阳)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd18太阳)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">18 太阳</text>
+    <g ><circle cx="100" cy="62" r="16" fill="#e9c479" opacity=".95"/><line x1="100" y1="62" x2="127.2" y2="62.0" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="62" x2="119.2" y2="81.2" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="62" x2="100.0" y2="89.2" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="62" x2="80.8" y2="81.2" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="62" x2="72.8" y2="62.0" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="62" x2="80.8" y2="42.8" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="62" x2="100.0" y2="34.8" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><line x1="100" y1="62" x2="119.2" y2="42.8" stroke="#e9c479" stroke-width="1.2" opacity=".75"/><path d="M100 62 l0 8 M100 62 l7 -4 M100 62 l-7 -4" stroke="#0f2a33" stroke-width="1.3" fill="none"/><path d="M40 176 l20 -70 l20 70 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><path d="M124 176 l21 -72 l21 72 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><g transform="translate(100,168)"><path d="M-20 8 Q -6 -12 14 6 L 6 12 Q 0 -2 -8 10 L -20 8 Z" fill="rgba(233,196,121,.30)" stroke="#e9c479" stroke-width="1.2"/></g><circle cx="100" cy="136" r="9" fill="#e8c49b"/><path d="M97 134 q3 -3 6 0 M94 138 l6 4 M106 138 l-6 4" stroke="#e9c479" stroke-width="1.2" fill="none"/><line x1="100" y1="144" x2="100" y2="188" stroke="#e9c479" stroke-width="2.6"/><circle cx="100" cy="200" r="9" fill="none" stroke="#e9c479" stroke-width="1.4"/><path d="M94 200 l6 -6 l6 6 l-6 6 z" fill="#c24234"/><circle cx="66" cy="150" r="9" fill="#e9c479" opacity=".55"/><path d="M66 141 l0 18 M57 150 l18 0" stroke="#e9c479" stroke-width="1.2"/><circle cx="134" cy="150" r="9" fill="#e9c479" opacity=".55"/><path d="M134 141 l0 18 M125 150 l18 0" stroke="#e9c479" stroke-width="1.2"/><g fill="#f6efdc" opacity="0.7"><ellipse cx="40" cy="100" rx="8.5" ry="3.5"/><ellipse cx="34.5" cy="101.3" rx="5" ry="2.75"/><ellipse cx="45.5" cy="101.3" rx="5" ry="2.75"/><ellipse cx="37.5" cy="98.3" rx="3.5" ry="2.5"/><ellipse cx="42.5" cy="98.3" rx="3.5" ry="2.5"/></g><g fill="#f6efdc" opacity="0.7"><ellipse cx="160" cy="104" rx="8.5" ry="3.5"/><ellipse cx="154.5" cy="105.3" rx="5" ry="2.75"/><ellipse cx="165.5" cy="105.3" rx="5" ry="2.75"/><ellipse cx="157.5" cy="102.3" rx="3.5" ry="2.5"/><ellipse cx="162.5" cy="102.3" rx="3.5" ry="2.5"/></g></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd18太阳)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg19审判" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl19审判" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd19审判" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg19审判)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl19审判)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd19审判)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd19审判)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd19审判)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">19 审判</text>
+    <g ><g fill="#f6efdc" opacity="0.95"><ellipse cx="100" cy="92" rx="15.299999999999999" ry="6.3"/><ellipse cx="90.1" cy="94.3" rx="9" ry="4.95"/><ellipse cx="109.9" cy="94.3" rx="9" ry="4.95"/><ellipse cx="95.5" cy="88.8" rx="6.3" ry="4.5"/><ellipse cx="104.5" cy="88.8" rx="6.3" ry="4.5"/></g><circle cx="100" cy="112" r="9" fill="#e8c49b"/><path d="M100 122 l0 10 M100 132 l-10 14" stroke="#f6efdc" stroke-width="1.5" opacity=".7"/><path d="M78 120 q-16 -19.2 -38.4 -4.8 M78 120 q-11.2 -12.8 -27.2 -3.2" fill="none" stroke="#e9c479" stroke-width="1.4" opacity=".8"/><path d="M122 120 q-16 -19.2 -38.4 -4.8 M122 120 q-11.2 -12.8 -27.2 -3.2" fill="none" stroke="#e9c479" stroke-width="1.4" opacity=".8"/><path d="M120 96 l26 20 l-10 4 z" fill="none" stroke="#e9c479" stroke-width="1.4"/><path d="M56 200 l20 -70 l20 70 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><path d="M122 200 l21 -74 l21 74 Z" fill="none" stroke="#cfcfc2" stroke-width="1.3" opacity=".8"/><g transform="translate(100,186) scale(0.8)"><g stroke="#e9c479" stroke-width="1.4" fill="none"><circle cx="-26" cy="0" r="9"/><path d="M-34 10 q8 -6 16 0 l-2 26"/><circle cx="26" cy="0" r="9"/><path d="M18 10 q8 -6 16 0 l-2 26"/><circle cx="0" cy="4" r="9"/><path d="M-8 14 q8 -6 16 0 l-2 26"/></g></g><path d="M60 198 L140 198" stroke="#e9c479" stroke-width="1.4"/><path d="M150 115.0 L151.5 118.5 L155.0 120 L151.5 121.5 L150 125.0 L148.5 121.5 L145.0 120 L148.5 118.5 Z" fill="#e9c479"/><path d="M52 119.0 L53.5 122.5 L57.0 124 L53.5 125.5 L52 129.0 L50.5 125.5 L47.0 124 L50.5 122.5 Z" fill="#e9c479"/><path d="M120 96 l26 20" stroke="#e9c479" stroke-width="1.4"/></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd19审判)" font-size="12" font-weight="bold">正 位</text>
+  </svg><svg viewBox="0 0 200 290" width="128" height="186" style="border-radius:14px">
+    <defs>
+      <linearGradient id="bg20世界" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143b45"/><stop offset="1" stop-color="#0a1c22"/></linearGradient>
+      <radialGradient id="gl20世界" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.20"/><stop offset="1" stop-color="rgba(233,196,121,0)"/></radialGradient>
+      <linearGradient id="gd20世界" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e6ad"/><stop offset="1" stop-color="#c9a35a"/></linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#bg20世界)"/>
+    <rect x="0" y="0" width="200" height="290" rx="14" fill="url(#gl20世界)"/>
+    <rect x="6" y="6" width="188" height="278" rx="11" fill="none" stroke="url(#gd20世界)" stroke-width="2.4"/>
+    <rect x="11" y="11" width="178" height="268" rx="8" fill="none" stroke="var(--gold)" stroke-opacity="0.32" stroke-width="0.8"/>
+    <g fill="none" stroke="url(#gd20世界)" stroke-width="1.3">
+      <path d="M15 27 q0 -13 13 -13"/><path d="M185 27 q0 -13 -13 -13"/>
+      <path d="M15 263 q0 13 13 13"/><path d="M185 263 q0 13 -13 13"/>
+    </g>
+    <text x="100" y="33" text-anchor="middle" fill="url(#gd20世界)" font-size="13" font-weight="bold" font-family="STKaiti,KaiTi,serif">20 世界</text>
+    <g ><ellipse cx="100" cy="150" rx="52" ry="64" fill="none" stroke="#e9c479" stroke-width="1.4" stroke-width="2"/><ellipse cx="100" cy="150" rx="44" ry="56" fill="rgba(233,196,121,.08)"/><path d="M48 150 q6 -22 22 -22 M152 150 q-6 -22 -22 -22" fill="none" stroke="#e9c479" stroke-width="1.4" opacity=".8"/><g transform="translate(100,150)"><circle cx="0" cy="-10" r="8" fill="#e8c49b"/><path d="M-8 2 q8 -5 16 0 l0 34" fill="#f6efdc" stroke="#e9c479" stroke-width="1"/><path d="M-1 12 l-10 10 M3 12 l10 10 M-3 18 l-6 14 M5 18 l6 14" stroke="#e9c479" stroke-width="1.3"/></g><circle cx="100" cy="80" r="2" fill="#c24234"/><circle cx="60" cy="150" r="2" fill="#e9c479"/><circle cx="140" cy="150" r="2" fill="#7aa0d8"/><circle cx="100" cy="220" r="2" fill="#e9c479"/><path d="M78 96 q22 16 44 0 M78 96 l0 6 M122 96 l0 6" stroke="#e9c479" stroke-width="1.4" fill="none" opacity=".8"/><path d="M48 96 q-10 4 -8 14 M152 96 q10 4 8 14" stroke="#e9c479" stroke-width="1.4" opacity=".8"/><path d="M60 204 q8 4 8 -8 M140 204 q-8 4 -8 -8" stroke="#e9c479" stroke-width="1.4" opacity=".8"/><path d="M90 224 l20 0 M90 224 l-6 -8 M110 224 l6 -8" stroke="#e9c479" stroke-width="1.4" opacity=".8"/><text x="100" y="46" text-anchor="middle" fill="#e9c479" font-size="16" opacity=".5">∞</text></g>
+    <text x="100" y="252" text-anchor="middle" fill="#9fc4c8" font-size="11.5">大阿尔克那</text>
+    <text x="100" y="276" text-anchor="middle" fill="url(#gd20世界)" font-size="12" font-weight="bold">正 位</text>
+  </svg></svg>

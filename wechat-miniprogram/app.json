@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "玄机 · 国风算命",
+    "navigationBarBackgroundColor": "#1a1410",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#1a1410"
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

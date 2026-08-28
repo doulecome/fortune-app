@@ -1,0 +1,2 @@
+<!-- web-view 必须作为页面唯一根节点；src 为托管后的 fortune.html 地址 -->
+<web-view src="{{url}}" bindload="onWebLoad" binderror="onWebError"></web-view>

@@ -1,0 +1,4 @@
+/* 全局样式（web-view 全屏承载 H5，此处仅占位） */
+page {
+  background: #1a1410;
+}
