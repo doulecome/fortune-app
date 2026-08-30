@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>玄机阁 · 真算命盘</title>
 <meta name="description" content="玄机阁 · 中西命理占卜：八字命盘、紫微斗数、塔罗、小六壬、诸葛神数、黄历择日、生肖星座运势等 20+ 功能，依真实历法推演。">
 <meta property="og:title" content="玄机阁 · 真算命盘">
@@ -12,6 +12,9 @@
 <link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#8a6d3b">
 <link rel="apple-touch-icon" href="./icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="玄机阁">
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js').catch(()=>{});});}</script>
 <style>
   :root{
@@ -83,6 +86,8 @@
     background-attachment:fixed;
     min-height:100vh;
     padding:22px 16px 56px;
+    /* 刘海屏安全区（viewport-fit=cover）：不支持 env() 的浏览器沿用上一行 */
+    padding:calc(22px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(56px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left));
     -webkit-font-smoothing:antialiased;
     line-height:1.7;
   }
@@ -693,7 +698,7 @@
   .cred.calc::before{background:#3f8f86}
   .disc{font-size:11.5px;line-height:1.9;color:var(--muted);max-width:680px;margin:10px auto 0;opacity:.92}
   @media (max-width:480px){
-    body{padding:14px 10px 40px}
+    body{padding:calc(14px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) calc(40px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left))}
     h1{font-size:25px;letter-spacing:7px;padding-left:7px}
     .card{padding:18px;min-height:auto}
     .tab{font-size:12px;padding:7px 12px}
@@ -12585,17 +12590,68 @@ document.getElementById('baziBtn').onclick=()=>{
       }
       if(sel&&sel.scrollIntoView) sel.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
     }
-    function applyExpand(){
+    /* —— 视窗化：SVG 铺满容器宽，可见区间由 viewBox 表达（vStart/vCount）。
+       折叠/展开是两个预设；手机双指捏合改列数、单指横拖移窗口，按钮点按复位。 —— */
+    var NK=window.__klN, NDF=window.__klNDF, CW=12.6, KLM=34, KRM=10;
+    var vStart=0, vCount=expanded?NK:NDF, free=false;
+    function setWindow(st,cnt,freeMode){
+      vCount=Math.max(10,Math.min(NK,cnt));
+      vStart=Math.max(0,Math.min(NK-vCount,st));
+      free=!!freeMode;
       if(!svg) return;
-      var w=expanded?window.__klWAll:window.__klWDF, h=window.__klKH;
-      svg.setAttribute('viewBox','0 0 '+w+' '+h);
-      svg.style.width=w+'px'; svg.style.minWidth=w+'px';
-      try{ localStorage.setItem('klExpand', expanded?'1':'0'); }catch(e){}
-      if(btn) btn.textContent=expanded
-        ?'收起，只看前 '+window.__klNDF+' 列'
-        :'展开后 '+(window.__klN-window.__klNDF)+' 年（'+(window.__klY0+window.__klNDF)+'—'+(window.__klY0+window.__klN-1)+'）';
+      var x0=vStart>0?(KLM+vStart*CW-3):0;
+      var w=(vStart>0?3:KLM)+vCount*CW+KRM;
+      svg.setAttribute('viewBox',x0+' 0 '+w+' '+window.__klKH);
+      if(btn) btn.textContent=free
+        ?('视窗 '+(window.__klY0+vStart)+'—'+(window.__klY0+vStart+vCount-1)+' · 双指缩放，点按复位')
+        :(expanded
+          ?'收起，只看前 '+NDF+' 列'
+          :'展开后 '+(NK-NDF)+' 年（'+(window.__klY0+NDF)+'—'+(window.__klY0+NK-1)+'）');
     }
-    if(btn) btn.addEventListener('click',function(){ expanded=!expanded; applyExpand(); });
+    function applyExpand(){
+      try{ localStorage.setItem('klExpand', expanded?'1':'0'); }catch(e){}
+      setWindow(0, expanded?NK:NDF, false);
+    }
+    if(btn) btn.addEventListener('click',function(){
+      if(free){ applyExpand(); return; }
+      expanded=!expanded; applyExpand();
+    });
+    /* 触摸：双指捏合缩放（以捏合中心列为锚），单指横拖平移（竖向滚动不拦截） */
+    if(svg&&svg.parentNode){
+      var sc=svg.parentNode, tc=null;
+      sc.addEventListener('touchstart',function(e){
+        if(e.touches.length===2){
+          var ddx=e.touches[0].clientX-e.touches[1].clientX, ddy=e.touches[0].clientY-e.touches[1].clientY;
+          tc={mode:'pinch',d0:Math.sqrt(ddx*ddx+ddy*ddy)||1,n0:vCount,c0:vStart+vCount/2};
+          e.preventDefault();
+        }else if(e.touches.length===1){
+          tc={mode:'pan',x0:e.touches[0].clientX,y0:e.touches[0].clientY,v0:vStart,go:false};
+        }
+      },{passive:false});
+      sc.addEventListener('touchmove',function(e){
+        if(!tc) return;
+        if(tc.mode==='pinch'&&e.touches.length===2){
+          var ddx=e.touches[0].clientX-e.touches[1].clientX, ddy=e.touches[0].clientY-e.touches[1].clientY;
+          var d=Math.sqrt(ddx*ddx+ddy*ddy)||1;
+          setWindow(Math.round(tc.c0-tc.n0*d/tc.d0/2),Math.round(tc.n0*d/tc.d0),true);
+          e.preventDefault();
+        }else if(tc.mode==='pan'&&e.touches.length===1){
+          var mx=e.touches[0].clientX-tc.x0, my=e.touches[0].clientY-tc.y0;
+          if(!tc.go){ if(Math.abs(mx)>10&&Math.abs(mx)>Math.abs(my)){ tc.go=true; } }
+          if(tc.go){
+            var vw=(KLM+vCount*CW+KRM)||1;
+            var px=svg.clientWidth||vw;
+            setWindow(tc.v0-Math.round(mx/(CW*px/vw)),vCount,true);
+          }
+          if(tc.go) e.preventDefault();
+        }
+      },{passive:false});
+      sc.addEventListener('touchend',function(e){
+        if(e.touches.length===0) tc=null;
+        else if(e.touches.length===1&&tc&&tc.mode==='pinch')
+          tc={mode:'pan',x0:e.touches[0].clientX,y0:e.touches[0].clientY,v0:vStart,go:false};
+      });
+    }
     try{ if(localStorage.getItem('klExpand')==='1') expanded=true; }catch(e){}
     wrap.addEventListener('click',function(e){
       var t=e.target,h=null;
@@ -12791,8 +12847,8 @@ document.getElementById('baziBtn').onclick=()=>{
         人生 K 线 · <b style="color:var(--gold2)">${cyK-5}—${cyK+49}</b> 逐年运势（立春为界，含当前流年前 5 年）<br>
         柱高＝当年势能分（越高越顺，中轴 50 为平）；柱色＝较上一年涨跌（<b style="color:#c24234">■红涨</b> / <b style="color:#5fae5f">■绿跌</b>）；<b style="color:var(--gold2)">— 金线</b>＝五年均线；<b style="color:#8f6fc9">┆紫虚线</b>＝大运交界。点按任一年（或用 ← → 键）看该年详解。
       </div>
-      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px">
-        <svg id="klSvg" width="${W_DF}" height="${KSH}" viewBox="0 0 ${W_DF} ${KSH}" style="display:block;width:${W_DF}px;min-width:${W_DF}px;transition:width .4s ease,min-width .4s ease" role="img" aria-label="五十年运势K线图">
+      <div style="overflow-x:hidden;touch-action:pan-y;padding-bottom:2px">
+        <svg id="klSvg" width="${W_DF}" height="${KSH}" viewBox="0 0 ${W_DF} ${KSH}" style="display:block;width:100%;touch-action:pan-y" role="img" aria-label="五十年运势K线图">
           ${gOver}${gGrid}${gYun}${gC}${gMA}${gNow}${gAx}${gHit}
         </svg>
       </div>
