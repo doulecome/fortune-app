@@ -964,7 +964,7 @@
   .sc-verdict p:first-child{font-family:var(--serif);font-size:15.5px;color:var(--ink);letter-spacing:.5px}
   .sc-verdict .sc-yong{font-size:12.5px;color:var(--muted);margin-top:7px}
   .sc-verdict .sc-yong b{color:var(--gold2)}
-  .sc-svg{display:block;width:100%;max-width:560px;margin:4px auto 0;position:relative;opacity:1;will-change:transform;animation:scSettle .7s var(--e-out) both}
+  .sc-svg{display:block;position:absolute;left:0;top:0;width:100%;height:100%;opacity:1;will-change:transform;animation:scSettle .7s var(--e-out) both}
   @keyframes scSettle{from{transform:scale(.96)}to{transform:none}}
   .sc-core{animation:scPulse 5s ease-in-out infinite}
   @keyframes scPulse{0%,100%{opacity:.45}50%{opacity:.9}}
@@ -1551,8 +1551,8 @@
   }
 
   /* ===== V) 八字圆形命盘（四柱四宫 · 日主居中，天干地支环 + 十神环 + 五行色） ===== */
-  .bz-disc-wrap{display:flex;justify-content:center;margin:2px 0 10px}
-  .bz-disc{width:min(300px,100%);height:auto}
+  .bz-disc-wrap{position:relative;width:min(300px,100%);margin:2px auto 10px;padding-top:min(300px,100%)}
+  .bz-disc{position:absolute;left:0;top:0;width:100%;height:100%}
   .bz-disc .dz-ring{fill:none;stroke:var(--gold);stroke-opacity:.22}
   .bz-disc .dz-arc{stroke-width:5;opacity:.55}
   .bz-disc .dz-col{font-family:var(--serif);font-weight:700}
@@ -12332,7 +12332,7 @@ function ringChart(pillars,sx){
   const tai=`<g transform="translate(${C},${C})">
     <path d="M0,-52 A52,52 0 0,1 0,52 A26,26 0 0,1 0,0 A26,26 0 0,0 0,-52 Z" fill="var(--r-gold)"/>
     <circle cx="0" cy="-26" r="8" fill="var(--r-paper)"/><circle cx="0" cy="26" r="8" fill="var(--r-gold)"/></g>`;
-  return `<div style="display:flex;justify-content:center;margin:12px 0 2px"><svg width="264" height="264" viewBox="0 0 280 280" style="max-width:100%">
+  return `<div style="position:relative;width:min(264px,92%);margin:12px auto 2px;padding-top:min(264px,92%)"><svg width="264" height="264" viewBox="0 0 280 280" style="position:absolute;left:0;top:0;width:100%;height:100%">
     <circle cx="${C}" cy="${C}" r="${R1}" fill="none" stroke="var(--r-line)" stroke-width="1"/>
     <circle cx="${C}" cy="${C}" r="${R2}" fill="none" stroke="var(--r-line)" stroke-width=".8"/>
     <circle cx="${C}" cy="${C}" r="${R3}" fill="none" stroke="var(--r-line)" stroke-width=".8"/>
@@ -12549,7 +12549,7 @@ document.getElementById('baziBtn').onclick=()=>{
     const nowY=new Date(); let ageY=nowY.getFullYear()-y; const bdY=new Date(nowY.getFullYear(),m-1,day); if(nowY<bdY) ageY--;
     ciY=-1; dyL.forEach((d,i)=>{ if(ageY>=d.age) ciY=i; });
     const TLW=560, pad=16, n=Math.min(dyL.length,8), segW=(TLW-pad*2)/n;
-    let tl=`<svg viewBox="0 0 ${TLW} 88" style="width:100%;height:auto;display:block;margin-top:6px" role="img" aria-label="大运时间轴">`;
+    let tl=`<div style="position:relative;padding-top:${(88/TLW*100).toFixed(4)}%;margin-top:6px"><svg viewBox="0 0 ${TLW} 88" style="position:absolute;left:0;top:0;width:100%;height:100%;display:block" role="img" aria-label="大运时间轴">`;
     tl+=`<line x1="${pad}" y1="42" x2="${TLW-pad}" y2="42" stroke="var(--line)" stroke-width="2"/>`;
     for(let i=0;i<n;i++){ const d=dyL[i]; if(!d) continue; const gz=d.gz;
       const x=pad+i*segW, w1=GAN_WU[gz.charAt(0)], w2=DZ_WU[gz.charAt(1)], s=sc2(w1)+sc2(w2);
@@ -12561,7 +12561,7 @@ document.getElementById('baziBtn').onclick=()=>{
       tl+=`<text x="${(x+segW/2).toFixed(1)}" y="72" fill="var(--muted)" font-size="9" text-anchor="middle">${d.age}岁</text>`;
     }
     if(ciY>=0 && dyL[ciY]) tl+=`<text x="${TLW/2}" y="84" fill="var(--ink-soft)" font-size="10" text-anchor="middle">▲ 当前约 ${ageY} 岁 · 正行 ${dyL[ciY].gz} 大运（${dyL[ciY].sy}—${dyL[ciY].ey}）</text>`;
-    tl+=`</svg>`;
+    tl+=`</svg></div>`;
     if(ciY>=0 && dyL[ciY]){ const gz2=dyL[ciY].gz; const s2=sc2(GAN_WU[gz2.charAt(0)])+sc2(DZ_WU[gz2.charAt(1)]); baziSent=s2>0.15?'吉':s2<-0.15?'凶':'平'; }
     yunHtml=`<div style="margin-top:10px"><div style="color:var(--muted);font-size:12px;margin-bottom:2px">起运：约<b style="color:var(--gold2)">${qy}</b>岁${qm?'零'+qm+'个月':''}（${yun.isForward()?'顺排':'逆排'} · 三日折一年精确到月），约 <b style="color:var(--gold2)">${qyDate.getFullYear()} 年 ${qyDate.getMonth()+1} 月</b>前后交运 · 大运时间轴</div>${tl}<div style="margin-top:6px">${arr.slice(0,8).join('')}</div></div>`;
   }catch(e){ yunHtml=''; }
@@ -12602,6 +12602,8 @@ document.getElementById('baziBtn').onclick=()=>{
       var x0=vStart>0?(KLM+vStart*CW-3):0;
       var w=(vStart>0?3:KLM)+vCount*CW+KRM;
       svg.setAttribute('viewBox',x0+' 0 '+w+' '+window.__klKH);
+      var pxw=svg.clientWidth||((wrap.clientWidth||360)-8);
+      svg.style.height=Math.max(120,Math.round(window.__klKH*pxw/w))+'px';
       if(btn) btn.textContent=free
         ?('视窗 '+(window.__klY0+vStart)+'—'+(window.__klY0+vStart+vCount-1)+' · 双指缩放，点按复位')
         :(expanded
@@ -12664,7 +12666,7 @@ document.getElementById('baziBtn').onclick=()=>{
       if(e.key==='ArrowRight'){ show(Math.min(window.__klData.length-1,cur+1)); e.preventDefault(); }
       else if(e.key==='ArrowLeft'){ show(Math.max(0,cur-1)); e.preventDefault(); }
     });
-    if(expanded) applyExpand();   /* 记忆中的展开态：同步 SVG 宽度与按钮文案 */
+    setWindow(0, expanded?window.__klN:window.__klNDF, false);   /* 无条件初始化视窗（含显式高度，防老内核 svg 塌陷） */
     show(0);
   }
   window.bindKline=bindKline;   /* 供解读弹窗（openReadModal）对克隆结果重绑交互 */
@@ -13237,8 +13239,8 @@ document.getElementById('baziBtn').onclick=()=>{
     +'<div class="sc-seal">'+(SEAL[domSG]||'清而不偏')+'</div>'
     +'<div class="sc-verdict"><p>'+mainV+'</p><p>'+(SG_V[domSG]?SG_V[domSG][_bh%SG_V[domSG].length]:'')+'</p>'
     +'<p class="sc-yong">补气之门在 <b>'+yongUniq.join(' / ')+'</b>：'+yongUniq.map(w=>(YONG_V[w]?YONG_V[w][_bh%YONG_V[w].length]:'')).filter(Boolean).join('；')+'。</p></div>'
-    +'<svg class="sc-svg" viewBox="0 0 560 470" data-nofx="1" role="img" aria-label="命格星图">'
-    +scDefs+scDust+scRing+scLink+scStar+scCenter+'</svg>'
+    +'<div style="position:relative;max-width:560px;margin:4px auto 0;padding-top:83.9286%"><svg class="sc-svg" viewBox="0 0 560 470" data-nofx="1" role="img" aria-label="命格星图">'
+    +scDefs+scDust+scRing+scLink+scStar+scCenter+'</svg></div>'
     +'<div class="sc-legend"><span><i></i>同气 · 生我（比劫/印）</span><span><i class="l2"></i>我生 · 我克（食伤/财）</span><span><i class="l3"></i>克我（官杀）</span></div>'
     +'</div>';
   const strength=Math.max(6,Math.min(96, Math.round(50+Math.max(-45,Math.min(45,score))*0.8)));
@@ -37438,7 +37440,8 @@ HEX.forEach(h=>{ h.yao=HEX_YAO[h.name]||[]; h.xiaoxiang=HEX_XIAOXIANG[h.name]||[
 function hexDraw(bitsTopToBottom, changes){
   changes = changes || bitsTopToBottom.map(()=>false);
   const W=92, yh=9, gap=5, top=5, seg=(W-12-10)/4, x1=8, x2=x1+seg*2+8;
-  let s=`<svg viewBox="0 0 ${W} ${top*2+bitsTopToBottom.length*(yh+gap)-gap}" width="${W}" height="${top*2+bitsTopToBottom.length*(yh+gap)-gap}" style="max-width:100%;height:auto;display:block" role="img" aria-label="卦象六爻">`;
+  const _gh=top*2+bitsTopToBottom.length*(yh+gap)-gap;
+  let s=`<div style="position:relative;width:min(${W}px,100%);margin:0 auto;padding-top:${(_gh/W*100).toFixed(4)}%"><svg viewBox="0 0 ${W} ${_gh}" width="${W}" height="${_gh}" style="position:absolute;left:0;top:0;width:100%;height:100%;display:block" role="img" aria-label="卦象六爻">`;
   bitsTopToBottom.forEach((b,i)=>{
     const y=top+i*(yh+gap);
     // 两爻之间加极细分隔暗线，增强"六层变化"的层次感
@@ -37447,7 +37450,7 @@ function hexDraw(bitsTopToBottom, changes){
     else { s+=`<rect x="${x1}" y="${y}" width="${seg}" height="${yh}" rx="4" fill="url(#hxGold)" fill-opacity=".95"/><rect x="${x2+2}" y="${y}" width="${seg}" height="${yh}" rx="4" fill="url(#hxGold)" fill-opacity=".95"/>`; }
     if(changes[i]){ s+=`<circle cx="${W-4}" cy="${y+yh/2}" r="3" fill="var(--bad)"/><circle cx="3" cy="${y+yh/2}" r="3" fill="var(--bad)"/><circle cx="${W/2}" cy="${y+yh/2}" r="2.2" fill="var(--bad)"/>`; }
   });
-  s+='</svg>';
+  s+='</svg></div>';
   return s;
 }
 /* ---------- 卦象图卡：把六爻画成一张带八卦标注的「卦卡」，让卦象的图可见 ---------- */
@@ -39362,7 +39365,7 @@ const ZW_FU={
   const zwChart='<div class="starchart">'
     +'<div class="sc-seal">'+zwMain+'坐命</div>'
     +'<div class="sc-verdict"><p>'+(ZW_C[zwMain]?_zwPick(zwMain).split('；')[0]+'。':'命宫无主星，借对宫之力而立——性格随境而转，适应力就是你的长处。')+'</p></div>'
-    +'<svg class="sc-svg" viewBox="0 0 560 480" data-nofx="1" role="img" aria-label="紫微命盘星图">'+zwDefs+zwSec+zwSan+zwCenter+zwTxt+'</svg>'
+    +'<div style="position:relative;max-width:560px;margin:4px auto 0;padding-top:85.7143%"><svg class="sc-svg" viewBox="0 0 560 480" data-nofx="1" role="img" aria-label="紫微命盘星图">'+zwDefs+zwSec+zwSan+zwCenter+zwTxt+'</svg></div>'
     +'<div class="sc-legend"><span><i></i>三方四正（命 · 财 · 官）</span><span><i class="l3"></i>对宫冲照（迁移）</span><span>金底＝命宫 · 朱框＝流年</span></div>'
     +'</div>';
   let zwRead='';
