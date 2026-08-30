@@ -31,3 +31,14 @@ sw = sw.replace(/const CACHE = 'xuanji-v(\d+)';/, (_, v) => "const CACHE = 'xuan
 fs.writeFileSync(swPath, sw);
 
 console.log('✓ 构建完成：内联脚本 ' + n + ' 段全部解析通过 ｜ deploy/index.html ' + (html.length / 1024).toFixed(0) + 'KB ｜ ' + sw.match(/const CACHE = '[^']+'/)[0]);
+
+/* 构建后自动跑命理回归样例（有意变更算法后用 node verify.js --update 更新基线） */
+const { execSync } = require('child_process');
+try {
+  const out = execSync('node verify.js', { cwd: __dirname, encoding: 'utf8' });
+  console.log(out.trim().split('\n').map(l => '  ' + l).join('\n'));
+} catch (e) {
+  console.error(e.stdout && e.stdout.trim());
+  console.error('✗ 命理回归未通过，构建产物已生成但请先核对算法变更（node verify.js）');
+  process.exit(1);
+}
