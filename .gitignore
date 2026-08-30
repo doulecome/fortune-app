@@ -16,3 +16,6 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+
+# ZCode 会话本地文件
+.zcode/

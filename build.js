@@ -1,18 +1,33 @@
+/* 玄机阁构建：根目录 index.html 是唯一源，build 后生成 deploy/index.html。
+   用法：node build.js   （构建后建议 node verify.js 做冒烟校验） */
 const fs = require('fs');
-const DIR = 'C:/Users/42134/WorkBuddy/2026-08-05-00-54-43/';
-const ui = fs.readFileSync(DIR + 'ui.html', 'utf8');
-const app = fs.readFileSync(DIR + 'app.js', 'utf8');
-const fort = fs.readFileSync(DIR + 'fortune.html', 'utf8');
+const path = require('path');
+const SRC = path.join(__dirname, 'index.html');
+const DEPLOY = path.join(__dirname, 'deploy');
 
-// 从旧 fortune.html 抽取已内联的库 <script>（排除 app 段）
-const scripts = [...fort.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]);
-const libs = scripts.filter(s => !s.includes('真实历法接口') && !s.includes('const GAN_WU'));
-if (libs.length !== 2) console.warn('⚠️ 库段数量为', libs.length, '（期望 2：lunar + cnchar）');
-const libHtml = libs.map(s => '<script>' + s + '</script>').join('\n');
+const html = fs.readFileSync(SRC, 'utf8');
 
-const out = ui.replace('<!--LIBS-->', libHtml)
-              .replace('<!--APP-->', '<script>\n' + app + '\n</script>');
+/* 内联脚本语法冒烟：任一段解析失败即构建失败 */
+const re = /<script(?![^>]*src=)[^>]*>([\s\S]*?)<\/script>/g;
+let m, n = 0;
+while ((m = re.exec(html))) {
+  n++;
+  try { new Function(m[1]); }
+  catch (e) { console.error('✗ 第 ' + n + ' 段内联脚本语法错误：' + e.message); process.exit(1); }
+}
 
-fs.writeFileSync(DIR + 'fortune.html', out);
-fs.writeFileSync(DIR + 'index.html', out);
-console.log('✓ 构建完成：库段', libs.length, '｜ app 字节', app.length, '｜ fortune.html', (out.length/1024).toFixed(0), 'KB ｜ index.html', (out.length/1024).toFixed(0), 'KB');
+/* 关键交互标记检查：弹窗重绑与 K 线展开必须同时在源里 */
+for (const mark of ['window.bindKline=bindKline', 'klExpandBtn', "bindKline(document.getElementById('baziResult'))"]) {
+  if (!html.includes(mark)) { console.error('✗ 缺少关键标记：' + mark); process.exit(1); }
+}
+
+fs.mkdirSync(DEPLOY, { recursive: true });
+fs.writeFileSync(path.join(DEPLOY, 'index.html'), html);
+
+/* sw.js 缓存版本随内容自动递增，避免线上用户命中旧缓存 */
+const swPath = path.join(DEPLOY, 'sw.js');
+let sw = fs.readFileSync(swPath, 'utf8');
+sw = sw.replace(/const CACHE = 'xuanji-v(\d+)';/, (_, v) => "const CACHE = 'xuanji-v" + (+v + 1) + "';");
+fs.writeFileSync(swPath, sw);
+
+console.log('✓ 构建完成：内联脚本 ' + n + ' 段全部解析通过 ｜ deploy/index.html ' + (html.length / 1024).toFixed(0) + 'KB ｜ ' + sw.match(/const CACHE = '[^']+'/)[0]);
