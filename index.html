@@ -15,7 +15,13 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="玄机阁">
-<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js').catch(()=>{});});}</script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>{
+  let reloaded=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{
+    if(reloaded) return; reloaded=true; location.reload();
+  });
+  navigator.serviceWorker.register('./sw.js').catch(()=>{});
+});}</script>
 <style>
   :root{
     /* —— 淡雅水墨 · 宣纸墨色（重构视觉系统） —— */
@@ -57,6 +63,18 @@
     --ink-page:#24332f;--ink-page2:#17201d;
     --chip:#e7ddc8;--chip2:#d8ccb0;
     --gold-stroke:#c9a45c;       /* 描金线：卡片角饰 / 标题金朱点睛 */
+    /* —— 模块专属点缀色令牌：命理(金/朱砂) 与 占卜(紫) 两族，随主题切换 —— */
+    --mod-gold-deep:#9c783f;     /* 描金深：卷轴木轴 / orn 内圈 */
+    --mod-gold-bright:#d8b878;   /* 描金亮：暗态 orn / 木轴钮 */
+    --mod-cinnabar:#c0432c;      /* 朱砂钤印 */
+    --mod-cinnabar-deep:#9c3320; /* 朱砂钤印深 */
+    --mod-ink-gold:#6f4f25;      /* 命理标题墨金 */
+    --mod-violet:#7a5fb0;        /* 占卜主紫（塔罗/星座）*/
+    --mod-violet-deep:#5b3fa0;   /* 占卜深紫 */
+    --mod-violet-soft:#9a7fe0;   /* 占卜浅紫字 */
+    --mod-violet-title:#3a2f6b;  /* 占卜标题 */
+    --mod-violet-seal:#d8b14e;   /* 金星钤印 */
+    --mod-violet-seal-mid:#b78a2e;
     /* —— 结果区主题变量（随宣纸/墨青切换） —— */
     --r-bg:var(--glass);                     /* 结果区：透明磨砂（随宣纸/墨青切换） */
     --r-ink:#2b2620;--r-muted:#7a7361;
@@ -554,10 +572,10 @@
   .read-modal.style-scroll.show .read-card{animation:readUnfurl .52s var(--e-out) both}
   /* 上下木轴杆：横杆 + 两端圆头轴钮，形如卷轴两端 */
   .read-rod{position:absolute;left:14px;right:14px;height:11px;z-index:3;pointer-events:none;border-radius:6px;
-    background:linear-gradient(180deg,#caa86a 0%,#a07c44 46%,#7d5e30 54%,#9c783f 100%);
+    background:linear-gradient(180deg,#caa86a 0%,#a07c44 46%,#7d5e30 54%,var(--mod-gold-deep) 100%);
     box-shadow:0 1px 3px rgba(60,40,16,.4), inset 0 1px 0 rgba(255,240,210,.5), inset 0 -1px 0 rgba(60,40,16,.4)}
   .read-rod::before,.read-rod::after{content:"";position:absolute;top:-2px;width:9px;height:15px;border-radius:5px;
-    background:linear-gradient(180deg,#d8b878,#8a6634);box-shadow:0 1px 3px rgba(60,40,16,.45)}
+    background:linear-gradient(180deg,var(--mod-gold-bright),#8a6634);box-shadow:0 1px 3px rgba(60,40,16,.45)}
   .read-rod::before{left:-4px}
   .read-rod::after{right:-4px}
   .read-rod-top{top:4px}
@@ -570,13 +588,13 @@
   /* 朱砂钤印（方角微旋 + 内框 + 微浮雕，更似真实钤印） */
   .read-seal{flex:0 0 auto;width:38px;height:38px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;
     font-family:var(--serif);font-size:20px;font-weight:700;color:#fbf3e6;letter-spacing:0;
-    background:linear-gradient(145deg,#c0432c,#9c3320);
+    background:linear-gradient(145deg,var(--mod-cinnabar),var(--mod-cinnabar-deep));
     box-shadow:0 4px 12px rgba(156,51,32,.4), inset 0 0 0 2px rgba(255,255,255,.18), inset 0 0 0 3px rgba(120,30,16,.4);transform:rotate(-3deg)}
   .read-titlewrap{margin:0;flex:1 1 auto;display:flex;flex-direction:column;gap:4px;min-width:0}
-  .read-title{font-family:var(--serif);font-size:20px;letter-spacing:6px;font-weight:700;color:#6f4f25;line-height:1.1;margin:0}
+  .read-title{font-family:var(--serif);font-size:20px;letter-spacing:6px;font-weight:700;color:var(--mod-ink-gold);line-height:1.1;margin:0}
   .read-sub{font-family:var(--serif);font-size:11px;letter-spacing:3px;color:rgba(120,90,46,.7)}
   /* 标题下小金点（落款式分隔） */
-  .read-orn{width:5px;height:5px;border-radius:50%;background:radial-gradient(circle,#c9a45c,#9c783f);box-shadow:0 0 0 3px rgba(201,164,92,.18)}
+  .read-orn{width:5px;height:5px;border-radius:50%;background:radial-gradient(circle,var(--gold-stroke),var(--mod-gold-deep));box-shadow:0 0 0 3px rgba(201,164,92,.18)}
   .read-close{position:relative;top:auto;right:auto;flex:0 0 auto;width:34px;height:34px;border-radius:50%;cursor:pointer;
     font-size:15px;line-height:1;color:var(--muted,#8a7a5e);background:rgba(255,255,255,.5);border:1px solid rgba(176,141,87,.4);transition:.22s;z-index:4}
   .read-close:hover{background:var(--cinnabar,#b23a26);color:#fff;border-color:transparent;transform:rotate(90deg)}
@@ -608,11 +626,11 @@
   body.theme-dark .read-rod::before,body.theme-dark .read-rod::after{background:linear-gradient(180deg,#6a6354,#2c2820);box-shadow:0 1px 3px rgba(0,0,0,.5)}
   body.theme-dark .read-head{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0))}
   body.theme-dark .read-head::after{background:linear-gradient(90deg,transparent,rgba(233,217,184,.4) 16%,rgba(233,217,184,.4) 84%,transparent)}
-  body.theme-dark .read-seal{color:#f7ecd2;background:linear-gradient(145deg,#c0432c,#8c2c1a);
+  body.theme-dark .read-seal{color:#f7ecd2;background:linear-gradient(145deg,var(--mod-cinnabar),var(--mod-cinnabar-deep));
     box-shadow:0 4px 12px rgba(0,0,0,.5), inset 0 0 0 2px rgba(255,255,255,.16), inset 0 0 0 3px rgba(120,30,16,.4)}
   body.theme-dark .read-title{color:var(--cream)}
   body.theme-dark .read-sub{color:var(--cream-3)}
-  body.theme-dark .read-orn{background:radial-gradient(circle,#d8b878,#9c783f);box-shadow:0 0 0 3px rgba(216,184,120,.18)}
+  body.theme-dark .read-orn{background:radial-gradient(circle,var(--mod-gold-bright),var(--mod-gold-deep));box-shadow:0 0 0 3px rgba(216,184,120,.18)}
   body.theme-dark .read-close{color:var(--cream-3);background:rgba(255,255,255,.06);border-color:rgba(233,217,184,.25)}
   body.theme-dark .read-close:hover{background:var(--cinnabar,#b23a26);color:#fff;border-color:transparent}
   /* 塔罗 · 星座风格：星夜穹幕 · 月华浮卡 · 金星钤印（与命盘八字·宣纸卷轴区分） */
@@ -637,12 +655,12 @@
   .read-modal.style-tarot .read-head{background:linear-gradient(180deg,rgba(124,99,189,.14),rgba(124,99,189,0));padding-top:26px}
   .read-modal.style-tarot .read-head::after{background:linear-gradient(90deg,transparent,rgba(140,110,210,.6) 16%,rgba(140,110,210,.6) 84%,transparent)}
   .read-modal.style-tarot .read-seal{flex:0 0 auto;width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
-    font-family:var(--serif);font-size:18px;color:#3a2f6b;letter-spacing:0;
-    background:radial-gradient(circle at 35% 30%, #f6e9b8, #d8b14e 60%, #b78a2e);
+    font-family:var(--serif);font-size:18px;color:var(--mod-violet-title);letter-spacing:0;
+    background:radial-gradient(circle at 35% 30%, #f6e9b8, var(--mod-violet-seal) 60%, var(--mod-violet-seal-mid));
     box-shadow:0 4px 12px rgba(140,110,210,.35), inset 0 0 0 2px rgba(255,255,255,.5), inset 0 0 0 3px rgba(150,120,40,.5);transform:rotate(0)}
-  .read-modal.style-tarot .read-title{color:#3a2f6b;letter-spacing:8px}
+  .read-modal.style-tarot .read-title{color:var(--mod-violet-title);letter-spacing:8px}
   .read-modal.style-tarot .read-sub{color:rgba(96,76,160,.8)}
-  .read-modal.style-tarot .read-orn{width:auto;height:auto;background:none;box-shadow:none;font-size:12px;letter-spacing:7px;color:#9a7fe0;line-height:1}
+  .read-modal.style-tarot .read-orn{width:auto;height:auto;background:none;box-shadow:none;font-size:12px;letter-spacing:7px;color:var(--mod-violet-soft);line-height:1}
   .read-modal.style-tarot .read-close{color:rgba(96,76,160,.8);background:rgba(255,255,255,.55);border-color:rgba(140,110,210,.4)}
   .read-modal.style-tarot .read-close:hover{background:#6b4fb0;color:#fff;border-color:transparent}
   .read-modal.style-tarot .read-body{scrollbar-color:rgba(140,110,210,.5) transparent}
@@ -667,16 +685,16 @@
   body.theme-dark .read-modal.style-tarot .read-card::before{border-color:rgba(180,160,240,.28)}
   body.theme-dark .read-modal.style-tarot .read-head{background:linear-gradient(180deg,rgba(180,160,240,.1),rgba(180,160,240,0));padding-top:26px}
   body.theme-dark .read-modal.style-tarot .read-head::after{background:linear-gradient(90deg,transparent,rgba(180,160,240,.45) 16%,rgba(180,160,240,.45) 84%,transparent)}
-  body.theme-dark .read-modal.style-tarot .read-seal{color:#f3ecff;background:radial-gradient(circle at 35% 30%, #d9c7f0, #8a6fd0 60%, #5b3fa0);
+  body.theme-dark .read-modal.style-tarot .read-seal{color:#f3ecff;background:radial-gradient(circle at 35% 30%, #d9c7f0, #8a6fd0 60%, var(--mod-violet-deep));
     box-shadow:0 4px 12px rgba(0,0,0,.5), inset 0 0 0 2px rgba(255,255,255,.28), inset 0 0 0 3px rgba(90,60,150,.55)}
   body.theme-dark .read-modal.style-tarot .read-title{color:var(--cream)}
   body.theme-dark .read-modal.style-tarot .read-sub{color:var(--cream-3)}
-  body.theme-dark .read-modal.style-tarot .read-orn{color:#b59cf0}
+  body.theme-dark .read-modal.style-tarot .read-orn{color:var(--mod-violet-soft)}
   body.theme-dark .read-modal.style-tarot .read-close{color:var(--cream-3);background:rgba(255,255,255,.06);border-color:rgba(180,160,240,.3)}
   body.theme-dark .read-modal.style-tarot .read-close:hover{background:#7a5dc0;color:#fff;border-color:transparent}
   /* 占卜类（塔罗/星座）结果内的朱砂玄印改作金星钤印，与星夜风格统一 */
   .read-modal.style-tarot .result-sign .rs-seal{background:linear-gradient(145deg,#caa94e,#9a7a2a);box-shadow:0 4px 12px rgba(140,110,210,.3), inset 0 0 0 2px rgba(255,255,255,.2), inset 0 0 0 3px rgba(120,90,20,.4)}
-  .read-modal.style-tarot .cred{background:linear-gradient(135deg,#7a5fb0,#5b3fa0);box-shadow:0 3px 8px rgba(120,90,200,.3)}
+  .read-modal.style-tarot .cred{background:linear-gradient(135deg,var(--mod-violet),var(--mod-violet-deep));box-shadow:0 3px 8px rgba(120,90,200,.3)}
   .ai-ans{white-space:normal}
   .to-top{position:fixed;right:16px;bottom:18px;width:48px;height:48px;border-radius:50%;
     display:inline-flex;align-items:center;justify-content:center;font-size:22px;color:#fbf7ee;cursor:pointer;
@@ -812,6 +830,9 @@
     --glass:rgba(18,30,28,.46);--glass-strong:rgba(18,30,28,.6);--glass-line:rgba(233,217,184,.22);
     --glass-line-soft:rgba(233,217,184,.12);--glass-blur:blur(16px) saturate(1.2);
     --glass-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06);
+    /* —— 模块点缀色 · 暗态取值（仅与亮态不同的几项） —— */
+    --mod-cinnabar-deep:#8c2c1a;--mod-ink-gold:var(--cream);
+    --mod-violet-title:var(--cream);--mod-violet-soft:#b59cf0;
     --paper:#13201d;--paper2:#16201d;--c:#c8bda2;
     --gold:#c8bda2;--gold2:#c8bda2;--gold-soft:#b8ab90;
     --red:#2a2620;--red2:#3f3a30;
@@ -914,9 +935,16 @@
   .ly-yao{transform-origin:center;animation:coinDrop .5s var(--e-out) both}
   @keyframes coinDrop{0%{opacity:0;transform:translateY(-26px) rotateY(180deg) scale(.82)}
     70%{opacity:1;transform:translateY(5px) rotateY(0) scale(1.04)}100%{opacity:1;transform:none}}
+  /* 起卦：每爻落定时的"墨溅"——呼应"更慢更强更长"的叙事诉求 */
+  @keyframes lySplash{0%{transform:scale(.2);opacity:.6}55%{opacity:.34}100%{transform:scale(2.6);opacity:0}}
+  .ly-land{position:relative}
+  .ly-land::after{content:"";position:absolute;left:50%;top:50%;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;
+    background:radial-gradient(circle,color-mix(in srgb,var(--gold-stroke) 60%,transparent) 0%,transparent 70%);
+    transform:scale(.2);opacity:0;pointer-events:none;animation:lySplash .9s var(--e-out) both}
   /* 尊重「减少动态效果」系统偏好 */
   @media (prefers-reduced-motion: reduce){
-    .result,.result::before,.result h3,.panel.show,body::after,.rs-seal,.ly-yao,.result.foldable.fold-open{animation:none!important}
+    .result,.result::before,.result h3,.panel.show,body::after,.rs-seal,.ly-yao,.ly-land::after,.result.foldable.fold-open{animation:none!important}
+    .ly-land::after{opacity:0!important}
     .result{clip-path:none;filter:none}
   }
 
@@ -1225,6 +1253,8 @@
     --e-inout:cubic-bezier(.65,0,.35,1);     /* 双向：循环/呼吸 */
     /* 4 档时长（本轮按用户反馈再放慢一档：节奏慢一点） */
     --t-fast:.26s; --t-base:.46s; --t-slow:.66s; --t-story:1.0s;
+    /* 循环/呼吸时长刻度（本轮新增，统一 qn* 动效节奏，避免写死秒数） */
+    --t-loop-1:1.2s; --t-loop-2:1.5s; --t-loop-3:1.8s; --t-loop-4:3.6s;
     /* 2 种位移（力度：再加大抬升幅度，入场更有分量） */
     --m-in:15px; --m-emph:26px;
   }
@@ -1728,6 +1758,66 @@
   .result-sign{margin-top:10px}
   .grid2{grid-template-columns:1fr}
 }
+  /* ===== 青囊式动效移植 · re-tone 素雅 · 零冲突增强（2026-09-03，强度二次上调·更强，已统一用语义缓动/时长令牌） ===== */
+  @keyframes qnBreathe{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold-stroke) 0%,transparent);border-color:color-mix(in srgb,var(--gold-stroke) 30%,var(--line));text-shadow:0 0 0 transparent}50%{box-shadow:0 0 var(--qn-glow) 5px color-mix(in srgb,var(--gold-stroke) var(--qn-glow-a),transparent),0 0 0 2px color-mix(in srgb,var(--gold-stroke) 40%,transparent);border-color:var(--gold-stroke);text-shadow:0 0 var(--qn-glow) color-mix(in srgb,var(--gold-stroke) 72%,transparent)}}
+  @keyframes qnSwing{0%,100%{transform:rotate(calc(-1 * var(--qn-swing)))}50%{transform:rotate(var(--qn-swing))}}
+  @keyframes qnSheen{0%{background-position:240% 0}100%{background-position:-240% 0}}
+  @keyframes qnRadiate{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold-stroke) var(--qn-ring-a),transparent),0 0 0 0 color-mix(in srgb,var(--gold-stroke) 45%,transparent)}55%{box-shadow:0 0 0 var(--qn-ring) color-mix(in srgb,var(--gold-stroke) 0%,transparent),0 0 0 calc(var(--qn-ring) / 2) color-mix(in srgb,var(--gold-stroke) 0%,transparent)}100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold-stroke) 0%,transparent),0 0 0 0 color-mix(in srgb,var(--gold-stroke) 0%,transparent)}}
+  @keyframes qnInkIn{from{opacity:0;filter:blur(var(--qn-ink));transform:translateY(24px) scale(.96)}to{opacity:1;filter:blur(0);transform:none}}
+
+  /* 顶部分类当前项：呼吸光晕"活着" + 描金边随呼吸明灭（统一缓动/时长令牌） */
+  .cat.active{animation:qnBreathe var(--t-loop-4) var(--e-inout) infinite;color:var(--gold-stroke)}
+  /* 浮动分享按钮：hover 钟摆 + 金色扫光（不覆盖原背景，用 ::after） */
+  .share-fab{overflow:hidden}
+  .share-fab::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(100deg,transparent 28%,color-mix(in srgb,var(--gold-stroke) 78%,transparent) 50%,transparent 72%);background-size:240% 100%;background-position:240% 0;opacity:0;transition:opacity .2s}
+  .share-fab:hover{transform-origin:top center;animation:qnSwing var(--t-loop-1) var(--e-inout) infinite}
+  .share-fab:hover::after{opacity:1;animation:qnSheen var(--t-loop-3) linear infinite}
+  /* 字盘选中格：锚定辐射环（双环循环往外洇，明显可见） */
+  .zw-cell.ming{position:relative}
+  .zw-cell.ming::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;animation:qnRadiate var(--t-loop-2) var(--e-out) infinite}
+  /* AI 解读结果：模糊落墨（更慢更沉） */
+  .read-card .result{animation:qnInkIn var(--t-story) var(--e-out) both}
+
+  /* 动效强度（应用内开关，弱/中/强；默认强）：用 --qn-* 变量缩放辉光/环/摆幅/墨晕 */
+  :root,[data-motion]{--qn-glow:28px;--qn-glow-a:62%;--qn-ring:22px;--qn-ring-a:78%;--qn-swing:12deg;--qn-ink:18px}
+  [data-motion="normal"]{--qn-glow:16px;--qn-glow-a:46%;--qn-ring:15px;--qn-ring-a:58%;--qn-swing:8deg;--qn-ink:12px}
+  [data-motion="soft"]{--qn-glow:0px;--qn-glow-a:0%;--qn-ring:0px;--qn-ring-a:0%;--qn-swing:0deg;--qn-ink:8px}
+  [data-motion="soft"] .cat.active,[data-motion="soft"] .zw-cell.ming::after,[data-motion="soft"] .share-fab:hover,[data-motion="soft"] .ly-land::after{animation:none!important}
+  [data-motion="soft"] .share-fab::after,[data-motion="soft"] #ambient{opacity:0!important;display:none!important}
+
+  /* 无障碍：尊重用户的 reduced-motion 偏好 */
+  @media (prefers-reduced-motion: reduce){
+    .cat.active,.share-fab:hover,.share-fab::after,.zw-cell.ming,.zw-cell.ming::after,.read-card .result{animation:none!important}
+    .share-fab::after{opacity:0!important}
+  }
+
+  /* ===== T8 三盘/合参流光脉络（青囊式 trinity-flow re-tone 素雅） ===== */
+  @keyframes qnTrinity{0%{background-position:0 -160px}100%{background-position:0 480px}}
+  @keyframes qnTrinityDot{0%{top:2%;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:96%;opacity:0}}
+  .hehun-flow{position:relative;padding-left:22px}
+  .hehun-flow::before{
+    content:"";position:absolute;left:8px;top:16px;bottom:16px;width:2px;border-radius:2px;
+    background:linear-gradient(180deg,
+      transparent 0%,
+      color-mix(in srgb,var(--gold-stroke) 78%,transparent) 16%,
+      transparent 34%,
+      color-mix(in srgb,var(--gold-stroke) 78%,transparent) 52%,
+      transparent 70%,
+      color-mix(in srgb,var(--gold-stroke) 78%,transparent) 88%,
+      transparent 100%);
+    background-size:100% 160px;
+    animation:qnTrinity var(--t-loop-3) linear infinite;
+    opacity:.5;pointer-events:none;
+  }
+  .hehun-flow::after{
+    content:"";position:absolute;left:6px;top:2%;width:6px;height:6px;border-radius:50%;
+    background:radial-gradient(circle,var(--gold-stroke),color-mix(in srgb,var(--gold-stroke) 35%,transparent));
+    box-shadow:0 0 10px 2px color-mix(in srgb,var(--gold-stroke) 62%,transparent);
+    animation:qnTrinityDot var(--t-loop-2) var(--e-inout) infinite;
+    pointer-events:none;
+  }
+  [data-motion="soft"] .hehun-flow::before,[data-motion="soft"] .hehun-flow::after{display:none!important}
+  @media (prefers-reduced-motion: reduce){ .hehun-flow::before,.hehun-flow::after{display:none!important} }
 </style>
 </head>
 <body>
@@ -2540,6 +2630,14 @@
       <label>琴音氛围</label>
       <span class="sound-toggle" id="soundToggle" title="背景古琴轻音 + 焚香/盖印/翻牌音效"><span class="dot"></span><span id="soundToggleTxt">关</span></span>
     </div>
+    <div class="set-row">
+      <label>动效强度</label>
+      <select id="motionLevel">
+        <option value="soft">弱（静）</option>
+        <option value="normal">中</option>
+        <option value="strong" selected>强</option>
+      </select>
+    </div>
     <div class="hint">设置即时生效，下次排盘起按所选流派呈现；不同流派仅是展现侧重不同，核心历法推算一致。琴音为纯前端合成，无网络音频。</div>
     <div class="sub-title" style="margin-top:16px">历史记录（本机保存的测算 / 占卜留档）</div>
     <div class="grid2">
@@ -2753,7 +2851,7 @@
   <div class="foot">
     <div class="footline">天机不可尽泄 · 人事尚可修为</div>
     <div class="disc">推算类（八字·紫微·称骨·姓名·数字·生肖·星座·黄历·幸运色）依真实历法与传承规则，同样输入结果一致；占卜类（塔罗·灵签·解梦·六爻·梅花·易经·合婚·奇门）同古时求签问卜，随机而应。皆为传统文化趣味参考，勿作人生决策依据。</div>
-    <div class="footline" style="margin-top:10px;font-size:12px;color:var(--muted)">推算依《周易》《三命通会》《子平真诠》《滴天髓》《紫微斗数全书》《增删卜易》《梅花易数》《烟波钓叟歌》等传统典籍</div>
+    <div class="footline" style="margin-top:10px;font-size:12px;color:var(--muted)">玄机阁 <span id="appVer">__APPVER__</span> · 推算依《周易》《三命通会》《子平真诠》《滴天髓》《紫微斗数全书》《增删卜易》《梅花易数》《烟波钓叟歌》等传统典籍</div>
   </div>
 </div>
 <div class="tarot-modal" id="tarotModal">
@@ -11813,16 +11911,16 @@ function baziRead(dayGan,qiang,wu,yongUniq,shenArr,ssGan,monthGe,yunBest,monthZh
   const _lv=level||qiang;
   const dayWu=GAN_WU[dayGan];
   const GAN_C={
-    '甲':['甲木为阳木,如参天大树——有担当、志气高,认定的事会坚持到底;只是有时太硬气,少些转弯。','甲木参天——你是天生的带头者,有主见、扛得起事;要在坚持里留点弹性,别撞了南墙才回头。','甲坐阳木,骨子里有股向上生长的劲——重情义、讲原则,认准的路自己走到底,柔中带刚更吃得开。'],
-    '乙':['乙木为阴木,如藤萝花草——心思细腻、能屈能伸,适应力强;但易想太多,要多肯定自己。','乙木藤萝——你善借势、懂绕行,柔韧是本事;别把将就活成习惯,该立的时候也立得住。','乙坐阴木,细腻如丝——感知力强、共情好,宜静宜谋;少点内耗、多点笃定,柔能克刚。'],
-    '丙':['丙火为阳火,如太阳——热情开朗、行动力强,是人群里的光;火力过旺时易急躁,宜多沉心。','丙火当空——你自带光芒,乐观感染人,做事有冲劲;别让急脾气烧着自己人,留三分稳。','丙坐阳火,明耀向外——爱张罗、肯担当,越被看见越来劲;沉得住气时,光芒才不刺眼。'],
-    '丁':['丁火为阴火,如灯烛——外柔内刚,思虑周密、重情义;但易操心过度,学会放轻。','丁火灯烛——你外温内亮,想得深、付得真,慢热但长情;别把心事熬成烛泪,说出口更轻松。','丁坐阴火,幽微持久——细致、专注、有韧劲,宜守宜钻;放下过度操心,灯芯才不灭。'],
-    '戊':['戊土为阳土,如高山——沉稳可靠、守信用,是能托付的人;只是偏保守,可多尝新。','戊土高山——你稳得让人安心,言出必行、重承诺;偶尔跨出舒适区,山外有风景。','戊坐阳土,厚重可倚——踏实、靠谱、扛得住事;别被「稳妥」框死,试着接住一点新变。'],
-    '己':['己土为阴土,如田园——温厚包容、会照顾人,人缘好;但易委屈自己,记得先顾好自己。','己土田园——你润物无声,最会成全别人;先把自己这块田养肥,才有余力滋养旁人。','己坐阴土,包容含蓄——细腻、体贴、会来事;少点自我牺牲,多点自我主张,关系更平衡。'],
-    '庚':['庚金为阳金,如刀剑——果断刚毅、重义气,说一不二;但说话直,易无心伤人,多留三分余地。','庚金出鞘——你果决、讲义气,关键时刻靠得住;锋芒收一收,利刃不伤人也不伤己。','庚坐阳金,刚毅明快——认理不认人,行动利落;说话前转个弯,刚柔并济路更宽。'],
-    '辛':['辛金为阴金,如珠玉——精致敏感、追求完美,品味好;但易多虑,学会接纳不完美。','辛金如玉——你细腻有品、重细节,天生讲究;别让完美主义勒住手脚,完成比完美先。','辛坐阴金,温润精微——审美在线、心思巧;少些反复掂量,落子果断,玉才显光。'],
-    '壬':['壬水为阳水,如江河——聪明灵活、交际广,思维活;定力需练,专注一处更易成事。','壬水东流——你脑子活、路子广,到哪都能融;把散射的劲收成一股,江河才入海。','壬坐阳水,奔放通透——灵活、善变、人缘好;定力是功课,专注一时,成事一世。'],
-    '癸':['癸水为阴水,如雨露——内秀低调、直觉敏锐,观察力强;但易内耗,多行动少空想。','癸水涵露——你内秀、敏锐,懂看势头;别把觉察都闷在心里,动起来,露珠才落地生根。','癸坐阴水,幽潜细腻——直觉准、观察深,宜静宜思;少点反复琢磨,多点出手实践。']
+    '甲':['甲木为阳木,如参天大树——有担当、志气高,认定的事会坚持到底;只是有时太硬气,少些转弯。','甲木参天——你是天生的带头者,有主见、扛得起事;要在坚持里留点弹性,别撞了南墙才回头。','甲坐阳木,骨子里有股向上生长的劲——重情义、讲原则,认准的路自己走到底,柔中带刚更吃得开。','甲为阳木,如巨木向天——你天生有股撑起局面的气度,敢当头、肯担责;只是偶尔一根筋,转弯处留给旁人一点余地,路更宽。'],
+    '乙':['乙木为阴木,如藤萝花草——心思细腻、能屈能伸,适应力强;但易想太多,要多肯定自己。','乙木藤萝——你善借势、懂绕行,柔韧是本事;别把将就活成习惯,该立的时候也立得住。','乙坐阴木,细腻如丝——感知力强、共情好,宜静宜谋;少点内耗、多点笃定,柔能克刚。','乙为阴木,如牵牛绕架——你最擅借势而上,柔韧是你的铠甲;只是别把将就当圆融,该立规矩时也立得住,柔中藏锋更妙。'],
+    '丙':['丙火为阳火,如太阳——热情开朗、行动力强,是人群里的光;火力过旺时易急躁,宜多沉心。','丙火当空——你自带光芒,乐观感染人,做事有冲劲;别让急脾气烧着自己人,留三分稳。','丙坐阳火,明耀向外——爱张罗、肯担当,越被看见越来劲;沉得住气时,光芒才不刺眼。','丙为阳火,如丽日当空——你到哪里都自带温度,乐观、爱张罗、能照亮旁人;留三分沉静,光芒便不灼人,亦不伤己。'],
+    '丁':['丁火为阴火,如灯烛——外柔内刚,思虑周密、重情义;但易操心过度,学会放轻。','丁火灯烛——你外温内亮,想得深、付得真,慢热但长情;别把心事熬成烛泪,说出口更轻松。','丁坐阴火,幽微持久——细致、专注、有韧劲,宜守宜钻;放下过度操心,灯芯才不灭。','丁为阴火,如夜航之灯——你外温内亮,想得深、付得真,慢热却长情;别把心事熬成烛泪,说出口、做出来,灯芯才常明。'],
+    '戊':['戊土为阳土,如高山——沉稳可靠、守信用,是能托付的人;只是偏保守,可多尝新。','戊土高山——你稳得让人安心,言出必行、重承诺;偶尔跨出舒适区,山外有风景。','戊坐阳土,厚重可倚——踏实、靠谱、扛得住事;别被「稳妥」框死,试着接住一点新变。','戊为阳土,如厚土载物——你稳得让人安心,言出必行、重然诺;偶尔跨出舒适区半步,山外之景亦是你的。'],
+    '己':['己土为阴土,如田园——温厚包容、会照顾人,人缘好;但易委屈自己,记得先顾好自己。','己土田园——你润物无声,最会成全别人;先把自己这块田养肥,才有余力滋养旁人。','己坐阴土,包容含蓄——细腻、体贴、会来事;少点自我牺牲,多点自我主张,关系更平衡。','己为阴土,如良田育苗——你润物无声,最会成全旁人;先把自家这块田养肥,有余力时滋养才不亏己。'],
+    '庚':['庚金为阳金,如刀剑——果断刚毅、重义气,说一不二;但说话直,易无心伤人,多留三分余地。','庚金出鞘——你果决、讲义气,关键时刻靠得住;锋芒收一收,利刃不伤人也不伤己。','庚坐阳金,刚毅明快——认理不认人,行动利落;说话前转个弯,刚柔并济路更宽。','庚为阳金,如出鞘之锋——你果决、重义、说一不二,关键时刻最靠得住;锋芒稍敛三分,利刃不伤人亦不伤己。'],
+    '辛':['辛金为阴金,如珠玉——精致敏感、追求完美,品味好;但易多虑,学会接纳不完美。','辛金如玉——你细腻有品、重细节,天生讲究;别让完美主义勒住手脚,完成比完美先。','辛坐阴金,温润精微——审美在线、心思巧;少些反复掂量,落子果断,玉光自显。','辛为阴金,如精金在冶——你细腻有品、重细节,天生讲究;别让完美主义勒住手脚,落子比求全更要紧,玉光自显。'],
+    '壬':['壬水为阳水,如江河——聪明灵活、交际广,思维活;定力需练,专注一处更易成事。','壬水东流——你脑子活、路子广,到哪都能融;把散射的劲收成一股,江河才入海。','壬坐阳水,奔放通透——灵活、善变、人缘好;定力是功课,专注一时,成事一世。','壬为阳水,如大江东去——你脑子活、路子广、到哪都能融;把散射的劲收成一股,江河方入海,成事方有归。'],
+    '癸':['癸水为阴水,如雨露——内秀低调、直觉敏锐,观察力强;但易内耗,多行动少空想。','癸水涵露——你内秀、敏锐,懂看势头;别把觉察都闷在心里,动起来,露珠才落地生根。','癸坐阴水,幽潜细腻——直觉准、观察深,宜静宜思;少点反复琢磨,多点出手实践。','癸为阴水,如晨露涵泽——你内秀低调、直觉敏锐,宜静宜思;少点反复琢磨,多点出手实践,露珠落地才生根。']
   };
   const SHA_D={'天乙贵人':'贵人运强,遇困时易得人扶','文昌':'利文书学业,读书/写作/文职有天分','禄神':'财缘较顺,经济上少操心','羊刃':'性子刚强,注意收敛锋芒、防争执','桃花':'人缘桃花旺,感情际遇多,重情更重品','驿马':'动中求财,宜外出发展、多走动','华盖':'有艺术宗教缘分,喜独处深思'};
   const ps=[];
@@ -11831,46 +11929,52 @@ function baziRead(dayGan,qiang,wu,yongUniq,shenArr,ssGan,monthGe,yunBest,monthZh
   const _warr=Object.entries(wu).sort((a,b)=>a[1]-b[1]);
   const _least=_warr[0], _most=_warr[4];
   const _ph=_hashStr((dayGan||'')+(qiang||'')+(yongUniq?yongUniq.join(''):'')+(monthZhi||'')+(_least?_least[0]:'')+(_most?_most[0]:'')+(monthGe||''));
-  const _pick=(arr,dim)=>arr[(_hashStr(String(_ph)+String(dim))%arr.length)];
+  const _rand=Math.floor(Math.random()*1e9);            /* 每次起盘换新种子：破解"反复出现同一句" */
+  const _pick=(arr,dim)=>arr[(_hashStr(String(_ph)+String(dim)+'.'+_rand)%arr.length)];
   // ① 一句话结论（前置，最重要的先说）
   const _act=_lv==='身强'?'主动开拓、多历练':_lv==='偏强'?'顺势推进、稳步加力':_lv==='中和'?'顺势而为、稳中求进':_lv==='偏弱'?'养气蓄力、借势而行':'养气守成、借力而为';
   const _cV=[
     '一句话：你是 <b>'+dayGan+'日主</b>（'+dayWu+'），命局<b>'+_lv+'</b>；做事宜'+_act+'，日常多亲近五行 <b>'+yongUniq.join(' / ')+'</b> 之气最助运。',
     '先给结论：<b>'+dayGan+'</b> 坐命、格局 <b>'+_lv+'</b>，'+(qiang==='身强'?'底气足可扛事，宜往前闯、别憋着':'宜借势蓄力、量力而行')+'；命里最该多靠近的是 <b>'+yongUniq.join(' / ')+'</b> 这一路气。',
-    '一句话定调：你乃 <b>'+dayGan+'（'+dayWu+'）</b> 日主，命局 <b>'+_lv+'</b>。'+(qiang==='身强'?'能担事，宜主动布局、顺势起势':'宜守宜借，先把根基养厚')+'；常近 <b>'+yongUniq.join(' / ')+'</b> 五行，运自顺。'
+    '一句话定调：你乃 <b>'+dayGan+'（'+dayWu+'）</b> 日主，命局 <b>'+_lv+'</b>。'+(qiang==='身强'?'能担事，宜主动布局、顺势起势':'宜守宜借，先把根基养厚')+'；常近 <b>'+yongUniq.join(' / ')+'</b> 五行，运自顺。',
+    '提纲挈领：<b>'+dayGan+'（'+dayWu+'）</b> 日主，命局 <b>'+_lv+'</b>——'+(qiang==='身强'?'底气在身，宜开疆拓土、莫负其能':'宜养宜借，先把底气攒足')+'；命中最沾光的是 <b>'+yongUniq.join(' / ')+'</b> 一行气。',
+    '先说定论：你以 <b>'+dayGan+'</b> 立身、格局 <b>'+_lv+'</b>，'+(qiang==='身强'?'能扛则宜主动，别把力气闷着':'宜借平台借贵人，不硬顶')+'；平素多亲 <b>'+yongUniq.join(' / ')+'</b> 之气，运势自来。'
   ];
   ps.push(_pick(_cV,'concl'));
   // ② 日主 = 你的性格底色
   ps.push('【日主 · 你是谁】'+_pick(GAN_C[dayGan],'gan'));
   // ③ 强弱 = 你能扛多少事（五档细分：旺衰由 得令·得地·得势·得助 加权推演）
-  const _qV=_lv==='身强'?['身强——精力足、能担事，但别硬扛，宜把力气用在开拓上。','身强——底气足、抗压强，最忌憋着硬扛，把力气用在往前闯上更对。','身强——气足能扛、敢冲敢担，关键是把这份力引去建功，而非耗在内耗硬顶上。']
-    :_lv==='偏强'?['偏强——气足近强，能担事但忌满溢，宜把劲用在刀刃上、忌贪多求全。','偏强——底气偏足，扛得住场面；宜顺势而进、疏泄有余，莫再一味添火。','偏强——力有富余，做事有余地；宜把富余的气引向开拓，同时留三分回旋。']
-    :_lv==='中和'?['中和——五行不偏，一生较平稳，顺势稳中求进即可。','中和——气脉持衡，少有极端起伏，稳扎稳打反而走得最远。','中和——不偏不倚，刚柔可调，顺着节律走便少有大起大落。']
-    :_lv==='偏弱'?['偏弱——底气略欠，宜养气蓄力、借势而行，不硬撑大场面。','偏弱——能量偏柔，宜多亲近生扶你的人与事，慢养厚积、勿争一时。','偏弱——根基尚浅，宜先扎根再伸展，借平台借贵人，四两拨千斤。']
-    :['身弱——宜养气守成、量力而行，多靠近生扶你的人和事，不硬撑大事。','身弱——宜借力而行，不必事事硬扛，多亲近生扶你的环境与人是上策。','身弱——不作无谓硬撑，借平台、借贵人、借时运，四两拨千斤比死扛更聪明。'];
+  const _qV=_lv==='身强'?['身强——精力足、能担事，但别硬扛，宜把力气用在开拓上。','身强——底气足、抗压强，最忌憋着硬扛，把力气用在往前闯上更对。','身强——气足能扛、敢冲敢担，关键是把这份力引去建功，而非耗在内耗硬顶上。','身强——气足神完，能担事亦能扛压；宜把这份底气引向开拓建功，而非耗在内耗硬顶上。']
+    :_lv==='偏强'?['偏强——气足近强，能担事但忌满溢，宜把劲用在刀刃上、忌贪多求全。','偏强——底气偏足，扛得住场面；宜顺势而进、疏泄有余，莫再一味添火。','偏强——力有富余，做事有余地；宜把富余的气引向开拓，同时留三分回旋。','偏强——力有盈余，余地尚宽；宜顺势而进、疏泄有余，留三分回旋最稳。']
+    :_lv==='中和'?['中和——五行不偏，一生较平稳，顺势稳中求进即可。','中和——气脉持衡，少有极端起伏，稳扎稳打反而走得最远。','中和——不偏不倚，刚柔可调，顺着节律走便少有大起大落。','中和——气脉持衡，刚柔可调；顺着节律走，少有大起大落，稳即是进。']
+    :_lv==='偏弱'?['偏弱——底气略欠，宜养气蓄力、借势而行，不硬撑大场面。','偏弱——能量偏柔，宜多亲近生扶你的人与事，慢养厚积、勿争一时。','偏弱——根基尚浅，宜先扎根再伸展，借平台借贵人，四两拨千斤。','偏弱——根基尚浅，宜先扎根再伸展；借平台借贵人，四两拨千斤胜死扛。']
+    :['身弱——宜养气守成、量力而行，多靠近生扶你的人和事，不硬撑大事。','身弱——宜借力而行，不必事事硬扛，多亲近生扶你的环境与人是上策。','身弱——不作无谓硬撑，借平台、借贵人、借时运，四两拨千斤比死扛更聪明。','身弱——不作无谓硬撑，借时运、借贵人、借环境，量力而行比死扛聪明。'];
   ps.push('【强弱 · 能扛多少】'+_pick(_qV,'qiang'));
   // ④ 五行哪里偏 = 该怎么调（占比为干1+支藏干本/中/余气 1/0.5/0.25 加权）
   const _fmt=v=>Math.round(v*10)/10;
   const _wV=[
     (_least[1]===0?'最弱（甚至独缺）的是'+_least[0]+'，宜补；':_least[0]+'偏弱，宜略补；')+_most[0]+'最旺（'+_fmt(_most[1])+'处），过旺则宜泄不宜再添。',
     (_least[1]===0?'命里'+_least[0]+'独缺，最该补这一味；':_least[0]+'偏弱，多补'+_least[0]+'；')+_most[0]+'最旺，旺则宜疏不宜堵。',
-    (_least[1]===0?_least[0]+'在你命里几乎是空的，这一味要先补起来；':_least[0]+'偏枯，是你要养的一头；')+_most[0]+'满溢（'+_fmt(_most[1])+'处），满招损、宜泄其有余以就平。'
+    (_least[1]===0?_least[0]+'在你命里几乎是空的，这一味要先补起来；':_least[0]+'偏枯，是你要养的一头；')+_most[0]+'满溢（'+_fmt(_most[1])+'处），满招损、宜泄其有余以就平。',
+    (_least[1]===0?_least[0]+'独缺成空，调候先补这一味；':_least[0]+'偏弱，是短板所在，宜养；')+'而 '+_most[0]+' 过旺（'+_fmt(_most[1])+'处），强宾夺主，宜泄其有余、莫再添薪。',
+    (_least[0]+'一脉偏枯，宜常补；'+_most[0]+'一脉独大（'+_fmt(_most[1])+'处），宜疏——一补一泄，五行方归中道。')
   ];
   ps.push('【五行 · 怎么调】'+_pick(_wV,'wu'));
   // ⑥b 五行偏枯 → 中医体质观（并入报告，不另开面板）
   const TCM={
-    '木':['木弱则肝胆、筋骨、双目易虚——宜疏泄条达、少熬夜、远怒；木过旺则肝阳易亢、性急上火。','木弱当养肝：疏郁、早眠、少动怒；木过旺则气横，宜静不宜争。'],
-    '火':['火弱则心、血脉、舌易虚——宜静心养神、忌过劳心耗神；火过旺则心火偏炎、易烦躁失眠。','火弱当养心：节思虑、远亢奋；火过旺则炎上，宜清宜静。'],
-    '土':['土弱则脾胃、肌肉易虚——宜规律饮食、忌生冷黏腻；土过旺则中焦壅滞、身重困倦。','土弱当厚脾胃：三餐有时、忌生冷；土过旺则滞，宜动宜通。'],
-    '金':['金弱则肺、大肠、皮毛易虚——宜润肺、远烟尘、忌悲忧伤肺；金过旺则燥气偏盛、肤干便结。','金弱当润肺：远烟尘、少悲忧；金过旺则燥，宜润忌耗。'],
-    '水':['水弱则肾、膀胱、耳、骨易虚——宜养肾节劳、注意保暖；水过旺则寒凝、易底气不足。','水弱当养肾：节房劳、避寒凉；水过旺则寒，宜温忌遏。']
+    '木':['木弱则肝胆、筋骨、双目易虚——宜疏泄条达、少熬夜、远怒；木过旺则肝阳易亢、性急上火。','木弱当养肝：疏郁、早眠、少动怒；木过旺则气横，宜静不宜争。','木主疏泄，偏弱则气郁不舒、易生结滞——宜舒展情志、常动少郁；过旺则亢而化火，宜静心降躁。'],
+    '火':['火弱则心、血脉、舌易虚——宜静心养神、忌过劳心耗神；火过旺则心火偏炎、易烦躁失眠。','火弱当养心：节思虑、远亢奋；火过旺则炎上，宜清宜静。','火主温通，偏弱则血行迟滞、神思易散——宜适度温养、远寒凉；过旺则炎上灼津，宜清降宁心。'],
+    '土':['土弱则脾胃、肌肉易虚——宜规律饮食、忌生冷黏腻；土过旺则中焦壅滞、身重困倦。','土弱当厚脾胃：三餐有时、忌生冷；土过旺则滞，宜动宜通。','土主运化，偏弱则受纳无力、易生胀滞——宜规律饮食、暖腹忌生；过旺则壅塞，宜疏运通导。'],
+    '金':['金弱则肺、大肠、皮毛易虚——宜润肺、远烟尘、忌悲忧伤肺；金过旺则燥气偏盛、肤干便结。','金弱当润肺：远烟尘、少悲忧；金过旺则燥，宜润忌耗。','金主肃降，偏弱则卫外不固、易伤风燥——宜润肺固表、习深呼吸；过旺则燥敛太过，宜润宜散。'],
+    '水':['水弱则肾、膀胱、耳、骨易虚——宜养肾节劳、注意保暖；水过旺则寒凝、易底气不足。','水弱当养肾：节房劳、避寒凉；水过旺则寒，宜温忌遏。','水主蛰藏，偏弱则封藏失司、易怯易疲——宜养肾蓄精、避寒凉；过旺则寒凝气沉，宜温通化气。']
   };
   if(TCM[_least[0]]){
     const _tV=TCM[_least[0]];
     const _over=(_most[1]>_least[1]+2)?(_most[0]+'最旺，宜疏其有余、莫再添补。'):'';
     const _tune=[
       '【体质 · 五行偏枯】命理以五行观身态：'+_least[0]+'最弱当养——'+_tV[0]+_over+'此乃传统命理之身态观，任何不适请以现代医学诊断为准。',
-      '【体质 · 五行偏枯】五行偏枯见身：你'+_least[0]+'弱、宜补其本——'+_tV[1]+_over+'命理为观，身体实况请听医生的。'
+      '【体质 · 五行偏枯】五行偏枯见身：你'+_least[0]+'弱、宜补其本——'+_tV[1]+_over+'命理为观，身体实况请听医生的。',
+      '【体质 · 五行偏枯】'+_least[0]+'弱为你的身态短板——'+_tV[2]+_over+'以上为传统命理视角，具体请以现代医学检查为准。'
     ];
     ps.push(_pick(_tune,'tcm'));
   }
@@ -11891,7 +11995,9 @@ function baziRead(dayGan,qiang,wu,yongUniq,shenArr,ssGan,monthGe,yunBest,monthZh
     const _thV=[
       '【调候 · 穷通宝鉴】你生于'+_mzName+'（月令 '+monthZhi+'），寒暖燥湿之间最需 <b>'+th+'</b> 来调和——此即“调候为急”之用神。它和格局用神（月令取格）、平衡用神（补日主偏枯）是三路并行的取法，可互参：调候管“气候”，格局管“架构”，旺衰管“强弱”。',
       '【调候 · 穷通宝鉴】生于'+_mzName+'之局，先天气候偏'+_han+'，最宜以 <b>'+th+'</b> 调之。穷通宝鉴言“调候为急”——先安气候，再论生克；此与格局、旺衰用神宜合看，不可偏废。',
-      '【调候 · 穷通宝鉴】'+_mzName+'（月令 '+monthZhi+'）生人，独赖 <b>'+th+'</b> 一字调其寒暖燥湿。穷通宝鉴以调候为先，气候不顺则格局、旺衰皆难发挥，故这一味宜时时顾着。'
+      '【调候 · 穷通宝鉴】'+_mzName+'（月令 '+monthZhi+'）生人，独赖 <b>'+th+'</b> 一字调其寒暖燥湿。穷通宝鉴以调候为先，气候不顺则格局、旺衰皆难发挥，故这一味宜时时顾着。',
+      '【调候 · 穷通宝鉴】月令 '+monthZhi+'（'+_mzName+'）之候，寒暖燥湿失衡，唯 <b>'+th+'</b> 可纠偏。穷通宝鉴以“调候为急”立论——气候一顺，格局与旺衰方能各展其用，故宜常顾此味。',
+      '【调候 · 穷通宝鉴】你落于'+_mzName+'（月令 '+monthZhi+'），先天气候偏'+_han+'，最赖 <b>'+th+'</b> 一气相济。调候、格局、旺衰本为三途并济：调候安其外、格局立其骨、旺衰定其力。'
     ];
     ps.push(_pick(_thV,'tiaohou'));
   }
@@ -11914,7 +12020,9 @@ function baziRead(dayGan,qiang,wu,yongUniq,shenArr,ssGan,monthGe,yunBest,monthZh
     const _geV=[
       '【格局 · 月令定格】'+GE_JU[monthGe]+_geTail+'（取法：子平格局法先观月令、取格为纲。）',
       '【格局 · 月令定格】你以月令定格为'+GE_JU[monthGe].split('——')[0]+'，'+(tou?'且此十神透出天干，格局清纯有力':'此十神未透天干，格局内藏、需岁运引动')+'。'+GE_JU[monthGe].split('——')[1],
-      '【格局 · 月令定格】'+GE_JU[monthGe].split('——')[0]+_geTail+'古法子平先取月令为格、次论日主强弱——此格之要义在「'+GE_JU[monthGe].split('——')[1].slice(0,18)+'」'+(tou?'，透干则成格有力、宜早用':'，藏支待引、岁运逢之方显')
+      '【格局 · 月令定格】'+GE_JU[monthGe].split('——')[0]+_geTail+'古法子平先取月令为格、次论日主强弱——此格之要义在「'+GE_JU[monthGe].split('——')[1].slice(0,18)+'」'+(tou?'，透干则成格有力、宜早用':'，藏支待引、岁运逢之方显'),
+      '【格局 · 月令定格】'+GE_JU[monthGe].split('——')[0]+_geTail+'子平以月令取格为第一义——格正则局清，再论日主强弱与用神向背，方可定其成败。',
+      '【格局 · 月令定格】'+GE_JU[monthGe].split('——')[1]+(tou?'此格透干而显，成格有力，宜早取其用；':'此格藏于支，待岁运引动方尽其用；')+'古法“先观月令、取格为纲”，格局既定，旺衰用神方能就位。'
     ];
     ps.push(_pick(_geV,'geju'));
   }
@@ -12994,7 +13102,8 @@ document.getElementById('baziBtn').onclick=()=>{
     const arr2=Object.entries(wu).sort((a,b)=>a[1]-b[1]); const least2=arr2[0], most2=arr2[4];
     // 六问判词去模板：种子加宽（四柱+强弱+喜用+最旺最弱五行+月令格局），并按场景独立偏移，避免各问撞同一变体
     const _sh=_hashStr(pillars.join('')+'|'+qiang+'|'+yongUniq.join('')+'|'+least2[0]+most2[0]+'|'+(monthGe||''));
-    const _sPick=(a,k)=>a[(_sh+_hashStr(k))%a.length];
+    const _sRand=Math.floor(Math.random()*1e9);   /* 每次重读换新种子：避免六问判词反复撞同一句 */
+    const _sPick=(a,k)=>a[(_sh+_hashStr(k+'.'+_sRand))%a.length];
     const _hasSS=(x)=>!!ss&&ss.indexOf(x)>=0;
     const _yqStr=yongUniq.join(' / ');
     const _ZWs={'子':'水','丑':'土','寅':'木','卯':'木','辰':'土','巳':'火','午':'火','未':'土','申':'金','酉':'金','戌':'土','亥':'水'};
@@ -37756,15 +37865,15 @@ document.getElementById('chengguBtn').onclick=()=>{
   const liang=Math.floor(total/10), qian=total%10;
   const poem=(gender==='女')?guPoemF(total):guPoem(total);
   // 白话判词去模板：同骨重稳定、异骨重不同句
-  const _cgt=_hashStr('cg'+total)%3;
-  const _g1=['骨重六两以上，称骨歌中属重命，格局高、多得助','骨重六两以上，属重命之格，起点高、多得助，是能成事的骨相','骨重六两以上，重命之格——底子厚、贵人近，是能把事做成的好骨相'];
-  const _g2=['骨重五两上下，中上之命，平顺中带贵气','骨重五两上下，属中上之命，平顺里透着贵气','骨重五两上下，中上之命——大事有主张、小事得人助，贵气藏在中平里'];
-  const _g3=['骨重四两左右，中等之命，起落中和、宜积累','骨重四两左右，属中等之命，起落中和，重在积累','骨重四两左右，中等之命——贵在中和，起落皆是常态，勤勉自稳'];
-  const _g4=['骨重三两上下，称骨歌中属轻，早年多劳但后运可期','骨重三两上下，属轻骨之命，早年多劳，后运可期','骨重三两上下，轻骨之命——早年劳碌、起伏偏多，后运却藏着翻盘的机会'];
-  const _l1=['骨重六两以上,在称骨歌中属重命——格局高、少奔波、多得助,一生际遇较他人顺遂;越顺越要惜福守成、广积善缘。','骨重六两以上,是称骨歌里的重命——格局高、少奔波,际遇多顺;越顺越要惜福,守成亦是积福。','骨重六两以上,重命之格——天生少折腾、多遇扶,顺境里最忌飘,守成即是登高。'];
-  const _l2=['骨重五两上下,属中上之命——一生平顺中带几分贵气,大事有主张、小事得人助,是能成事的命。','骨重五两上下,中上之命——平顺里带贵气,大事有主见、小事有人帮,是能成事的骨相。','骨重五两上下,中上之命——平顺里藏贵气,主见与助力兼得,是能成事也肯成事的骨相。'];
-  const _l3=['骨重四两左右,属中等——起落皆有、贵在中和,早年稍劳、中年后渐稳,宜勤勉积累、看淡得失。','骨重四两左右,中等之命——起落皆有,贵在中和,早年稍劳、中年渐稳,勤勉积累即可。','骨重四两左右,中等之命——起落皆有、中和为本,早年稍劳、中年渐稳,勤勉积累、看淡得失最宜。'];
-  const _l4=['骨重三两上下,称骨歌中属轻——早年奔波多劳,起伏较多;但轻骨亦可承重命,关键在于心志与积累,后运可期。','骨重三两上下,轻骨之命——早年劳碌、起伏偏多;但轻骨也能承重命,心志与积累到了,后运可期。','骨重三两上下,轻骨之命——早年劳碌、起伏偏多;轻骨亦能承重命,心志与积累到家,后运自有转机。'];
+  const _cgt=_hashStr('cg'+total+'.'+Math.floor(Math.random()*1e9))%5;
+  const _g1=['骨重六两以上，称骨歌中属重命，格局高、多得助','骨重六两以上，属重命之格，起点高、多得助，是能成事的骨相','骨重六两以上，重命之格——底子厚、贵人近，是能把事做成的好骨相','骨重六两以上，称骨歌列重命之格，根基厚、助力多，是少折腾多遇扶的好骨相','骨重六两以上，重命之局——天生底气足、贵人来，成事多在顺境里，惜福守成最要紧'];
+  const _g2=['骨重五两上下，中上之命，平顺中带贵气','骨重五两上下，属中上之命，平顺里透着贵气','骨重五两上下，中上之命——大事有主张、小事得人助，贵气藏在中平里','骨重五两上下，称骨歌目为中上之命，平顺里藏着贵气，凡事有主张亦有人帮','骨重五两上下，中上之格——平生少大波折，贵气不在显处，而在中道持稳'];
+  const _g3=['骨重四两左右，中等之命，起落中和、宜积累','骨重四两左右，属中等之命，起落中和，重在积累','骨重四两左右，中等之命——贵在中和，起落皆是常态，勤勉自稳','骨重四两左右，称骨歌定为中等之命，起落皆常、贵在持衡，勤勉则稳','骨重四两左右，中等之局——不偏不倚是本色，早年稍劳、中年渐入佳境'];
+  const _g4=['骨重三两上下，称骨歌中属轻，早年多劳但后运可期','骨重三两上下，属轻骨之命，早年多劳，后运可期','骨重三两上下，轻骨之命——早年劳碌、起伏偏多，后运却藏着翻盘的机会','骨重三两上下，称骨歌归为轻骨，早年奔走多、起伏频，却也最磨心志','骨重三两上下，轻骨之命——前人言「轻骨亦可承重」，后运翻盘多在积累到家时'];
+  const _l1=['骨重六两以上,在称骨歌中属重命——格局高、少奔波、多得助,一生际遇较他人顺遂;越顺越要惜福守成、广积善缘。','骨重六两以上,是称骨歌里的重命——格局高、少奔波,际遇多顺;越顺越要惜福,守成亦是积福。','骨重六两以上,重命之格——天生少折腾、多遇扶,顺境里最忌飘,守成即是登高。','骨重六两以上,称骨歌推为重命,格局高、少劳碌、多遇扶,一生际遇较常人顺;顺境里最忌飘,守成即是登高。','骨重六两以上,重命之格——底子厚、贵人近,天生少折腾;越顺越要惜福,广积善缘、守成亦是积福。'];
+  const _l2=['骨重五两上下,属中上之命——一生平顺中带几分贵气,大事有主张、小事得人助,是能成事的命。','骨重五两上下,中上之命——平顺里带贵气,大事有主见、小事有人帮,是能成事的骨相。','骨重五两上下,中上之命——平顺里藏贵气,主见与助力兼得,是能成事也肯成事的骨相。','骨重五两上下,中上之命——平顺中带贵气,大事有主见、小事得人助,能成事亦肯成事。','骨重五两上下,称骨歌目为中上,平顺里藏贵气,中道持稳、不疾不徐便走得远。'];
+  const _l3=['骨重四两左右,属中等——起落皆有、贵在中和,早年稍劳、中年后渐稳,宜勤勉积累、看淡得失。','骨重四两左右,中等之命——起落皆有,贵在中和,早年稍劳、中年渐稳,勤勉积累即可。','骨重四两左右,中等之命——起落皆有、中和为本,早年稍劳、中年渐稳,勤勉积累、看淡得失最宜。','骨重四两左右,中等之命——起落皆有、贵在中和,早年稍劳、中年渐稳,勤勉积累最宜。','骨重四两左右,称骨歌定为中等,不偏不倚是本色,看淡得失、稳扎稳打自入佳境。'];
+  const _l4=['骨重三两上下,称骨歌中属轻——早年奔波多劳,起伏较多;但轻骨亦可承重命,关键在于心志与积累,后运可期。','骨重三两上下,轻骨之命——早年劳碌、起伏偏多;但轻骨也能承重命,心志与积累到了,后运可期。','骨重三两上下,轻骨之命——早年劳碌、起伏偏多;轻骨亦能承重命,心志与积累到家,后运自有转机。','骨重三两上下,轻骨之命——早年劳碌、起伏偏多;前人言轻骨亦可承重命,心志与积累到了,后运自有转机。','骨重三两上下,称骨歌归为轻骨,早年奔走频、磨心志;翻盘之机多藏在厚积之后,不必馁。'];
   const cgHtml=
     `<div class="result">
       <h3>${y}年${m}月${day}日 · ${ZHI[hIdx]}时 · ${gender}命</h3>
@@ -38939,8 +39048,10 @@ document.getElementById('liuyaoBtn').onclick=()=>{
   lr.innerHTML='<div class="result" style="color:var(--muted)">三钱共掷，自下而上成卦…</div>';
   if(sk) sk.style.display='inline-block';
   let i=0;
-  const step=()=>{ if(i<items.length){ const it=items[i]; it.style.opacity=1; if(it.animate) it.animate([{transform:'translateY(-26px) rotateY(180deg) scale(.82)',opacity:0},{transform:'translateY(5px) rotateY(0) scale(1.04)',opacity:1,offset:.7},{transform:'none',opacity:1}],{duration:480,easing:'cubic-bezier(.2,.8,.3,1)'}); i++; liuyaoTimer=setTimeout(step,160); } else { finishLiuyao(); } };
-  liuyaoTimer=setTimeout(step,160);
+  const mlev=document.documentElement.getAttribute('data-motion')||'strong';
+  const MQ={strong:[720,260],normal:[560,200],soft:[420,140]}[mlev]||[720,260];
+  const step=()=>{ if(i<items.length){ const it=items[i]; it.style.opacity=1; it.classList.add('ly-land'); if(it.animate) it.animate([{transform:'translateY(-26px) rotateY(180deg) scale(.82)',opacity:0},{transform:'translateY(5px) rotateY(0) scale(1.04)',opacity:1,offset:.7},{transform:'none',opacity:1}],{duration:MQ[0],easing:'cubic-bezier(.2,.8,.3,1)'}); i++; liuyaoTimer=setTimeout(step,MQ[1]); } else { finishLiuyao(); } };
+  liuyaoTimer=setTimeout(step,MQ[1]);
 };
 document.getElementById('liuyaoSkip').onclick=()=>{ finishLiuyao(); };
 
@@ -40025,7 +40136,7 @@ document.getElementById('hehunBtn').onclick=()=>{
   const cjPool=[`综合${score>=75?'上等':'可处'}之缘：${sxTxt}、日干${ganHe?'相合':'无合'}、五行${wuComp?'互补':'有克'}——${advice}`,
     `总体看：生肖${he?'相合':chong?'相冲':'平平'}、日干${ganHe?'五合':'平局'}、五行${wuComp?'相生':'相克'}——${advice}`];
   const cj=cjPool[_hh%cjPool.length];
-  document.getElementById('hehunResult').innerHTML=`<div class="result">
+  document.getElementById('hehunResult').innerHTML=`<div class="result hehun-flow">
     <h3>八字合盘 · ${REL_CONF.name}</h3>
     ${hhTzNote}
     <span class="tag">男 ${m.sx}${m.dayGan}</span><span class="tag">女 ${f.sx}${f.dayGan}</span>
@@ -41749,6 +41860,16 @@ function guqinAmbientStop(){
   document.addEventListener('click',e=>{
     if(e.target.closest('.fan-card,.tcard')) sfx('flip');
   });
+})();
+/* 动效强度开关（弱/中/强，默认强；持久化到 localStorage，驱动 --qn-* 与六爻节奏） */
+(function(){
+  const KEY='xuanji_motion'; let lvl='strong';
+  try{ lvl=localStorage.getItem(KEY)||'strong'; }catch(e){}
+  if(lvl!=='soft'&&lvl!=='normal'&&lvl!=='strong') lvl='strong';
+  const apply=()=>{ document.documentElement.setAttribute('data-motion',lvl); const s=document.getElementById('motionLevel'); if(s) s.value=lvl; };
+  apply();
+  const sel=document.getElementById('motionLevel');
+  if(sel){ sel.value=lvl; sel.onchange=()=>{ lvl=sel.value; try{ localStorage.setItem(KEY,lvl); }catch(e){} document.documentElement.setAttribute('data-motion',lvl); }; }
 })();
 
 /* ===================== 25. 节气彩蛋（按节气/节日换装：飘雪/月圆/春联/守岁） ===================== */

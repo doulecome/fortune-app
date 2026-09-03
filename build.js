@@ -63,7 +63,7 @@ async function compress(html) {
 
 (async () => {
   const before = html.length;
-  const out = await compress(html);
+  let out = await compress(html);
   if (out.length > before * 1.02) { console.error('✗ 压缩产物异常膨胀，中止'); process.exit(1); }
   if (!out.includes('window.bindKline=bindKline')) { console.error('✗ 压缩后丢失关键标记'); process.exit(1); }
   /* 压缩产物逐段语法复检 */
@@ -71,12 +71,15 @@ async function compress(html) {
   while ((m = re2.exec(out))) { c++; try { new Function(m[1]); } catch (e) { console.error('✗ 压缩后第 ' + c + ' 段脚本语法错误：' + e.message); process.exit(1); } }
 
   fs.mkdirSync(DEPLOY, { recursive: true });
-  fs.writeFileSync(path.join(DEPLOY, 'index.html'), out);
 
   /* sw.js 缓存版本随内容自动递增，避免线上用户命中旧缓存 */
   const swPath = path.join(DEPLOY, 'sw.js');
   let sw = fs.readFileSync(swPath, 'utf8');
   sw = sw.replace(/const CACHE = 'xuanji-v(\d+)';/, (_, v) => "const CACHE = 'xuanji-v" + (+v + 1) + "';");
+  /* 版本徽标注入页脚（用户可直读当前版本，排查手机端缓存） */
+  const ver = sw.match(/xuanji-v(\d+)/)[1];
+  out = out.replace(/__APPVER__/g, 'v' + ver);
+  fs.writeFileSync(path.join(DEPLOY, 'index.html'), out);
   fs.writeFileSync(swPath, sw);
 
   console.log('✓ 构建完成：源 ' + (html.length / 1024).toFixed(0) + 'KB → deploy ' + (out.length / 1024).toFixed(0) + 'KB（' + n + ' 段脚本已安全压缩）｜ ' + sw.match(/const CACHE = '[^']+'/)[0]);
