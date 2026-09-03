@@ -1,4 +1,4 @@
-const CACHE = 'xuanji-v34';
+const CACHE = 'xuanji-v36';
 const ASSETS = ['./index.html','./manifest.json','./icon.svg'];
 
 self.addEventListener('install', e => {

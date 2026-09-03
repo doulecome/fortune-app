@@ -1818,6 +1818,15 @@
   }
   [data-motion="soft"] .hehun-flow::before,[data-motion="soft"] .hehun-flow::after{display:none!important}
   @media (prefers-reduced-motion: reduce){ .hehun-flow::before,.hehun-flow::after{display:none!important} }
+
+  /* ===== #2 仪式叙事同款化 · 揭示落定仪式（2026-09-05，如尼/雷诺曼/梅花揭示瞬间） ===== */
+  @keyframes ritLand{0%{opacity:0;transform:translateY(-24px) scale(.72) rotate(-5deg);filter:blur(5px)}55%{opacity:1;transform:translateY(4px) scale(1.07) rotate(1.5deg);filter:blur(0)}78%{transform:translateY(-2px) scale(.99)}100%{opacity:1;transform:none;filter:blur(0)}}
+  @keyframes ritHalo{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold-stroke) 75%,transparent),0 0 18px 2px color-mix(in srgb,var(--gold-stroke) 55%,transparent)}70%{box-shadow:0 0 0 28px color-mix(in srgb,var(--gold-stroke) 0%,transparent),0 0 6px 0 color-mix(in srgb,var(--gold-stroke) 0%,transparent)}100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold-stroke) 0%,transparent)}}
+  .rit-land{animation:ritLand var(--t-story) var(--e-out) both,ritHalo 1.25s var(--e-out) 1}
+  .rit-wait{letter-spacing:3px;animation:ritPulse 2.2s var(--e-inout) infinite}
+  @keyframes ritPulse{0%,100%{opacity:.3}50%{opacity:1}}
+  [data-motion="soft"] .rit-land,[data-motion="soft"] .rit-wait{animation:none!important}
+  @media (prefers-reduced-motion: reduce){ .rit-land,.rit-wait{animation:none!important} }
 </style>
 </head>
 <body>
@@ -12070,7 +12079,7 @@ function baziYingQi(dz4, yunDz, liuZhi, ciY, qiang, yongUniq, dayGan){
   var SANHE_QUAN={'水':['申','子','辰'],'木':['亥','卯','未'],'火':['寅','午','戌'],'金':['巳','酉','丑']};
   var isYong=function(z){ return !!z && yongUniq.indexOf(ZW[z])>=0; };
   var _seed=(dz4.join('')+(liuZhi||'')+(yunDz&&yunDz.length?yunDz.join(''):'')).split('').reduce(function(a,c){return (a+c.charCodeAt(0))%9973;},7);
-  var _pick=function(arr){ return arr[_seed%arr.length]; };
+  var _pick=function(arr){ return arr[(_seed+Math.floor(Math.random()*1e9))%arr.length]; };  /* 运行熵：重读换句（判词熵全站推广） */
   var rel=[];
   var chk=function(pa,za,pb,zb){ if(!za||!zb)return; if(CHONG[za]===zb)rel.push([pa,pb,'冲',za,zb]); else if(HE[za]===zb)rel.push([pa,pb,'合',za,zb]); else if(HAI[za]===zb)rel.push([pa,pb,'害',za,zb]); else if(SANX[za]===zb)rel.push([pa,pb,'刑',za,zb]); };
   chk('年',dz4[0],'月',dz4[1]); chk('年',dz4[0],'日',dz4[2]); chk('年',dz4[0],'时',dz4[3]);
@@ -13299,6 +13308,7 @@ document.getElementById('baziBtn').onclick=()=>{
   if(domN<2) domSG='均衡';
   // 同人生辰稳定、异人不同句：用四柱哈希在变体里确定性选词，破解"模板化"
   const _bh=_hashStr(pillars.join(''));
+  const _bzR=Math.floor(Math.random()*1e9);   /* 运行熵：每次排盘换句（判词熵全站推广） */
   const GAN_V={
     '甲':{strong:['甲木参天，根深难摧——你天生有把事扛起来的力气，也天生学不会低头。','甲木为栋，立于风雨亦不折——你适合撑起局面，只是别把所有重量都揽上身。'],
           weak:['甲木初生，未及成材——你的心气比根基高，最忌在没长成时就被人当栋梁用。','甲木幼苗，需雨露扶持——你不是不行，是还差一点时运与托举，先扎根再言伸展。']},
@@ -13324,7 +13334,7 @@ document.getElementById('baziBtn').onclick=()=>{
   const GAN_IMG={'甲':'参天之木','乙':'蔓生之木','丙':'中天之日','丁':'灯烛之火','戊':'城垣之土','己':'田园之土','庚':'斧钺之金','辛':'珠玉之金','壬':'江河之水','癸':'雨露之水'};
   const _gv=GAN_V[dayGan]||{strong:['',''],weak:['','']};
   const _gp=(qiang==='身弱'?_gv.weak:_gv.strong);
-  const _gwi=_gp.length?(_bh%_gp.length):0;
+  const _gwi=_gp.length?((_bh+_bzR)%_gp.length):0;
   const mainV = qiang==='中和'
     ? (GAN_IMG[dayGan]||'')+'，气脉持中——你不必靠极端取胜，稳住节奏本身就是你的天赋。'
     : (_gp[_gwi]||'');
@@ -13346,8 +13356,8 @@ document.getElementById('baziBtn').onclick=()=>{
   const SEAL={'比劫':'并肩者众','食伤':'锋芒在外','财':'财随缘至','官杀':'压中见贵','印':'得荫而生','均衡':'清而不偏'};
   const starChart='<div class="starchart">'
     +'<div class="sc-seal">'+(SEAL[domSG]||'清而不偏')+'</div>'
-    +'<div class="sc-verdict"><p>'+mainV+'</p><p>'+(SG_V[domSG]?SG_V[domSG][_bh%SG_V[domSG].length]:'')+'</p>'
-    +'<p class="sc-yong">补气之门在 <b>'+yongUniq.join(' / ')+'</b>：'+yongUniq.map(w=>(YONG_V[w]?YONG_V[w][_bh%YONG_V[w].length]:'')).filter(Boolean).join('；')+'。</p></div>'
+    +'<div class="sc-verdict"><p>'+mainV+'</p><p>'+(SG_V[domSG]?SG_V[domSG][(_bh+_bzR)%SG_V[domSG].length]:'')+'</p>'
+    +'<p class="sc-yong">补气之门在 <b>'+yongUniq.join(' / ')+'</b>：'+yongUniq.map(w=>(YONG_V[w]?YONG_V[w][(_bh+_bzR)%YONG_V[w].length]:'')).filter(Boolean).join('；')+'。</p></div>'
     +'<div style="position:relative;max-width:560px;margin:4px auto 0;padding-top:83.9286%"><svg class="sc-svg" viewBox="0 0 560 470" data-nofx="1" role="img" aria-label="命格星图">'
     +scDefs+scDust+scRing+scLink+scStar+scCenter+'</svg></div>'
     +'<div class="sc-legend"><span><i></i>同气 · 生我（比劫/印）</span><span><i class="l2"></i>我生 · 我克（食伤/财）</span><span><i class="l3"></i>克我（官杀）</span></div>'
@@ -35566,7 +35576,7 @@ function tarotHint(t,rev){
   const suit=m?m[1]:'大牌';
   const pool=ADV_POOL2[suit]||ADV_POOL2['大牌'];
   const arr=rev?pool.neg:pool.pos;
-  const idx=_hashStr(t.n+(rev?'r':''))%arr.length;
+  const idx=(_hashStr(t.n+(rev?'r':''))+Math.floor(Math.random()*1e9))%arr.length;  /* 运行熵：同牌重抽换句 */
   return (rev?'逆位提示：':'行动指引：')+arr[idx];
 }
 /* 多牌阵位置专属融合解读：把"位置含义"与"牌意/花色/正逆"双轴结合，生成专属句（借鉴专业塔罗"位置 + 牌"双轴解读，避免每位置都贴同一段标准牌义） */
@@ -36138,21 +36148,38 @@ function runeResultHTML(picks,pos,q,sub){
     +'<p style="margin-top:5px;font-size:13px;line-height:1.8">'+runeTrend(picks,q)+'</p></div>'
     +'<p style="color:var(--muted);font-size:12px;margin-top:10px">'+sub+' ｜ 塔罗·卢恩符文已按「'+lens+'」起卦。</p></div>';
 }
+/* #2 仪式揭示通用器：先占位观想（rit-wait 呼吸）→ 到点填入结果 → 符石/卡逐枚落定（rit-land 坠入+金环，节奏随 data-motion） */
+let _ritT=null;
+function ritReveal(resId, waitTxt, makeHtml){
+  if(_ritT){ clearTimeout(_ritT); _ritT=null; }
+  const res=document.getElementById(resId); if(!res) return;
+  const red=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const m=document.documentElement.getAttribute('data-motion')||'strong';
+  if(red||m==='soft'){ res.innerHTML=makeHtml(); return; }
+  const T=(m==='normal')?[820,180]:[1150,250];
+  res.innerHTML='<div class="result" style="color:var(--muted)"><span class="rit-wait">'+waitTxt+'</span></div>';
+  _ritT=setTimeout(()=>{
+    res.innerHTML=makeHtml();
+    const its=res.querySelectorAll('.rune-stone,.leno-card');
+    its.forEach((el,i)=>{ el.classList.add('rit-land'); el.style.animationDelay=(i*T[1])+'ms'; });
+    _ritT=null;
+  },T[0]);
+}
 document.getElementById('runeBtn').onclick=()=>{
   const q=document.getElementById('runeQ').value;
   const p=drawRunes(1)[0];
-  document.getElementById('runeResult').innerHTML=runeResultHTML([p],['本运'],q,'符文一枚落定，聆听其意');
+  ritReveal('runeResult','静心取石，聆听灵示…',()=>runeResultHTML([p],['本运'],q,'符文一枚落定，聆听其意'));
 };
 document.getElementById('runeSpreadBtn').onclick=()=>{
   const q=document.getElementById('runeQ').value;
   const picks=drawRunes(3); const pos=['过去','现在','未来'];
-  document.getElementById('runeResult').innerHTML=runeResultHTML(picks,pos,q,'过去·现在·未来三符阵');
+  ritReveal('runeResult','三石入袋，闭目抽其一…',()=>runeResultHTML(picks,pos,q,'过去·现在·未来三符阵'));
 };
 /* 五符十字阵：零门槛的「凯尔特十字」简版——现状 / 阻力 / 助力 / 未来 / 结果 */
 document.getElementById('runeCrossBtn').onclick=()=>{
   const q=document.getElementById('runeQ').value;
   const picks=drawRunes(5); const pos=['现状','阻力','助力','未来','结果'];
-  document.getElementById('runeResult').innerHTML=runeResultHTML(picks,pos,q,'五符十字阵：观现状、推阻力、得助力、望未来、判结果');
+  ritReveal('runeResult','五石铺陈，观其位次…',()=>runeResultHTML(picks,pos,q,'五符十字阵：观现状、推阻力、得助力、望未来、判结果'));
 };
 /* 雷诺曼卡（36 张）：名 + 释义 */
 const LENOMANDS=[
@@ -36271,18 +36298,18 @@ function lenoResultHTML(picks,pos,q,sub){
 document.getElementById('lenoBtn').onclick=()=>{
   const q=document.getElementById('lenoQ').value;
   const c=drawLeno(1)[0];
-  document.getElementById('lenoResult').innerHTML=lenoResultHTML([c],['本运'],q,'雷诺曼一枚落定，看图直断');
+  ritReveal('lenoResult','静心洗牌，默念所问…',()=>lenoResultHTML([c],['本运'],q,'雷诺曼一枚落定，看图直断'));
 };
 document.getElementById('lenoSpreadBtn').onclick=()=>{
   const q=document.getElementById('lenoQ').value;
   const picks=drawLeno(3); const pos=['过去','现在','未来'];
-  document.getElementById('lenoResult').innerHTML=lenoResultHTML(picks,pos,q,'过去·现在·未来三卡阵');
+  ritReveal('lenoResult','三卡展开，循时而下…',()=>lenoResultHTML(picks,pos,q,'过去·现在·未来三卡阵'));
 };
 /* 七卡阵：雷诺曼「塔罗大十字」人间版——我 / 对方 / 关系本质 / 阻力 / 助力 / 未知 / 趋势 */
 document.getElementById('lenoSevenBtn').onclick=()=>{
   const q=document.getElementById('lenoQ').value;
   const picks=drawLeno(7); const pos=['我','对方','关系本质','阻力','助力','未知','趋势'];
-  document.getElementById('lenoResult').innerHTML=lenoResultHTML(picks,pos,q,'七卡阵：观我见彼、明本质、识助力与阻力、探未知、断趋势');
+  ritReveal('lenoResult','七卡成阵，先观其位…',()=>lenoResultHTML(picks,pos,q,'七卡阵：观我见彼、明本质、识助力与阻力、探未知、断趋势'));
 };
 /* 生命灵数（生日数字累减，master 11/22/33 不破） */
 const LP={
@@ -39199,7 +39226,12 @@ document.getElementById('meihuaBtn').onclick=()=>{
   if(reduce){ finishMeihua(); return; }
   lr.innerHTML='<div class="result" style="color:var(--muted)">起卦中，静心观想…</div>';
   if(sk) sk.style.display='inline-block';
-  meihuaTimer=setTimeout(finishMeihua,620);
+  const _mm=(document.documentElement.getAttribute('data-motion')||'strong');
+  const _MT=_mm==='soft'?560:_mm==='normal'?920:1250;
+  meihuaTimer=setTimeout(()=>{ finishMeihua();
+    const _r=document.getElementById('meihuaResult');
+    if(_r) _r.querySelectorAll('.result svg').forEach((el,i)=>{ el.classList.add('rit-land'); el.style.animationDelay=(i*150)+'ms'; });
+  },_MT);
 };
 document.getElementById('meihuaSkip').onclick=()=>{ finishMeihua(); };
 document.getElementById('mhMode').onchange=e=>{
@@ -39359,7 +39391,7 @@ document.getElementById('ziweiBtn').onclick=()=>{
     if(!ms) return '';
     const tag=STAR_TAG[ms]; const pool=ZW_GONG[gong]&&ZW_GONG[gong][tag];
     if(!pool) return '';
-    return pool[_hashStr(ms+'|'+gong)%pool.length].replace(/◇/g,ms);
+    return pool[(_hashStr(ms+'|'+gong)+Math.floor(Math.random()*1e9))%pool.length].replace(/◇/g,ms);
   }
   /* 辅星专属断语：左辅/右弼/文昌/文曲/禄存 ×2 变体，{宫} 占位——辅星落宫即该域得助 */
 const ZW_FU={
@@ -39373,7 +39405,7 @@ const ZW_FU={
     if(!ss) return '';
     const out=[];
     const stars=ss.trim().split(/\s+/).map(s=>s.replace(/\(.*?\)/g,''));
-    for(const f in ZW_FU){ if(stars.includes(f)){ const arr=ZW_FU[f]; out.push(arr[_hashStr(f+'|'+gong)%arr.length].replace(/\{宫\}/g, gong)); } }
+    for(const f in ZW_FU){ if(stars.includes(f)){ const arr=ZW_FU[f]; out.push(arr[(_hashStr(f+'|'+gong)+Math.floor(Math.random()*1e9))%arr.length].replace(/\{宫\}/g, gong)); } }
     return out.join('');
   }
   const rows=palaces.map((p,i)=>{
@@ -39411,7 +39443,7 @@ const ZW_FU={
     '七杀':['勇猛果决、冲劲足,先苦后成,适合开创性事业,性子急宜培养耐心','七杀当令——敢闯敢冲、杀伐果断,天生开疆拓土的将才,快之外慢下来更稳','七杀入命——冲劲十足的实干家,能成大事,只是熄火比点火难,留点余力'],
     '破军':['变革力强、破旧立新、不甘平淡,人生起伏大,成也大胆败也大胆,宜谋定后动','破军主变——天生破局者,不破不立、一生大起大落,大胆之外先谋后动可避大险','破军坐命——不安分、爱颠覆,能把死局盘活,只是别为变而变,方向上先想清']
   };
-  const _zh=_hashStr(mingGZ||'');
+  const _zh=_hashStr(mingGZ||'')+Math.floor(Math.random()*1e9);   /* 运行熵：重读换句（判词熵全站推广） */
   const _zwPick=s=>{ const v=ZW_C[s]; return v?v[_zh%v.length]:''; };
   /* 星·宫融合：主星五行 × 命宫地支五行（自包含，不需八字），给「同气/得生/泄秀/受克/制化/中和」专属句——继续深挖紫微喜忌 */
   function _zwFuse(s,ming){
@@ -39427,7 +39459,7 @@ const ZW_FU={
       '中和':['（星·宫）'+s+'属'+sw+'、命宫'+zh+'属'+zw+'——五行中和，这颗星不偏不倚，特质平稳发挥，宜顺势。','（星·宫）'+s+'（'+sw+'）落命宫（'+zh+'·'+zw+'），中和平稳——星宫无冲克，底色清正，按本色走就好。']
     };
     const arr=POOL[rel]||POOL['中和'];
-    return arr[_hashStr(s+'|'+ming)%arr.length];
+    return arr[(_hashStr(s+'|'+ming)+Math.floor(Math.random()*1e9))%arr.length];
   }
   /* ===== 紫微星盘 hero（视觉签名）：十二宫圆盘 + 三方四正金线 ===== */
   const ZW_CX=280, ZW_CY=238, ZW_R=204, ZW_R0=90;
@@ -40135,7 +40167,7 @@ document.getElementById('hehunBtn').onclick=()=>{
   const _hh=_hashStr(mD+fD);
   const cjPool=[`综合${score>=75?'上等':'可处'}之缘：${sxTxt}、日干${ganHe?'相合':'无合'}、五行${wuComp?'互补':'有克'}——${advice}`,
     `总体看：生肖${he?'相合':chong?'相冲':'平平'}、日干${ganHe?'五合':'平局'}、五行${wuComp?'相生':'相克'}——${advice}`];
-  const cj=cjPool[_hh%cjPool.length];
+  const cj=cjPool[(_hh+Math.floor(Math.random()*1e9))%cjPool.length];
   document.getElementById('hehunResult').innerHTML=`<div class="result hehun-flow">
     <h3>八字合盘 · ${REL_CONF.name}</h3>
     ${hhTzNote}
