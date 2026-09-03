@@ -846,86 +846,94 @@
   /* 流年太岁高亮（八字流年行） */
   .pill.tai-sui{border-color:#c24234;background:rgba(194,66,52,.12);box-shadow:0 0 10px rgba(194,66,52,.18)}
 
-  /* ============ 暗色 · 墨青主题 ============ */
+  /* ============ 青囊·黛青金主题（暗色基座：黛青底 + 护魄金 + 宣纸字，复刻 qingnang.cc 主视觉） ============ */
   body.theme-dark{
-    --text:#e8dfc8;--ink:#e8dfc8;--muted:#b8ab90;--muted-warm:#c8bda2;
-    --line:rgba(233,217,184,.20);--line-soft:rgba(233,217,184,.12);
-    --panel:rgba(36,50,47,.66);--panel-solid:#16201d;--panel-glass:rgba(15,24,21,.55);
-    /* —— 墨青主题毛玻璃令牌 —— */
-    --glass:rgba(18,30,28,.46);--glass-strong:rgba(18,30,28,.6);--glass-line:rgba(233,217,184,.22);
-    --glass-line-soft:rgba(233,217,184,.12);--glass-blur:blur(16px) saturate(1.2);
-    --glass-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06);
-    /* —— 模块点缀色 · 暗态取值（仅与亮态不同的几项） —— */
-    --mod-cinnabar-deep:#8c2c1a;--mod-ink-gold:var(--cream);
-    --mod-violet-title:var(--cream);--mod-violet-soft:#b59cf0;
-    --paper:#13201d;--paper2:#16201d;--c:#c8bda2;
-    --gold:#c8bda2;--gold2:#c8bda2;--gold-soft:#b8ab90;
-    --red:#2a2620;--red2:#3f3a30;
-    --surface:#13201d;--surface-2:#0f1815;--void:#0a1010;
-    --cream:#f0e6cd;--cream-2:#e8dfc8;--cream-3:#c8bda2;--cream-4:#b8ab90;
-    background:radial-gradient(720px 560px at 12% 8%, rgba(150,170,165,.10), transparent 60%),
-      radial-gradient(640px 520px at 90% 14%, rgba(140,160,158,.08), transparent 60%),
-      radial-gradient(720px 560px at 82% 90%, rgba(172,160,138,.07), transparent 62%),
-      radial-gradient(640px 520px at 14% 94%, rgba(130,150,148,.06), transparent 60%),
-      linear-gradient(165deg,#16201d,#0a1010);
+    --text:#f2ecda;--ink:#f2ecda;--muted:#9fb8b0;--muted-warm:#c2d2c8;
+    --line:rgba(240,232,206,.20);--line-soft:rgba(240,232,206,.12);
+    --panel:rgba(10,54,52,.66);--panel-solid:#0a3a37;--panel-glass:rgba(5,40,38,.58);
+    /* —— 黛青玻璃令牌（青囊：深青底磨砂卡 + 暖米描边） —— */
+    --glass:rgba(8,50,48,.48);--glass-strong:rgba(8,50,48,.62);--glass-line:rgba(242,236,218,.26);
+    --glass-line-soft:rgba(242,236,218,.13);--glass-blur:blur(16px) saturate(1.2);
+    --glass-shadow:0 8px 32px rgba(0,18,16,.55),inset 0 1px 0 rgba(255,255,255,.07);
+    /* —— 模块点缀色 · 黛青态取值 —— */
+    --mod-cinnabar-deep:#9c2e1c;--mod-ink-gold:#e0bc62;
+    --mod-violet-title:#e6d9ff;--mod-violet-soft:#c2acf0;
+    --paper:#0b3a37;--paper2:#08302e;--c:#d4c9a8;
+    /* 护魄金（青囊主金 #d4af37 / 高光 #e8c84a / 暗部 #b8960f） */
+    --gold:#d4af37;--gold2:#e8c84a;--gold-soft:#b8960f;
+    --red:#6d2218;--red2:#8a2c1d;
+    --surface:#0b3a37;--surface-2:#072e2c;--void:#041f1e;
+    --cream:#f2ecda;--cream-2:#ece4cd;--cream-3:#c8c2a6;--cream-4:#a3b4ac;
+    background:radial-gradient(760px 600px at 14% 6%, rgba(212,175,55,.10), transparent 58%),
+      radial-gradient(700px 540px at 96% 12%, rgba(24,100,94,.14), transparent 60%),
+      radial-gradient(720px 560px at 88% 92%, rgba(18,88,84,.12), transparent 60%),
+      radial-gradient(680px 520px at 8% 96%, rgba(212,175,55,.05), transparent 60%),
+      linear-gradient(160deg,#0e4b47 0%,#07403d 45%,#04302e 100%);
   }
   body.theme-dark{
     --r-bg:var(--glass);
-    --r-ink:#e8dfc8;--r-muted:#b8ab90;
-    --r-gold:#c8bda2;--r-gold-soft:#b8ab90;
-    --r-line:rgba(233,217,184,.22);--r-line-soft:rgba(233,217,184,.14);
-    --r-glass:rgba(255,255,255,.05);
+    --r-ink:#f2ecda;--r-muted:#9fb8b0;
+    --r-gold:#d4af37;--r-gold-soft:#e8c84a;
+    --r-line:rgba(240,232,206,.22);--r-line-soft:rgba(240,232,206,.13);
+    --r-glass:rgba(212,175,55,.05);
     --r-subbg:rgba(255,255,255,.05);
-    --r-wxtrack:rgba(255,255,255,.09);
-    --r-spread:rgba(233,196,121,.1);
-    --r-paper:#17201d;--r-mask:rgba(18,30,28,.94);
+    --r-wxtrack:rgba(212,175,55,.09);
+    --r-spread:rgba(212,175,55,.12);
+    --r-paper:#0a3734;--r-mask:rgba(6,44,42,.95);
   }
-  body.theme-dark .card{background:var(--glass);
+  body.theme-dark .card{background:linear-gradient(165deg,var(--glass-strong),var(--glass));
     border-color:var(--glass-line);box-shadow:var(--glass-shadow)}
-  body.theme-dark h1{background:linear-gradient(135deg,var(--cream),var(--gold-stroke));-webkit-background-clip:text;background-clip:text;color:transparent;
-    text-shadow:0 2px 18px rgba(216,184,106,.32);animation:heroTitleIn .95s var(--e-out) both}
-  body.theme-dark .sub{color:var(--cream-3)}
+  body.theme-dark .card:hover{border-color:rgba(212,175,55,.55);
+    box-shadow:0 18px 44px rgba(0,10,9,.5),0 0 0 1px rgba(212,175,55,.12),inset 0 1px 0 rgba(255,255,255,.08)}
+  body.theme-dark h1{background:linear-gradient(120deg,#f0d98c 0%,#d4af37 48%,#a8821f 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 2px 22px rgba(212,175,55,.38);animation:heroTitleIn .95s var(--e-out) both}
+  body.theme-dark .sub{color:var(--gold2)}
+  body.theme-dark .sub::after{background:linear-gradient(90deg,transparent,var(--gold-stroke),transparent);opacity:.9}
   body.theme-dark .todayline{color:var(--gold)}
   body.theme-dark .seal{color:var(--cream-2)}
-  body.theme-dark .bg-taiji{color:var(--cream-2);opacity:.06}
+  body.theme-dark .bg-taiji{color:var(--cream-2);opacity:.08}
   body.theme-dark .cat{color:var(--cream-4)}
-  body.theme-dark .cat.active{color:var(--cream)}
-  body.theme-dark .cat.active{border-bottom-color:var(--gold)}
-  /* 深色主题下控件底色覆盖：金色令牌在深色是米色，不能当按钮/激活底色（否则米白字叠米白底看不见） */
-  body.theme-dark .tab.active{color:var(--void);background:var(--gold);
-    border-color:var(--gold);box-shadow:0 3px 10px rgba(0,0,0,.42)}
-  body.theme-dark .btn{background:linear-gradient(135deg,rgba(122,114,100,.95),rgba(96,90,78,.9));
-    border-color:rgba(233,217,184,.2);text-shadow:0 1px 2px rgba(0,0,0,.5);
-    box-shadow:0 4px 12px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.12)}
-  body.theme-dark .btn:hover{box-shadow:0 7px 18px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.1)}
+  body.theme-dark .cat.active{color:#ffe9a8}
+  body.theme-dark .cat.active{border-bottom-color:var(--gold2);text-shadow:0 0 14px rgba(232,200,74,.4)}
+  /* 深色下 --gold 已是亮金护魄金：激活/按钮取「金底深字」正符合青囊主按钮形制 */
+  body.theme-dark .tab.active{color:#1b1204;background:linear-gradient(135deg,#e8c84a,#c9a227);
+    border-color:#e8c84a;box-shadow:0 3px 12px rgba(212,175,55,.3)}
+  body.theme-dark .btn{background:linear-gradient(135deg,rgba(12,60,57,.92),rgba(6,42,40,.95));
+    border-color:rgba(212,175,55,.42);color:#f2ecda;text-shadow:none;
+    box-shadow:0 4px 14px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08)}
+  body.theme-dark .btn:hover{transform:translateY(-1px);border-color:rgba(232,200,74,.85);
+    box-shadow:0 8px 22px rgba(0,0,0,.45),0 0 0 1px rgba(212,175,55,.14)}
+  body.theme-dark .btn:active{filter:brightness(.95)}
   body.theme-dark .tab{color:var(--cream-4);border-color:transparent}
-  body.theme-dark .tab:hover{background:rgba(255,255,255,.08)}
-  body.theme-dark .today-slip{background:var(--glass);border-color:var(--glass-line)}
-  body.theme-dark .today-slip .slip-head{color:var(--gold)}
+  body.theme-dark .tab:hover{background:rgba(212,175,55,.14);color:#f2ecda}
+  body.theme-dark .today-slip{background:linear-gradient(180deg,rgba(16,70,66,.72),rgba(8,48,46,.6));
+    border-color:rgba(212,175,55,.45);box-shadow:0 10px 30px rgba(0,12,11,.45),inset 0 1px 0 rgba(255,255,255,.08)}
+  body.theme-dark .today-slip::before{background:linear-gradient(90deg,transparent,rgba(232,200,74,.7),transparent)}
+  body.theme-dark .today-slip .slip-head{color:var(--gold2)}
   body.theme-dark .today-slip .slip-gz{color:var(--cream)}
-  body.theme-dark .today-slip .slip-yj{color:var(--cream-3)}
+  body.theme-dark .today-slip .slip-yj{color:#e8e0c8}
   body.theme-dark .today-slip .slip-wu{color:var(--cream-4)}
   body.theme-dark .result-sign{color:var(--cream-4);border-top-color:var(--line)}
   body.theme-dark .quote{color:var(--cream-4)}
   body.theme-dark .sub-sec{border-top-color:var(--line-soft)}
-  body.theme-dark .sub-sec .sub-title{color:var(--gold)}
+  body.theme-dark .sub-sec .sub-title{color:var(--gold2)}
   body.theme-dark label{color:var(--cream-3)}
   body.theme-dark input,body.theme-dark select,body.theme-dark textarea{background-color:var(--glass-strong);color:var(--cream-2);border-color:var(--line);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur)}
-  body.theme-dark select{background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23b8ab90' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center}
-  body.theme-dark input:focus,body.theme-dark select:focus,body.theme-dark textarea:focus{box-shadow:inset 0 1px 2px rgba(0,0,0,.25),0 0 0 3px rgba(232,223,200,.16)}
-  body.theme-dark .wxchip span{background:rgba(255,255,255,.12);color:var(--surface-2)}
+  body.theme-dark select{background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23b8960f' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center}
+  body.theme-dark input:focus,body.theme-dark select:focus,body.theme-dark textarea:focus{box-shadow:inset 0 1px 2px rgba(0,0,0,.25),0 0 0 3px rgba(212,175,55,.20)}
+  body.theme-dark .wxchip span{background:rgba(212,175,55,.16);color:#2b1a02;box-shadow:0 0 0 1px rgba(232,200,74,.4)}
   body.theme-dark .tag{background:rgba(255,255,255,.06);border:1px solid var(--line-soft);color:var(--cream-2)}
-  body.theme-dark .btn{background:linear-gradient(135deg,#6f685b,#3f3a30)}
-  body.theme-dark .theme-switch button.active{background:var(--surface-2);border-color:var(--gold)}
-  body.theme-dark ::selection{background:#3f3a30;color:var(--cream-2)}
+  body.theme-dark .theme-switch button.active{background:rgba(212,175,55,.18);border-color:var(--gold2);color:#ffe9a8}
+  body.theme-dark ::selection{background:var(--gold);color:#1b1204}
   body.theme-dark .foot{color:var(--cream-4)}
   body.theme-dark .hint{color:var(--cream-4)}
   body.theme-dark .theme-switch{border-color:var(--line)}
   body.theme-dark .theme-switch button{color:var(--cream-4)}
+  body.theme-dark .theme-switch button:hover{color:#f2ecda}
   body.theme-dark .basis>summary{color:var(--cream-4)}
   body.theme-dark .basis .basis-body{color:var(--cream-4)}
-  /* 术语气泡在深色主题下也翻成墨青底+米字，避免黑底黑字失效 */
-  body.theme-dark .term:hover::after,body.theme-dark .term:focus::after{background:rgba(15,24,21,.8);color:var(--cream-2);border-color:var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  /* 术语气泡在暗色下翻成黛青底 + 米字 */
+  body.theme-dark .term:hover::after,body.theme-dark .term:focus::after{background:rgba(6,44,42,.92);color:var(--cream-2);border-color:rgba(212,175,55,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 
   /* ===== 国风动画（借鉴 hongling-ui 粒子 / inkFlow、手写逐字显影、金光扫过、印章盖下） ===== */
   /* 卷轴展开：切标签时面板如卷轴舒卷 */
@@ -1876,7 +1884,7 @@
   .tk-q input{margin-right:6px}
 </style>
 </head>
-<body>
+<body class="theme-dark">
 <div id="errbar" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#7a1d1d;color:#ffd9d9;font-size:13px;padding:10px 14px;line-height:1.6;box-shadow:0 2px 12px rgba(0,0,0,.5)"></div>
 <svg class="bg-taiji" viewBox="0 0 220 220" aria-hidden="true">
   <circle cx="110" cy="110" r="104" fill="none" stroke="currentColor" stroke-width="1"/>
@@ -11688,7 +11696,8 @@ function openReadModal(r){
 }
 function applyTheme(t){
   const isTarot=(t==='tarot');
-  document.body.classList.toggle('theme-dark', isTarot);
+  /* 青囊·黛青金为全站默认视觉基座（cn 与 tarot 均挂 theme-dark）；tarot 仅在其上叠「星夜紫金」 */
+  document.body.classList.add('theme-dark');
   document.body.classList.toggle('theme-tarot', isTarot);
   const sw=document.getElementById('themeSwitch');
   if(sw) sw.querySelectorAll('button').forEach(b=>b.classList.toggle('active', b.dataset.t===t));
