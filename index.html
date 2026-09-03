@@ -41679,9 +41679,11 @@ document.getElementById('mbtiSubmitBtn').onclick=function(){
   var type=(scores.E>=scores.I?'E':'I')+(scores.S>=scores.N?'S':'N')+(scores.T>=scores.F?'T':'F')+(scores.J>=scores.P?'J':'P');
   var info=MBTI_TYPES[type];
   if(!info){alert('请选择所有问题');return;}
-  var h='<div class="tk-hero"><div class="num">'+type+'</div><div class="lvl">'+info.name+'</div><div class="sub">五行属性：'+info.wuXing+'</div></div>';
+  var dimTxt=function(pa,pb){ return '<b style="color:var(--gold-stroke)">'+pa+'</b>'+scores[pa]+' · '+pb+scores[pb]; };
+  var h='<div class="tk-hero"><div class="num">'+type+'</div><div class="lvl">'+info.name+'</div><div class="sub">五行属性：'+info.wuXing+'</div><div style="margin-top:8px;font-size:12px;letter-spacing:1px;color:var(--muted)">'
+    +dimTxt('E','I')+' ｜ '+dimTxt('S','N')+' ｜ '+dimTxt('T','F')+' ｜ '+dimTxt('J','P')+'</div></div>';
   h+='<div class="tk-block"><div class="tk-h4">性格特征</div><p style="margin:4px 0;line-height:1.8">'+info.desc+'</p><p style="margin:4px 0;line-height:1.8"><b style="color:var(--gold2)">优势：</b>'+info.strength+'</p><p style="margin:4px 0;line-height:1.8"><b style="color:var(--bad)">劣势：</b>'+info.weakness+'</p><p style="margin:4px 0;line-height:1.8"><b style="color:var(--gold2)">适合职业：</b>'+info.career+'</p></div>';
-  h+='<div class="tk-block"><div class="tk-h4">命理联动</div><p style="margin:4px 0;line-height:1.8">'+info.fateLink+'</p><p class="tk-note" style="margin-top:6px">* MBTI与五行：NT(金)、NF(木)、SJ(土)、SP(水)，火为热情型。</p></div>';
+  h+='<div class="tk-block"><div class="tk-h4">命理联动</div><p style="margin:4px 0;line-height:1.8">'+info.fateLink+'</p><p class="tk-note" style="margin-top:6px">* 五行侧重为各型气质与传统文化联动的趣味映射，非权威分类。</p></div>';
   var wuChars=Object.keys(CHAR_WU).filter(function(c){return CHAR_WU[c]===info.wuXing}).slice(0,20);
   h+='<div class="tk-block"><div class="tk-h4">推荐用字（'+info.wuXing+'行）</div><div style="display:flex;flex-wrap:wrap;margin-top:6px">';
   wuChars.forEach(function(c){h+='<span class="tk-chip">'+c+'</span>';});
@@ -42167,7 +42169,8 @@ function shareCard(){
     return;
   }
   const titleEl=res.querySelector('h3')||res.querySelector('h2')||res.querySelector('h4');
-  const title=(titleEl&&(titleEl.innerText||titleEl.textContent)||'').trim()||'玄机阁命理';
+  let title=((titleEl&&(titleEl.innerText||titleEl.textContent))||'').replace(/\s+/g,'').trim()||'玄机阁命理';
+  if(title.length>14) title=title.slice(0,13)+'…';
   const raw=((res.innerText||res.textContent||'')||'').replace(/\s+/g,' ').trim();
   const W=720,H=1040, c=document.createElement('canvas'); c.width=W; c.height=H;
   const x=c.getContext?c.getContext('2d'):null;
@@ -42190,7 +42193,8 @@ function shareCard(){
     x.fillStyle='#fbf7ee'; x.textAlign='center'; x.font='700 28px "STKaiti","KaiTi",serif';
     x.fillText('玄机', W-79, H-66); x.fillText('阁', W-79, H-30);
     x.fillStyle='#7a7361'; x.font='16px "STKaiti","KaiTi",serif'; x.textAlign='left';
-    x.fillText('玄机阁 · 仅供娱乐参考', 60, H-44);
+    const _d=new Date(); const _ds=_d.getFullYear()+'.'+String(_d.getMonth()+1).padStart(2,'0')+'.'+String(_d.getDate()).padStart(2,'0');
+    x.fillText('玄机阁 · '+_ds, 60, H-44);
     img.src=c.toDataURL('image/png');
     tip.textContent='玄机阁 · 仅供娱乐参考';
   }catch(e){ tip.textContent='生成图片失败，请用现代浏览器打开 · 玄机阁'; }
