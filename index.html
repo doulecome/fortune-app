@@ -41689,37 +41689,92 @@ document.getElementById('mbtiSubmitBtn').onclick=function(){
   document.getElementById('mbtiResult').innerHTML=h;
 };
 
-/* 生肖运势 */
+/* 生肖月度运势 —— 历法驱动（本命生肖年支 × 农历当月月支：六合/三合/六冲/六害 + 五行生克逐层判定，杜绝固定打油） */
 var SX_NAMES={'子':'鼠','丑':'牛','寅':'虎','卯':'兔','辰':'龙','巳':'蛇','午':'马','未':'羊','申':'猴','酉':'鸡','戌':'狗','亥':'猪'};
-var SX_YUNSHI={
-  '子':['★贵人相助','★★★★★财运亨通','★★★事业顺利','★★★注意健康','★★★★★桃花旺盛','★★★学业进步','★★★★★财运大旺','★★★注意口舌','★★★事业稳定','★★★★★贵人运强','★★★注意投资','★★★★★年终收获'],
-  '丑':['★★★事业起步','★★★注意身体','★★★★★财运上升','★★★人际和谐','★★★注意情绪','★★★★★感情顺利','★★★工作顺利','★★★★★偏财运好','★★★注意休息','★★★事业有成','★★★★★年终总结','★★★新年规划'],
-  '寅':['★★★★★新年大吉','★★★事业顺利','★★★注意开支','★★★★★桃花运强','★★★财运稳定','★★★注意健康','★★★★★贵人相助','★★★事业上升','★★★注意口舌','★★★★★财运亨通','★★★学业进步','★★★注意休息'],
-  '卯':['★★★★★新年好运','★★★事业顺利','★★★财运上升','★★★注意健康','★★★★★感情甜蜜','★★★人际和谐','★★★注意情绪','★★★★★财运大旺','★★★事业稳定','★★★注意休息','★★★★★贵人运强','★★★年终收获'],
-  '辰':['★★★新年新气象','★★★★★事业大吉','★★★注意身体','★★★财运上升','★★★★★桃花运强','★★★人际和谐','★★★注意开支','★★★★★财运亨通','★★★事业顺利','★★★注意口舌','★★★★★年终收获','★★★新年规划'],
-  '巳':['★★★★★新年大吉','★★★事业顺利','★★★财运上升','★★★注意健康','★★★★★感情顺利','★★★人际和谐','★★★注意情绪','★★★★★财运大旺','★★★事业稳定','★★★注意休息','★★★★★贵人运强','★★★年终收获'],
-  '午':['★★★新年好运','★★★★★事业大吉','★★★注意身体','★★★财运上升','★★★★★桃花运强','★★★人际和谐','★★★注意开支','★★★★★财运亨通','★★★事业顺利','★★★注意口舌','★★★★★年终收获','★★★新年规划'],
-  '未':['★★★新年新气象','★★★事业顺利','★★★财运上升','★★★注意健康','★★★★★感情甜蜜','★★★人际和谐','★★★注意情绪','★★★★★财运大旺','★★★事业稳定','★★★注意休息','★★★★★贵人运强','★★★年终收获'],
-  '申':['★★★★★新年大吉','★★★事业顺利','★★★注意身体','★★★财运上升','★★★★★桃花运强','★★★人际和谐','★★★注意开支','★★★★★财运亨通','★★★事业顺利','★★★注意口舌','★★★★★年终收获','★★★新年规划'],
-  '酉':['★★★新年好运','★★★★★事业大吉','★★★注意健康','★★★财运上升','★★★★★感情顺利','★★★人际和谐','★★★注意情绪','★★★★★财运大旺','★★★事业稳定','★★★注意休息','★★★★★贵人运强','★★★年终收获'],
-  '戌':['★★★新年新气象','★★★事业顺利','★★★财运上升','★★★注意身体','★★★★★桃花运强','★★★人际和谐','★★★注意开支','★★★★★财运亨通','★★★事业顺利','★★★注意口舌','★★★★★年终收获','★★★新年规划'],
-  '亥':['★★★★★新年大吉','★★★事业顺利','★★★注意健康','★★★财运上升','★★★★★感情甜蜜','★★★人际和谐','★★★注意情绪','★★★★★财运大旺','★★★事业稳定','★★★注意休息','★★★★★贵人运强','★★★年终收获']
-};
+var SX_HE={'子':'丑','丑':'子','寅':'亥','亥':'寅','卯':'戌','戌':'卯','辰':'酉','酉':'辰','巳':'申','申':'巳','午':'未','未':'午'};
+var SX_CHONG={'子':'午','丑':'未','寅':'申','卯':'酉','辰':'戌','巳':'亥','午':'子','未':'丑','申':'寅','酉':'卯','戌':'辰','亥':'巳'};
+var SX_HAI={'子':'未','丑':'午','寅':'巳','卯':'辰','辰':'卯','巳':'寅','午':'丑','未':'子','申':'亥','酉':'戌','戌':'酉','亥':'申'};
+var SX_SANHE=[['申','子','辰'],['亥','卯','未'],['寅','午','戌'],['巳','酉','丑']];
+var SX_MONTH=['冬月','腊月','正月','二月','三月','四月','五月','六月','七月','八月','九月','十月'];
+var SX_FANG={'子':'正北','丑':'东北','寅':'东北','卯':'正东','辰':'东南','巳':'东南','午':'正南','未':'西南','申':'西南','酉':'正西','戌':'西北','亥':'西北'};
+var SX_WU_COLOR={'金':'白 / 金','木':'青 / 绿','水':'黑 / 蓝','火':'红 / 紫','土':'黄 / 棕'};
+var SX_WU_NUM={'金':'4、9','木':'3、8','水':'1、6','火':'2、7','土':'5、0'};
+function sxRel(sxZhi,mz){
+  if(SX_HE[sxZhi]===mz) return {k:'he',cn:'六合',star:5};
+  if(SX_CHONG[sxZhi]===mz) return {k:'chong',cn:'六冲',star:1};
+  if(SX_HAI[sxZhi]===mz) return {k:'hai',cn:'六害',star:2};
+  if(SX_SANHE.some(function(g){return g.indexOf(sxZhi)>=0&&g.indexOf(mz)>=0;})) return {k:'sanhe',cn:'三合',star:4};
+  var sw=DZ_WU[sxZhi], mw=DZ_WU[mz];
+  if(SHENG[mw]===sw) return {k:'sheng',cn:'月建相生',star:4};   // 月生我 → 得助
+  if(SHENG[sw]===mw) return {k:'xie',cn:'气泄于月',star:3};     // 我生月 → 付出
+  if(KE[sw]===mw) return {k:'woke',cn:'我克月建',star:3};        // 我克月 → 财权在我
+  if(KE[mw]===sw) return {k:'kewo',cn:'月建来克',star:2};        // 月克我 → 受制
+  return {k:'bi',cn:'比和',star:3};
+}
+function sxSayTpl(seed,dim,level){
+  var POOL={
+    good:{// level 0 顺
+      career:['宜趁势进取，主动接新事、谈合作最易成','前有助力，向前一步自有人搭手，别等万事俱备','时气顺遂，把见得到的机会抓牢，小步快跑胜于空等'],
+      money:['正偏财皆有起色，可适度布局，唯忌贪满','进账节奏转顺，收旧账、开新项皆宜','财气见旺，量入为出之余可稍大胆'],
+      love:['人缘上行，单身者宜多走动，伴侣间宜添温存','相处顺意，把心里话说到明处，情分更稳','贵人牵线或故人重逢，皆可留一分心'],
+      health:['精神足、气血顺，正宜调养与锻炼','状态向好，作息规律则小恙不侵','气机通畅，适合开启一项长期运动']
+    },
+    mid:{// level 1 平
+      career:['稳中求进即可，把份内做扎实胜过铺摊子','机会平中有，宜挑一件最要紧的做深做透','以守为攻，少试错，把现有盘面经营好'],
+      money:['财气中平，宜守不宜博，攒下即是赚','进项平稳，开支上留三分余地即可','不宜加杠杆，见好就收是上策'],
+      love:['感情平稳，贵在用心经营日常','多些陪伴、少些争辩，关系自稳','单身者随缘便好，不必强求'],
+      health:['中平之象，规律作息、少熬夜即可','无大碍，留意肩颈与用眼过度','劳逸结合，防小病拖成不适']
+    },
+    low:{// level 2 逆
+      career:['宜守成避锋，重大决定往后放一放','多留预案，防流程反复与承诺落空','低调行事，先稳住基本盘再图进取'],
+      money:['破耗多于进益，捂紧口袋、忌冲动消费','财上多防，借贷担保之事能免则免','守成为上，投资宜缓不宜急'],
+      love:['易生口角误会，话到嘴边慢三分','保持适度距离反而安稳，勿翻旧账','情绪易起伏，先安顿自己再谈相处'],
+      health:['注意情绪与睡眠，宜静养少耗','防磕碰与旧疾反复，出行多留神','心气易浮，宜亲近自然、勤于静坐']
+    }
+  };
+  var set=POOL[level][dim];
+  return set[(_hashStr(seed+'|'+dim))%set.length];
+}
 document.getElementById('sxYunshiBtn').onclick=function(){
   var sx=document.getElementById('sxYunshiSelect').value;
   var name=SX_NAMES[sx];
-  var yunshi=SX_YUNSHI[sx]||SX_YUNSHI['子'];
-  var months=['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','冬月','腊月'];
-  var h='<div class="tk-h4">'+name+'年 · '+new Date().getFullYear()+'年月度运势</div>';
-  h+='<table class="tk-table">';
-  h+='<tr><th>月份</th><th>运势</th><th>说明</th></tr>';
-  yunshi.forEach(function(ys,i){
-    var stars=(ys.match(/★/g)||[]).length;
-    var desc=ys.replace(/★+/,'');
-    var col=stars>=4?'var(--gold-stroke)':stars>=3?'var(--gold2)':stars>=2?'var(--gold2)':'var(--muted)';
-    h+='<tr><td class="tk-name">'+months[i]+'</td><td style="color:'+col+'">'+'★'.repeat(stars)+'</td><td style="color:var(--muted)">'+desc+'</td></tr>';
-  });
-  h+='</table><p class="tk-note">* 生肖年运概览，具体需结合八字分析。</p>';
+  var now=new Date(), lunar=null;
+  try{ lunar=Solar.fromYmd(now.getFullYear(),now.getMonth()+1,now.getDate()).getLunar(); }catch(e){}
+  var yGZ=''; var mz='寅'; var mGZ='';
+  if(lunar){ try{ yGZ=lunar.getYearInGanZhi&&lunar.getYearInGanZhi(); }catch(e){} try{ mz=lunar.getMonthZhi&&lunar.getMonthZhi(); }catch(e){} try{ mGZ=lunar.getMonthInGanZhi&&lunar.getMonthInGanZhi(); }catch(e){} }
+  var mzIdx=ZHI_IDX?ZHI_IDX[mz]:(ZHI.indexOf(mz));
+  var mzName=SX_MONTH[(mzIdx-2+12)%12];
+  var r=sxRel(sx,mz);
+  var seed=(sx||'')+yGZ+mz;
+  var level=r.star>=4?0:(r.star===3?1:2);
+  var starCol=r.star>=4?'var(--gold-stroke)':(r.star===3?'var(--gold2)':'var(--bad)');
+  var starTxt='★★★★★'.slice(0,r.star)+'☆☆☆☆☆'.slice(0,5-r.star);
+  /* 开运推导：贵人方取六合支方位；喜用五行取月生/我克/六合对象之五行，逆层取生我者 */
+  var helpWu, helpFang;
+  if(r.k==='he'){ var hz=SX_HE[sx]; helpWu=DZ_WU[hz]; helpFang=SX_FANG[hz]; }
+  else if(r.k==='sanhe'){ var grp=SX_SANHE.filter(function(g){return g.indexOf(sx)>=0;})[0]||[]; var oth=grp.filter(function(x){return x!==sx;})[0]||SX_HE[sx]; helpWu=DZ_WU[oth]; helpFang=SX_FANG[oth]; }
+  else if(r.k==='sheng'){ helpWu=DZ_WU[mz]; helpFang=SX_FANG[sx]; }
+  else if(r.k==='woke'){ helpWu=DZ_WU[mz]; helpFang=SX_FANG[SX_HE[sx]]; }
+  else if(r.k==='xie'){ helpWu=SHENG[DZ_WU[sx]]; helpFang=SX_FANG[SX_HE[sx]]; }
+  else if(r.k==='kewo'){ helpWu=SHENG[DZ_WU[sx]]; helpFang=SX_FANG[SX_HE[sx]]; }
+  else if(r.k==='chong'){ helpWu=SHENG[DZ_WU[sx]]; helpFang=SX_FANG[SX_HE[sx]]; }
+  else if(r.k==='hai'){ helpWu=SHENG[DZ_WU[sx]]; helpFang=SX_FANG[SX_HE[sx]]; }
+  else { helpWu=DZ_WU[sx]; helpFang=SX_FANG[SX_HE[sx]]; }
+  var grade={he:'六合当令，暗中有贵人相扶',sanhe:'三合成局，同气共力、事半功倍',sheng:'得月令生扶，气运向顺',woke:'我克月建，财权操之在我',bi:'与月建比和，平稳自持',xie:'气泄于月，付出多而回收缓',hai:'六害暗扰，多留一分防备',kewo:'月建来克，宜敛不宜张',chong:'月建相冲，动荡多变、凡事从缓'}[r.k];
+  var h='<div class="tk-h4">'+name+' · '+yGZ+'年 '+mzName+'（'+mGZ+'）月运</div>';
+  h+='<div class="tk-hero" style="margin:10px 0 6px"><div class="lvl">'+r.cn+'</div><div class="sub">'+name+'生肖逢'+mzName+'之月 · 依地支关系推演</div><div style="margin-top:6px;color:'+starCol+';letter-spacing:3px;font-size:15px">'+starTxt+'</div></div>';
+  h+='<div class="tk-block"><p style="margin:0;line-height:1.9">'+grade+'。'+sxSayTpl(seed,'career',level)+'</p></div>';
+  h+='<table class="tk-table"><tr><th style="width:64px">财运</th><td>'+sxSayTpl(seed,'money',level)+'</td></tr>';
+  h+='<tr><th>感情</th><td>'+sxSayTpl(seed,'love',level)+'</td></tr>';
+  h+='<tr><th>健康</th><td>'+sxSayTpl(seed,'health',level)+'</td></tr></table>';
+  h+='<div class="tk-block"><div class="tk-h4">开运指引</div><div style="display:flex;flex-wrap:wrap;margin-top:6px">';
+  h+='<span class="tk-chip">喜用五行：'+helpWu+'（'+SX_WU_COLOR[helpWu]+'）</span>';
+  h+='<span class="tk-chip">幸运数：'+SX_WU_NUM[helpWu]+'</span>';
+  h+='<span class="tk-chip">贵人方：'+helpFang+'</span>';
+  if(r.k==='chong') h+='<span class="tk-chip" style="border-color:var(--bad)">忌往：'+SX_FANG[mz]+'（冲方）</span>';
+  else if(r.k==='hai'||r.k==='kewo') h+='<span class="tk-chip" style="border-color:var(--bad)">宜避：与'+mzName+'月相害相克之人事</span>';
+  h+='</div></div>';
+  h+='<p class="tk-note">* 推法：本命生肖年支 × 农历当月月支，先看六合、三合、六冲、六害，再以五行生克定旺衰；每月随节令自然轮换，同一月内结果恒定。传统文化参考，具体仍以八字合参为准。</p>';
   document.getElementById('sxYunshiResult').innerHTML=h;
 };
 
