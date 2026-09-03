@@ -1827,6 +1827,27 @@
   @keyframes ritPulse{0%,100%{opacity:.3}50%{opacity:1}}
   [data-motion="soft"] .rit-land,[data-motion="soft"] .rit-wait{animation:none!important}
   @media (prefers-reduced-motion: reduce){ .rit-land,.rit-wait{animation:none!important} }
+
+  /* ===== #3 工具面板素雅收口（批量/配对/择日/公司/MBTI/生肖月运共用，2026-09-05） ===== */
+  .tk-hero{text-align:center;margin:14px 0;font-family:var(--serif)}
+  .tk-hero .num{font-size:46px;line-height:1.15;font-weight:700;
+    background:linear-gradient(135deg,var(--gold-stroke) 20%,color-mix(in srgb,var(--gold-stroke) 42%,var(--ink)));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--gold-stroke)}
+  .tk-hero .lvl{margin:6px 0 2px;font-size:17px;letter-spacing:4px;color:var(--gold-stroke);font-weight:600}
+  .tk-hero .sub{font-size:12.5px;color:var(--muted);letter-spacing:1px}
+  .tk-h4{color:var(--gold2);font-family:var(--serif);letter-spacing:2px;margin:12px 0 4px;font-size:14px;font-weight:700}
+  .tk-table{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0}
+  .tk-table th{background:var(--surface-2);padding:5px 7px;text-align:left;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line);white-space:nowrap}
+  .tk-table td{padding:4px 7px;border-bottom:1px solid var(--line);color:var(--ink)}
+  .tk-table tr:last-child td{border-bottom:none}
+  .tk-name{font-weight:700;font-family:var(--serif);letter-spacing:1px}
+  .tk-chip{display:inline-block;background:var(--r-subbg);border:1px solid var(--line);border-radius:6px;padding:3px 9px;margin:3px 4px 0 0;font-size:12.5px;color:var(--ink)}
+  .tk-note{color:var(--r-muted);font-size:12px;margin-top:8px;line-height:1.7}
+  .tk-block{padding:9px 12px;border:1px solid var(--line);border-radius:8px;margin:10px 0;background:var(--surface-2)}
+  .tk-q{border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:10px 0;background:var(--r-subbg)}
+  .tk-q .qt{font-weight:600;margin-bottom:6px;color:var(--ink);letter-spacing:.5px}
+  .tk-q label{display:block;padding:3px 0;cursor:pointer;color:var(--ink);font-size:13.5px}
+  .tk-q input{margin-right:6px}
 </style>
 </head>
 <body>
@@ -41457,8 +41478,8 @@ document.getElementById('batchNameBtn').onclick=function(){
   if(!input){alert('请输入姓名');return;}
   var names=input.split(/[,，\s]+/).filter(function(n){return n.length>=2&&n.length<=4}).slice(0,10);
   if(names.length===0){alert('请输入有效的姓名（2-4字）');return;}
-  var h='<table style="width:100%;border-collapse:collapse;font-size:13px">';
-  h+='<tr style="background:#f0f0f0"><th>姓名</th><th>天格</th><th>人格</th><th>地格</th><th>外格</th><th>总格</th><th>五行</th><th>评分</th></tr>';
+  var h='<table class="tk-table">';
+  h+='<tr><th>姓名</th><th>天格</th><th>人格</th><th>地格</th><th>外格</th><th>总格</th><th>五行</th><th>评分</th></tr>';
   names.forEach(function(name){
     var tian,ren,di,wai,zong;
     if(name.length===2){tian=2+KX[name[0]];ren=KX[name[0]]+KX[name[1]];di=KX[name[1]]+1;wai=tian+di-ren;zong=KX[name[0]]+KX[name[1]];}
@@ -41468,7 +41489,8 @@ document.getElementById('batchNameBtn').onclick=function(){
     var score=70;
     if(ren%10>=3&&ren%10<=7)score+=5;if(zong%10>=3&&zong%10<=7)score+=5;if(tian%10>=3&&tian%10<=7)score+=5;if(di%10>=3&&di%10<=7)score+=5;
     score=Math.min(score,98);
-    h+='<tr style="border-bottom:1px solid #eee"><td style="font-weight:bold;padding:4px">'+name+'</td><td style="padding:4px">'+tian+'</td><td style="padding:4px">'+ren+'</td><td style="padding:4px">'+di+'</td><td style="padding:4px">'+wai+'</td><td style="padding:4px">'+zong+'</td><td style="padding:4px;color:#007bff">'+tianWu+renWu+diWu+'</td><td style="padding:4px;color:'+(score>=80?'#28a745':score>=60?'#ffc107':'#dc3545')+';font-weight:bold">'+score+'</td></tr>';
+    var sc=score>=80?'var(--gold-stroke)':score>=60?'var(--gold2)':'var(--bad)';
+    h+='<tr><td class="tk-name">'+name+'</td><td>'+tian+'</td><td>'+ren+'</td><td>'+di+'</td><td>'+wai+'</td><td>'+zong+'</td><td style="color:var(--gold-stroke)">'+tianWu+renWu+diWu+'</td><td style="color:'+sc+';font-weight:700">'+score+'</td></tr>';
   });
   h+='</table>';
   document.getElementById('batchNameResult').innerHTML=h;
@@ -41495,13 +41517,13 @@ document.getElementById('peiduiBtn').onclick=function(){
   if(Math.abs(m1.ren-m2.ren)<=5)compat+=5;if(Math.abs(m1.zong-m2.zong)<=10)compat+=5;
   compat=Math.max(30,Math.min(95,compat));
   var level=compat>=80?'天作之合':compat>=65?'良缘佳配':compat>=50?'普通姻缘':'需要磨合';
-  var lc=compat>=80?'#dc3545':compat>=65?'#ffc107':compat>=50?'#17a2b8':'#6c757d';
-  var h='<div style="text-align:center;margin:10px 0"><div style="font-size:36px;color:'+lc+';font-weight:bold">'+compat+'分</div><div style="font-size:18px;color:'+lc+';margin:5px 0">'+level+'</div></div>';
-  h+='<table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:10px">';
-  h+='<tr style="background:#f0f0f0"><th></th><th>'+name1+'</th><th>'+name2+'</th><th>对比</th></tr>';
-  h+='<tr><td>人格</td><td>'+m1.ren+'('+m1.renWu+')</td><td>'+m2.ren+'('+m2.renWu+')</td><td>'+(m1.renWu===m2.renWu?'同五行':sheng[m1.renWu]===m2.renWu?'相生':'相克')+'</td></tr>';
-  h+='<tr><td>地格</td><td>'+m1.di+'('+m1.diWu+')</td><td>'+m2.di+'('+m2.diWu+')</td><td>'+(m1.diWu===m2.diWu?'同五行':sheng[m1.diWu]===m2.diWu?'相生':'相克')+'</td></tr>';
-  h+='<tr><td>总格</td><td>'+m1.zong+'</td><td>'+m2.zong+'</td><td>'+(Math.abs(m1.zong-m2.zong)<=10?'相近':'差异大')+'</td></tr></table>';
+  var h='<div class="tk-hero"><div class="num">'+compat+'</div><div class="lvl">'+level+'</div><div class="sub">姓名五行 · 五格数理缘分指数</div></div>';
+  h+='<table class="tk-table">';
+  h+='<tr><th></th><th>'+name1+'</th><th>'+name2+'</th><th>对比</th></tr>';
+  h+='<tr><td>人格</td><td>'+m1.ren+'（'+m1.renWu+'）</td><td>'+m2.ren+'（'+m2.renWu+'）</td><td style="color:var(--gold-stroke)">'+(m1.renWu===m2.renWu?'同五行相合':sheng[m1.renWu]===m2.renWu?'相生为助':'相克为磨')+'</td></tr>';
+  h+='<tr><td>地格</td><td>'+m1.di+'（'+m1.diWu+'）</td><td>'+m2.di+'（'+m2.diWu+'）</td><td style="color:var(--gold-stroke)">'+(m1.diWu===m2.diWu?'同五行相合':sheng[m1.diWu]===m2.diWu?'相生为助':'相克为磨')+'</td></tr>';
+  h+='<tr><td>总格</td><td>'+m1.zong+'</td><td>'+m2.zong+'</td><td>'+(Math.abs(m1.zong-m2.zong)<=10?'数理相近':'差异偏大')+'</td></tr></table>';
+  h+='<p class="tk-note">* 配对依姓名五格数理与人格/地格五行生克推演，为传统文化参考，相守之道更在彼此经营。</p>';
   document.getElementById('peiduiResult').innerHTML=h;
 };
 
@@ -41557,21 +41579,22 @@ document.getElementById('companyBtn').onclick=function(){
   var h='<div style="margin-top:10px">';
   if(namesInput){
     var names=namesInput.split(/[,，\s]+/).filter(function(n){return n.length>=2&&n.length<=4});
-    h+='<h4 style="color:#007bff">候选名分析</h4><table style="width:100%;border-collapse:collapse;font-size:13px">';
-    h+='<tr style="background:#f0f0f0"><th>名称</th><th>数理</th><th>五行</th><th>行业匹配</th><th>评分</th></tr>';
+    h+='<div class="tk-h4">候选名分析</div><table class="tk-table">';
+    h+='<tr><th>名称</th><th>数理</th><th>五行</th><th>行业匹配</th><th>评分</th></tr>';
     names.forEach(function(name){
       var total=0;for(var i=0;i<name.length;i++)total+=(KX[name[i]]||10);
       var nw=CHAR_WU[name[0]]||'土';
       var match=nw===indWu?'★★★':nw==={'金':'水','木':'火','水':'木','火':'土','土':'金'}[indWu]?'★★':'★';
       var score=70;if(total%10>=3&&total%10<=7)score+=10;if(nw===indWu)score+=10;score=Math.min(score,98);
-      h+='<tr style="border-bottom:1px solid #eee"><td style="font-weight:bold;padding:4px">'+name+'</td><td style="padding:4px">'+total+'</td><td style="padding:4px;color:#007bff">'+nw+'</td><td style="padding:4px">'+match+'</td><td style="padding:4px;color:'+(score>=80?'#28a745':'#ffc107')+';font-weight:bold">'+score+'</td></tr>';
+      var sc=score>=80?'var(--gold-stroke)':'var(--gold2)';
+      h+='<tr><td class="tk-name">'+name+'</td><td>'+total+'</td><td style="color:var(--gold-stroke)">'+nw+'</td><td style="color:var(--gold2)">'+match+'</td><td style="color:'+sc+';font-weight:700">'+score+'</td></tr>';
     });
     h+='</table>';
   }else{
-    h+='<h4 style="color:#007bff">推荐用字（'+indWu+'行）</h4><div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">';
+    h+='<div class="tk-h4">推荐用字（'+indWu+'行）</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">';
     var cands=Object.keys(CHAR_WU).filter(function(c){return CHAR_WU[c]===indWu&&(KX[c]||0)>=8&&(KX[c]||0)<=20}).slice(0,30);
-    cands.forEach(function(c){h+='<span style="background:#f8f9fa;border:1px solid #dee2e6;border-radius:4px;padding:4px 8px;font-size:13px">'+c+' ('+(KX[c]||'?')+'画/'+CHAR_WU[c]+')</span>';});
-    h+='</div><p style="color:#999;font-size:12px;margin-top:8px">* 实际取名需结合法人八字综合分析。</p>';
+    cands.forEach(function(c){h+='<span class="tk-chip">'+c+' <span style="color:var(--muted)">'+(KX[c]||'?')+'画</span></span>';});
+    h+='</div><p class="tk-note">* 实际取名需结合法人八字综合分析。</p>';
   }
   h+='</div>';
   document.getElementById('companyResult').innerHTML=h;
@@ -41633,10 +41656,10 @@ var MBTI_TYPES={
 function mbtiRenderQuiz(){
   var h='';
   MBTI_QUESTIONS.forEach(function(q,i){
-    h+='<div style="margin:10px 0;padding:8px;border:1px solid #eee;border-radius:6px">';
-    h+='<div style="font-weight:bold;margin-bottom:6px;color:#007bff">'+q.q+'</div>';
-    h+='<label style="display:block;padding:4px;cursor:pointer"><input type="radio" name="mbti_'+i+'" value="A"> '+q.A+'</label>';
-    h+='<label style="display:block;padding:4px;cursor:pointer"><input type="radio" name="mbti_'+i+'" value="B"> '+q.B+'</label>';
+    h+='<div class="tk-q">';
+    h+='<div class="qt">'+q.q+'</div>';
+    h+='<label><input type="radio" name="mbti_'+i+'" value="A"> '+q.A+'</label>';
+    h+='<label><input type="radio" name="mbti_'+i+'" value="B"> '+q.B+'</label>';
     h+='</div>';
   });
   document.getElementById('mbtiQuiz').innerHTML=h;
@@ -41656,12 +41679,12 @@ document.getElementById('mbtiSubmitBtn').onclick=function(){
   var type=(scores.E>=scores.I?'E':'I')+(scores.S>=scores.N?'S':'N')+(scores.T>=scores.F?'T':'F')+(scores.J>=scores.P?'J':'P');
   var info=MBTI_TYPES[type];
   if(!info){alert('请选择所有问题');return;}
-  var h='<div style="text-align:center;margin:10px 0"><div style="font-size:36px;color:#007bff;font-weight:bold">'+type+'</div><div style="font-size:18px;color:#666;margin:5px 0">'+info.name+'</div><div style="font-size:14px;color:#999">五行属性：'+info.wuXing+'</div></div>';
-  h+='<div style="margin:10px 0"><h4 style="color:#007bff">性格特征</h4><p>'+info.desc+'</p><p><strong>优势：</strong>'+info.strength+'</p><p><strong>劣势：</strong>'+info.weakness+'</p><p><strong>适合职业：</strong>'+info.career+'</p></div>';
-  h+='<div style="margin:10px 0;padding:10px;background:#f8f9fa;border-radius:6px"><h4 style="color:#007bff">命理联动</h4><p>'+info.fateLink+'</p><p style="color:#999;font-size:12px">* MBTI与五行：NT(金)、NF(木)、SJ(土)、SP(水)，火为热情型。</p></div>';
+  var h='<div class="tk-hero"><div class="num">'+type+'</div><div class="lvl">'+info.name+'</div><div class="sub">五行属性：'+info.wuXing+'</div></div>';
+  h+='<div class="tk-block"><div class="tk-h4">性格特征</div><p style="margin:4px 0;line-height:1.8">'+info.desc+'</p><p style="margin:4px 0;line-height:1.8"><b style="color:var(--gold2)">优势：</b>'+info.strength+'</p><p style="margin:4px 0;line-height:1.8"><b style="color:var(--bad)">劣势：</b>'+info.weakness+'</p><p style="margin:4px 0;line-height:1.8"><b style="color:var(--gold2)">适合职业：</b>'+info.career+'</p></div>';
+  h+='<div class="tk-block"><div class="tk-h4">命理联动</div><p style="margin:4px 0;line-height:1.8">'+info.fateLink+'</p><p class="tk-note" style="margin-top:6px">* MBTI与五行：NT(金)、NF(木)、SJ(土)、SP(水)，火为热情型。</p></div>';
   var wuChars=Object.keys(CHAR_WU).filter(function(c){return CHAR_WU[c]===info.wuXing}).slice(0,20);
-  h+='<div style="margin:10px 0"><h4 style="color:#007bff">推荐用字（'+info.wuXing+'行）</h4><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">';
-  wuChars.forEach(function(c){h+='<span style="background:#f8f9fa;border:1px solid #dee2e6;border-radius:4px;padding:3px 8px;font-size:13px">'+c+'</span>';});
+  h+='<div class="tk-block"><div class="tk-h4">推荐用字（'+info.wuXing+'行）</div><div style="display:flex;flex-wrap:wrap;margin-top:6px">';
+  wuChars.forEach(function(c){h+='<span class="tk-chip">'+c+'</span>';});
   h+='</div></div>';
   document.getElementById('mbtiResult').innerHTML=h;
 };
@@ -41687,16 +41710,16 @@ document.getElementById('sxYunshiBtn').onclick=function(){
   var name=SX_NAMES[sx];
   var yunshi=SX_YUNSHI[sx]||SX_YUNSHI['子'];
   var months=['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','冬月','腊月'];
-  var h='<h4 style="color:#007bff">'+name+'年'+new Date().getFullYear()+'年月度运势</h4>';
-  h+='<table style="width:100%;border-collapse:collapse;font-size:13px">';
-  h+='<tr style="background:#f0f0f0"><th>月份</th><th>运势</th><th>说明</th></tr>';
+  var h='<div class="tk-h4">'+name+'年 · '+new Date().getFullYear()+'年月度运势</div>';
+  h+='<table class="tk-table">';
+  h+='<tr><th>月份</th><th>运势</th><th>说明</th></tr>';
   yunshi.forEach(function(ys,i){
     var stars=(ys.match(/★/g)||[]).length;
     var desc=ys.replace(/★+/,'');
-    var color=stars>=4?'#28a745':stars>=3?'#007bff':stars>=2?'#ffc107':'#6c757d';
-    h+='<tr style="border-bottom:1px solid #eee"><td style="padding:4px;font-weight:bold">'+months[i]+'</td><td style="padding:4px;color:'+color+'">'+'★'.repeat(stars)+'</td><td style="padding:4px;color:#666">'+desc+'</td></tr>';
+    var col=stars>=4?'var(--gold-stroke)':stars>=3?'var(--gold2)':stars>=2?'var(--gold2)':'var(--muted)';
+    h+='<tr><td class="tk-name">'+months[i]+'</td><td style="color:'+col+'">'+'★'.repeat(stars)+'</td><td style="color:var(--muted)">'+desc+'</td></tr>';
   });
-  h+='</table><p style="color:#999;font-size:12px;margin-top:8px">* 生肖年运概览，具体需结合八字分析。</p>';
+  h+='</table><p class="tk-note">* 生肖年运概览，具体需结合八字分析。</p>';
   document.getElementById('sxYunshiResult').innerHTML=h;
 };
 
@@ -42072,253 +42095,6 @@ function enhanceBazi(svg){
     const halo=svg.querySelector('.dz-halo'); if(halo){ halo.classList.add('dz-sealink'); halo.style.setProperty('--d','2.05s'); }
     svg.querySelectorAll('.dz-core,.dz-core-sub').forEach((t,i)=>{ t.classList.remove('sc-ink'); t.classList.add('sc-land'); t.style.setProperty('--d',(2.2+i*0.12).toFixed(3)+'s'); });
   }
-}
-
-/* ===================== 27. 批量姓名分析 / 姓名配对 / 择日 / 公司取名 ===================== */
-function batchNameAnalysis() {
-  const input = document.getElementById('batchNameInput').value.trim();
-  if (!input) { alert('请输入姓名'); return; }
-  const names = input.split(/[,，\s]+/).filter(n => n.length >= 2 && n.length <= 4).slice(0, 10);
-  if (names.length === 0) { alert('请输入有效的姓名（2-4字）'); return; }
-
-  let html = '<table style="width:100%;border-collapse:collapse;font-size:13px">';
-  html += '<tr style="background:#f0f0f0"><th>姓名</th><th>天格</th><th>人格</th><th>地格</th><th>外格</th><th>总格</th><th>五行</th><th>三才</th><th>评分</th></tr>';
-
-  names.forEach(name => {
-    let tian, ren, di, wai, zong;
-    if (name.length === 2) {
-      tian = 2 + KX[name[0]];
-      ren = KX[name[0]] + KX[name[1]];
-      di = KX[name[1]] + 1;
-      wai = tian + di - ren;
-      zong = KX[name[0]] + KX[name[1]];
-    } else if (name.length === 3) {
-      tian = 2 + KX[name[0]];
-      ren = KX[name[0]] + KX[name[1]];
-      di = KX[name[1]] + KX[name[2]];
-      wai = tian + di - ren;
-      zong = KX[name[0]] + KX[name[1]] + KX[name[2]];
-    } else {
-      tian = 2 + KX[name[0]];
-      ren = KX[name[0]] + KX[name[1]];
-      di = KX[name[1]] + KX[name[2]];
-      wai = KX[name[0]] + KX[name[3]];
-      zong = KX[name[0]] + KX[name[1]] + KX[name[2]] + KX[name[3]];
-    }
-
-    const renWu = CHAR_WU[name[1]] || '土';
-    const diWu = CHAR_WU[name[name.length-1]] || '土';
-    const tianWu = CHAR_WU[name[0]] || '土';
-    const sancai = tianWu + renWu + diWu;
-
-    let score = 70;
-    if (ren % 10 >= 3 && ren % 10 <= 7) score += 5;
-    if (zong % 10 >= 3 && zong % 10 <= 7) score += 5;
-    if (tian % 10 >= 3 && tian % 10 <= 7) score += 5;
-    if (di % 10 >= 3 && di % 10 <= 7) score += 5;
-    score = Math.min(score, 98);
-
-    html += `<tr style="border-bottom:1px solid #eee">
-      <td style="font-weight:bold;padding:4px">${name}</td>
-      <td style="padding:4px">${tian}</td>
-      <td style="padding:4px">${ren}</td>
-      <td style="padding:4px">${di}</td>
-      <td style="padding:4px">${wai}</td>
-      <td style="padding:4px">${zong}</td>
-      <td style="padding:4px;color:#007bff">${tianWu}${renWu}${diWu}</td>
-      <td style="padding:4px">${sancai}</td>
-      <td style="padding:4px;color:${score>=80?'#28a745':score>=60?'#ffc107':'#dc3545'};font-weight:bold">${score}</td>
-    </tr>`;
-  });
-
-  html += '</table>';
-  document.getElementById('batchNameResult').innerHTML = html;
-}
-
-function peiduiCalc() {
-  const name1 = document.getElementById('peiduiName1').value.trim();
-  const name2 = document.getElementById('peiduiName2').value.trim();
-  if (!name1 || !name2) { alert('请输入双方姓名'); return; }
-
-  function calcMetrics(name) {
-    let tian, ren, di, wai, zong;
-    if (name.length === 2) {
-      tian = 2 + KX[name[0]];
-      ren = KX[name[0]] + KX[name[1]];
-      di = KX[name[1]] + 1;
-      wai = tian + di - ren;
-      zong = KX[name[0]] + KX[name[1]];
-    } else if (name.length === 3) {
-      tian = 2 + KX[name[0]];
-      ren = KX[name[0]] + KX[name[1]];
-      di = KX[name[1]] + KX[name[2]];
-      wai = tian + di - ren;
-      zong = KX[name[0]] + KX[name[1]] + KX[name[2]];
-    } else {
-      tian = 2 + KX[name[0]];
-      ren = KX[name[0]] + KX[name[1]];
-      di = KX[name[1]] + KX[name[2]];
-      wai = KX[name[0]] + KX[name[3]];
-      zong = KX[name[0]] + KX[name[1]] + KX[name[2]] + KX[name[3]];
-    }
-    return { tian, ren, di, wai, zong, renWu: CHAR_WU[name[1]] || '土', diWu: CHAR_WU[name[name.length-1]] || '土' };
-  }
-
-  const m1 = calcMetrics(name1);
-  const m2 = calcMetrics(name2);
-
-  let compatScore = 60;
-  const wuMap = { '金': 1, '木': 2, '水': 3, '火': 4, '土': 5 };
-  const wu1 = wuMap[m1.renWu];
-  const wu2 = wuMap[m2.renWu];
-
-  if (m1.renWu === m2.renWu) compatScore += 10;
-
-  const sheng = { '金': '水', '水': '木', '木': '火', '火': '土', '土': '金' };
-  if (sheng[m1.renWu] === m2.renWu || sheng[m2.renWu] === m1.renWu) compatScore += 15;
-
-  const ke = { '金': '木', '木': '土', '土': '水', '水': '火', '火': '金' };
-  if (ke[m1.renWu] === m2.renWu || ke[m2.renWu] === m1.renWu) compatScore -= 10;
-
-  if (Math.abs(m1.ren - m2.ren) <= 5) compatScore += 5;
-  if (Math.abs(m1.zong - m2.zong) <= 10) compatScore += 5;
-
-  compatScore = Math.max(30, Math.min(95, compatScore));
-
-  const level = compatScore >= 80 ? '天作之合' : compatScore >= 65 ? '良缘佳配' : compatScore >= 50 ? '普通姻缘' : '需要磨合';
-  const levelColor = compatScore >= 80 ? '#dc3545' : compatScore >= 65 ? '#ffc107' : compatScore >= 50 ? '#17a2b8' : '#6c757d';
-
-  let html = `<div style="text-align:center;margin:10px 0">
-    <div style="font-size:36px;color:${levelColor};font-weight:bold">${compatScore}分</div>
-    <div style="font-size:18px;color:${levelColor};margin:5px 0">${level}</div>
-  </div>`;
-
-  html += `<table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:10px">`;
-  html += `<tr style="background:#f0f0f0"><th></th><th>${name1}</th><th>${name2}</th><th>对比</th></tr>`;
-  html += `<tr><td>人格</td><td>${m1.ren}(${m1.renWu})</td><td>${m2.ren}(${m2.renWu})</td><td>${m1.renWu===m2.renWu?'同五行':(sheng[m1.renWu]===m2.renWu?'相生':'相克')}</td></tr>`;
-  html += `<tr><td>地格</td><td>${m1.di}(${m1.diWu})</td><td>${m2.di}(${m2.diWu})</td><td>${m1.diWu===m2.diWu?'同五行':(sheng[m1.diWu]===m2.diWu?'相生':'相克')}</td></tr>`;
-  html += `<tr><td>总格</td><td>${m1.zong}</td><td>${m2.zong}</td><td>${Math.abs(m1.zong-m2.zong)<=10?'相近':'差异大'}</td></tr>`;
-  html += '</table>';
-
-  document.getElementById('peiduiResult').innerHTML = html;
-}
-
-function zeriCalc() {
-  const shixiang = document.getElementById('zeriShixiang').value;
-  const bazi = document.getElementById('zeriBazi').value.trim();
-  const sx = document.getElementById('zeriShengxiao').value;
-
-  const now = new Date();
-  let html = '<div style="margin-top:10px">';
-
-  html += '<h4 style="color:#007bff">未来30天吉日推荐</h4>';
-  html += '<table style="width:100%;border-collapse:collapse;font-size:13px">';
-  html += '<tr style="background:#f0f0f0"><th>日期</th><th>干支</th><th>宜</th><th>忌</th><th>评级</th></tr>';
-
-  const ganArr = '甲乙丙丁戊己庚辛壬癸'.split('');
-  const zhiArr = '子丑寅卯辰巳午未申酉戌亥'.split('');
-
-  for (let i = 0; i < 30; i++) {
-    const d = new Date(now);
-    d.setDate(d.getDate() + i);
-
-    const dayOffset = Math.floor(d.getTime() / 86400000);
-    const gan = ganArr[(dayOffset + 4) % 10];
-    const zhi = zhiArr[(dayOffset + 0) % 12];
-    const dayPillar = gan + zhi;
-
-    let clash = false;
-    if (sx) {
-      const clashMap = {'子':'午','丑':'未','寅':'申','卯':'酉','辰':'戌','巳':'亥','午':'子','未':'丑','申':'寅','酉':'卯','戌':'辰','亥':'巳'};
-      if (clashMap[sx] === zhi) clash = true;
-    }
-
-    const yiArr = ['出行','嫁娶','开市','交易','祈福','动土','入宅','修造','栽种','牧养','破土','安葬','移徙','开光','解除','求嗣','竖柱','上梁','纳采','裁衣'];
-    const jiArr = ['嫁娶','移徙','入宅','开市','出行','动土','安葬','破土'];
-
-    let yi, ji;
-    if (clash) {
-      yi = '诸事不宜';
-      ji = `冲${sx}日，${sx}肖不宜`;
-    } else {
-      const dayIdx = (dayOffset * 3) % yiArr.length;
-      yi = yiArr.slice(dayIdx, dayIdx + 3).join('、');
-      ji = jiArr[(dayOffset * 7) % jiArr.length];
-    }
-
-    const rating = clash ? '⚠️' : (dayOffset % 7 === 0 || dayOffset % 7 === 3) ? '★★★' : (dayOffset % 5 === 0) ? '★★' : '★';
-
-    html += `<tr style="border-bottom:1px solid #eee">
-      <td style="padding:4px">${d.getMonth()+1}/${d.getDate()} ${'日一二三四五六'[d.getDay()]}</td>
-      <td style="padding:4px;color:#007bff">${dayPillar}</td>
-      <td style="padding:4px;color:#28a745;font-size:12px">${yi}</td>
-      <td style="padding:4px;color:#dc3545;font-size:12px">${ji}</td>
-      <td style="padding:4px;text-align:center">${rating}</td>
-    </tr>`;
-  }
-
-  html += '</table>';
-  html += '<p style="color:#999;font-size:12px;margin-top:8px">* 以上为简化算法，仅供参考。重要事项建议咨询专业命理师。</p>';
-  html += '</div>';
-
-  document.getElementById('zeriResult').innerHTML = html;
-}
-
-function companyNameCalc() {
-  const industry = document.getElementById('companyIndustry').value;
-  const bazi = document.getElementById('companyBazi').value.trim();
-  const namesInput = document.getElementById('companyNames').value.trim();
-
-  const industryWu = { 'metal': '金', 'wood': '木', 'water': '水', 'fire': '火', 'earth': '土' };
-  const indWu = industryWu[industry];
-
-  const wuList = { '金': '钅金', '木': '木艹竹', '水': '水氵雨', '火': '火灬日', '土': '土山石' };
-
-  let html = '<div style="margin-top:10px">';
-
-  if (namesInput) {
-    const names = namesInput.split(/[,，\s]+/).filter(n => n.length >= 2 && n.length <= 4);
-    html += '<h4 style="color:#007bff">候选名分析</h4>';
-    html += '<table style="width:100%;border-collapse:collapse;font-size:13px">';
-    html += '<tr style="background:#f0f0f0"><th>名称</th><th>数理</th><th>五行</th><th>行业匹配</th><th>评分</th></tr>';
-
-    names.forEach(name => {
-      let total = 0;
-      for (let i = 0; i < name.length; i++) total += KX[name[i]] || 10;
-
-      const nameWu = CHAR_WU[name[0]] || '土';
-      const match = nameWu === indWu ? '★★★' : (nameWu === {'金':'水','木':'火','水':'木','火':'土','土':'金'}[indWu]) ? '★★' : '★';
-
-      let score = 70;
-      if (total % 10 >= 3 && total % 10 <= 7) score += 10;
-      if (nameWu === indWu) score += 10;
-      score = Math.min(score, 98);
-
-      html += `<tr style="border-bottom:1px solid #eee">
-        <td style="font-weight:bold;padding:4px">${name}</td>
-        <td style="padding:4px">${total}</td>
-        <td style="padding:4px;color:#007bff">${nameWu}</td>
-        <td style="padding:4px">${match}</td>
-        <td style="padding:4px;color:${score>=80?'#28a745':'#ffc107'};font-weight:bold">${score}</td>
-      </tr>`;
-    });
-
-    html += '</table>';
-  } else {
-    html += '<h4 style="color:#007bff">推荐用字（行业：' + indWu + '行）</h4>';
-    html += '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">';
-
-    const candidates = Object.keys(CHAR_WU).filter(c => CHAR_WU[c] === indWu && KX[c] >= 8 && KX[c] <= 20).slice(0, 30);
-    candidates.forEach(c => {
-      html += `<span style="background:#f8f9fa;border:1px solid #dee2e6;border-radius:4px;padding:4px 8px;font-size:13px">${c} (${KX[c]}画/${CHAR_WU[c]})</span>`;
-    });
-
-    html += '</div>';
-    html += '<p style="color:#999;font-size:12px;margin-top:8px">* 以上为推荐用字，实际取名需结合法人八字综合分析。</p>';
-  }
-
-  html += '</div>';
-  document.getElementById('companyResult').innerHTML = html;
 }
 
 /* ===================== 26. 国风分享卡导出（canvas 合成宣纸边框+印章+正文，一键存图） ===================== */
