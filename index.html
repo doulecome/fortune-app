@@ -121,6 +121,7 @@
   /* 角落水墨晕染（双角淡墨晕，营造卷轴宣纸感） */
   body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
     background:
+      radial-gradient(760px 92px at 50% 0%, rgba(120,114,100,.11), transparent 72%),
       radial-gradient(440px 380px at 100% 100%, rgba(74,62,42,.11), transparent 62%),
       radial-gradient(380px 340px at 0% 0%, rgba(120,114,100,.10), transparent 62%),
       radial-gradient(300px 260px at 100% 0%, rgba(146,156,152,.06), transparent 60%);
@@ -168,8 +169,8 @@
     background:linear-gradient(90deg,transparent,var(--gold-stroke),transparent);opacity:.85}
   .wxchip{display:flex;gap:9px;justify-content:center;margin-top:13px}
   .wxchip span{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
-    font-size:11px;color:#2b2620;font-weight:800;background:rgba(74,68,57,.5);
-    box-shadow:0 2px 6px rgba(60,48,28,.18),inset 0 1px 0 rgba(255,255,255,.3);
+    font-size:11px;color:#2b2620;font-weight:800;background:color-mix(in srgb,var(--c,#5b554a) 62%,transparent);
+    box-shadow:0 2px 6px rgba(60,48,28,.18),inset 0 1px 0 rgba(255,255,255,.3),0 0 0 1px color-mix(in srgb,var(--c,#5b554a) 38%,transparent);
     backdrop-filter:blur(6px) saturate(1.2);-webkit-backdrop-filter:blur(6px) saturate(1.2)}
 
   /* —— 首屏 hero 微仪式：标题落位 + 副标题 track 展开 + 钤印落定 —— */
@@ -474,6 +475,17 @@
   [id$="Result"]:empty::before,[id$="Draw"]:empty::before{
     content:"✦ 测算后，结果将显影于此 ✦";display:block;text-align:center;
     color:var(--muted);font-size:13px;letter-spacing:1px;padding:30px 10px;opacity:.6;animation:riseIn .5s ease both}
+  /* 今日运势聚合 · 未启封卷轴（着陆页空态氛围化；通用空态文字在此隐藏，钤印水印独扛） */
+  #todayResult:empty{position:relative;min-height:150px;border:1.5px dashed color-mix(in srgb,var(--gold-stroke) 55%,transparent);border-radius:14px;
+    background:radial-gradient(300px 180px at 50% 42%, color-mix(in srgb,var(--gold-stroke) 8%,transparent), transparent 70%),
+      repeating-linear-gradient(45deg, transparent 0 14px, color-mix(in srgb,var(--gold-stroke) 4%,transparent) 14px 15px)}
+  #todayResult:empty::before{display:none}
+  #todayResult:empty::after{content:"御 览 · 启 封";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-size:15px;letter-spacing:6px;color:color-mix(in srgb,var(--gold-stroke) 62%,transparent);opacity:.85;animation:riseIn .6s ease both}
+  body.theme-dark #todayResult:empty{background:radial-gradient(300px 180px at 50% 42%, rgba(212,175,55,.08), transparent 70%),
+      repeating-linear-gradient(45deg, transparent 0 14px, rgba(212,175,55,.045) 14px 15px)}
+  body.theme-dark #todayResult:empty::after{color:rgba(232,200,74,.8)}
+
 
   /* —— 动画（克制柔和）—— */
   .result > *:not(.tag):not(.pill){animation:reveal .68s var(--e-out) both}
@@ -791,6 +803,7 @@
   .sub-title{font-family:var(--serif);color:var(--gold-soft);font-size:15px;margin:2px 0 10px;letter-spacing:1px}
 
   /* —— 主题切换（宣纸 / 墨青） —— */
+  .hero-toolbar{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px auto 4px}
   .theme-switch{display:inline-flex;gap:0;margin:14px auto 0;border:1px solid var(--line);border-radius:20px;overflow:hidden;font-size:12.5px}
   .theme-switch button{background:transparent;border:none;color:var(--muted);padding:6px 16px;cursor:pointer;letter-spacing:2px;font-family:var(--serif);transition:.18s}
   .theme-switch button.active{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#fbf7ee;font-weight:700}
@@ -869,6 +882,7 @@
       radial-gradient(720px 560px at 88% 92%, rgba(18,88,84,.12), transparent 60%),
       radial-gradient(680px 520px at 8% 96%, rgba(212,175,55,.05), transparent 60%),
       linear-gradient(160deg,#0e4b47 0%,#07403d 45%,#04302e 100%);
+    background-attachment:fixed;
   }
   body.theme-dark{
     --r-bg:var(--glass);
@@ -1934,13 +1948,15 @@
     <h1>玄 机 阁</h1>
     <div class="sub">命盘推算依真实历法 · 占卜问卜同古时求签</div>
     <div class="todayline" id="todayLine"></div>
-    <div class="wxchip"><span style="--c:var(--wu-gold)">金</span><span style="--c:var(--wu-wood)">木</span><span style="--c:var(--wu-water)">水</span><span style="--c:var(--wu-fire)">火</span><span style="--c:var(--wu-earth)">土</span></div>
+    <div class="wxchip"><span style="--c:#c2a468">金</span><span style="--c:#8aaa92">木</span><span style="--c:#6a86a0">水</span><span style="--c:#c47a5e">火</span><span style="--c:#b0a06a">土</span></div>
+    <div class="hero-toolbar">
     <div class="theme-switch" id="themeSwitch" title="切换中国占卜 / 国外塔罗两套主题">
       <button type="button" data-t="cn" class="active">中国占卜</button>
       <button type="button" data-t="tarot">国外塔罗</button>
     </div>
     <input type="search" id="globalSearch" class="global-search" placeholder="搜索功能…" aria-label="搜索功能" style="background:var(--surface-2);color:inherit;border:1px solid rgba(128,128,128,.35);border-radius:8px;padding:6px 10px;font-size:13px;width:150px;max-width:42vw;outline:none">
     <button type="button" id="allFuncBtn" title="全部功能" aria-label="全部功能" style="background:transparent;border:1px solid rgba(128,128,128,.35);border-radius:8px;color:inherit;font-size:12.5px;padding:6px 10px;cursor:pointer;white-space:nowrap">☰ 全部</button>
+    </div><!-- /hero-toolbar -->
     <button type="button" id="topSettings" class="top-settings" title="参数设置" aria-label="参数设置">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
     </button>
