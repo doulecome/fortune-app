@@ -81,7 +81,7 @@ function loadApp() {
     let code = m[1];
     /* 主脚本（含 baziStrength 的最大块）：尾部追加导出行，把函数与表从词法作用域带出来 */
     if (code.includes('function baziStrength') && !mainInjected) {
-      code += `\n;globalThis.__V={baziStrength,zipingSchool,shenOf,shiShen,DZ_BENQI,GAN_WU,DZ_WU,SHENG,KE,yearGZ_LC:typeof yearGZ_LC!=='undefined'?yearGZ_LC:null,TIAOHOU,zwAnXing:typeof zwAnXing!=='undefined'?zwAnXing:null,Solar:typeof Solar!=='undefined'?Solar:null};`;
+      code += `\n;globalThis.__V={baziStrength,zipingSchool,shenOf,shiShen,DZ_BENQI,GAN_WU,DZ_WU,SHENG,KE,yearGZ_LC:typeof yearGZ_LC!=='undefined'?yearGZ_LC:null,TIAOHOU,zwAnXing:typeof zwAnXing!=='undefined'?zwAnXing:null,_jiShiCalc:typeof _jiShiCalc!=='undefined'?_jiShiCalc:null,wuOfNum:typeof wuOfNum!=='undefined'?wuOfNum:null,Solar:typeof Solar!=='undefined'?Solar:null};`;
       mainInjected = true;
     }
     vm.runInContext(code, ctx, { filename: 'inline-script' });
@@ -134,6 +134,59 @@ function deepEq(a, b) {
   return JSON.stringify(a) === JSON.stringify(b);
 }
 
+/* ---------- 吉时起法锚点（青龙起时口诀独立推得，防公式回退） ---------- */
+function checkJiShi(V) {
+  if (!V._jiShiCalc) throw new Error('_jiShiCalc 未导出');
+  /* 口诀：子午临申、丑未戌上、寅申居子、卯酉居寅、辰戌龙位、巳亥上午；
+     黄道六神青龙/明堂/金匮/天德/玉堂/司命 距青龙起时偏移 0/1/4/5/7/10 */
+  const EXPECT = {
+    '子': ['子','丑','卯','午','申','酉'],
+    '丑': ['寅','卯','巳','申','戌','亥'],
+    '寅': ['子','丑','辰','巳','未','戌'],
+    '卯': ['子','寅','卯','午','未','酉'],
+    '辰': ['寅','辰','巳','申','酉','亥'],
+    '巳': ['丑','辰','午','未','戌','亥'],
+  };
+  for (const [day, want] of Object.entries(EXPECT)) {
+    const got = V._jiShiCalc(day).map(t => t.charAt(0)).sort().join('');
+    const exp = [...want].sort().join('');
+    if (got !== exp) throw new Error('吉时锚点不符：' + day + '日 期望[' + exp + '] 实际[' + got + ']');
+  }
+}
+
+/* ---------- 姓名数理五行锚点（尾数 1/2木 3/4火 5/6土 7/8金 9/0水） ---------- */
+function checkWuOfNum(V) {
+  if (!V.wuOfNum) throw new Error('wuOfNum 未导出');
+  const EXPECT = { 1:'木',2:'木',3:'火',5:'土',7:'金',9:'水',10:'水',11:'木',20:'水',30:'水',38:'金' };
+  for (const [n, w] of Object.entries(EXPECT)) {
+    if (V.wuOfNum(+n) !== w) throw new Error('wuOfNum(' + n + ') 应为 ' + w + '，实际 ' + V.wuOfNum(+n));
+  }
+}
+
+/* ---------- 文昌贵人锚点（庚猪辛鼠壬逢虎） ---------- */
+function checkWenChang(V) {
+  const hit = V.shenOf('辛', '午', '子');
+  if (!hit.includes('文昌')) throw new Error('辛日文昌应在子，实际命中：' + hit.join(','));
+  const wrong = V.shenOf('辛', '午', '戌');
+  if (wrong.includes('文昌')) throw new Error('辛日文昌误落戌（旧表错误回归）');
+}
+
+/* ---------- 字五行字典锚点（charwu.js 外置文件：18 对康熙统一值 + 规模） ---------- */
+function checkCharwu() {
+  const cwPath = path.join(__dirname, 'charwu.js');
+  if (!fs.existsSync(cwPath)) throw new Error('charwu.js 缺失');
+  const ctx = { window: {} };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(cwPath, 'utf8'), ctx, { filename: 'charwu.js' });
+  const D = ctx.window.CHAR_WU;
+  if (!D) throw new Error('charwu.js 未产出 window.CHAR_WU');
+  if (Object.keys(D).length < 19000) throw new Error('字五行字典键数异常：' + Object.keys(D).length);
+  const UNIFIED = { '鸟':'木','动':'木','鱼':'木','绍':'木','创':'火','贵':'火','结':'火','统':'火','杨':'土','驰':'土','实':'金','宾':'金','轮':'水','庆':'水','请':'水','剧':'水','锋':'水','锐':'水' };
+  for (const [k, v] of Object.entries(UNIFIED)) {
+    if (D[k] !== v) throw new Error('字五行统一值回归：' + k + ' 应为 ' + v + '，实际 ' + D[k]);
+  }
+}
+
 /* ---------- 紫微亮度表完整性检查（庙旺利陷真表，防改坏） ---------- */
 function checkBrightness(V, html) {
   /* 表定义在紫微面板 onclick 作用域内，无法运行时导出——直接从源码抽取字面量 */
@@ -163,6 +216,10 @@ function checkBrightness(V, html) {
 try {
   const V = loadApp();
   checkBrightness(V, fs.readFileSync(SRC, 'utf8'));
+  checkJiShi(V);
+  checkWuOfNum(V);
+  checkWenChang(V);
+  checkCharwu();
   const now = compute(V);
   if (process.argv.includes('--update')) {
     fs.writeFileSync(SNAP, JSON.stringify(now, null, 1), 'utf8');

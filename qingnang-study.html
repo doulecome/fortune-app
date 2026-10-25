@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="zen-dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>青囊 UI · 交互动画拆解 Demo</title>
+<style>
+/* =========================================================
+   青囊 设计令牌（取自 qingnang.cc 真实 CSS，已精简）
+   核心：黛青底 + 护魄金 + 宣纸字；五行/各术数模块各有专属色
+   ========================================================= */
+:root{
+  --color-dai-qing:#004d4d;        /* 黛青 主背景 */
+  --color-dai-qing-light:#066;
+  --color-dai-qing-dark:#033;      /* 深黛青 渐变收尾 */
+  --color-xuan-zhi:#f2ecda;        /* 宣纸 正文浅字 */
+  --color-xuan-zhi-dark:#e8e4c9;
+  --color-hu-po-jin:#d4af37;       /* 护魄金 主强调 */
+  --color-hu-po-jin-light:#e8c84a;
+  --color-hu-po-jin-dark:#b8960f;
+  --color-lan-dian:#1b2a5e;        /* 蓝靛 装饰线 */
+  --color-ji:#2e7d5b; --color-xiong:#b23a2e;
+  /* 五行色 —— 玄机阁五行可视化可直接复用 */
+  --wx-mu:#16a34a; --wx-huo:#dc2626; --wx-tu:#92400e; --wx-jin:#ca8a04; --wx-shui:#2563eb;
+  /* 模块色 —— 每个术数一个专属色，可做导航/标签配色 */
+  --mod-bazi:#004d4d; --mod-ziwei:#6a4ba8; --mod-liuyao:#5c6b3a;
+  --mod-qimen:#1e6b45; --mod-hecan:#e087a0; --mod-toolkit:#a3adaa;
+  --ease-smooth:cubic-bezier(.16,1,.3,1);   /* 青囊统一缓动 */
+  --ease-swing:cubic-bezier(.22,1,.36,1);
+  --radius:16px;
+}
+/* 主题化：青囊用 data-theme + CSS 变量整组覆盖，这是它最该学的工程点 */
+[data-theme="zen-dark"]{ --bg1:#0b1414; --bg2:#004d4d; }
+[data-theme="zen"]{ --bg1:#1f2d2d; --bg2:#0b1414; }
+
+*{box-sizing:border-box;}
+body{
+  margin:0; font-family:"Noto Serif SC","Songti SC",ui-serif,serif;
+  color:var(--color-xuan-zhi);
+  background:radial-gradient(120% 120% at 50% 0%,var(--bg2) 0%,var(--bg1) 60%);
+  min-height:100vh; -webkit-font-smoothing:antialiased;
+}
+/* ---- 磨砂固定导航（青囊 .qn-navbar 还原）---- */
+.qn-navbar{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 28px; border-bottom:1px solid rgba(0,77,77,.4);
+  background:rgba(242,236,218,.06); backdrop-filter:blur(12px);
+}
+.brand{font-size:22px; font-weight:700; letter-spacing:.3em; color:var(--color-hu-po-jin);}
+.nav-tools{display:flex; gap:10px; align-items:center;}
+.nav-tools button{
+  font-family:inherit; cursor:pointer; color:var(--color-xuan-zhi);
+  background:transparent; border:1px solid rgba(212,175,55,.35);
+  border-radius:999px; padding:6px 14px; font-size:13px; transition:all .25s var(--ease-smooth);
+}
+.nav-tools button:hover{border-color:var(--color-hu-po-jin); box-shadow:0 0 0 3px rgba(212,175,55,.12);}
+
+.wrap{max-width:1080px; margin:0 auto; padding:96px 24px 80px;}
+/* ---- Hero（青囊 hero-title-in / hero-track / hero-up 还原）---- */
+.hero{padding:40px 0 10px; text-align:center;}
+.hero h1{
+  font-size:clamp(48px,9vw,96px); font-weight:800; margin:0;
+  color:var(--color-hu-po-jin); letter-spacing:.04em;
+  animation:1.05s var(--ease-smooth) .25s backwards hero-title-in;
+}
+.hero .track{
+  margin-top:16px; font-size:13px; letter-spacing:.35em; color:rgba(212,175,55,.55);
+  animation:1s ease-out .85s backwards hero-track;
+}
+.hero .sub{margin-top:20px; color:var(--color-xuan-zhi-dark); font-size:15px; line-height:1.9;
+  animation:.8s var(--ease-smooth) backwards hero-up;}
+
+/* ---- 卡片（青囊 .card-float：渐变 + hover 描金边）---- */
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; margin-top:48px;}
+.card{
+  position:relative; border-radius:var(--radius); padding:26px 22px;
+  border:1px solid rgba(242,236,218,.08);
+  background:linear-gradient(135deg,var(--color-dai-qing),var(--color-dai-qing-dark));
+  transition:border-color .35s, box-shadow .35s, transform .35s;
+  overflow:hidden;
+}
+.card:hover{border-color:rgba(212,175,55,.35); box-shadow:0 8px 30px rgba(0,0,0,.35); transform:translateY(-3px);}
+.card h3{margin:0 0 4px; font-size:18px; color:var(--color-hu-po-jin); letter-spacing:.05em;}
+.card .en{font-size:11px; letter-spacing:.2em; color:rgba(242,236,218,.4); text-transform:uppercase;}
+.card .desc{margin:14px 0 16px; font-size:13px; line-height:1.8; color:var(--color-xuan-zhi-dark);}
+.card .port{font-size:12px; line-height:1.7; color:rgba(212,175,55,.7); border-top:1px dashed rgba(212,175,55,.25); padding-top:12px;}
+.card .stage{min-height:96px; display:flex; align-items:center; justify-content:center;}
+
+/* =========================================================
+   签名动效 · 真实 keyframes（取自青囊 qn.css）
+   ========================================================= */
+@keyframes gilt-sheen { 0%{transform:translate(-160%) skew(-18deg)}60%{transform:translate(330%) skew(-18deg)}to{transform:translate(330%) skew(-18deg)} }
+@keyframes btn-sheen-sweep { 0%,55%{transform:translate(-180%) skew(-18deg)}to{transform:translate(340%) skew(-18deg)} }
+@keyframes glow-breathe { 0%,to{filter:drop-shadow(0 0 8px rgba(212,175,55,.3));text-shadow:0 0 10px rgba(212,175,55,.15)}50%{filter:drop-shadow(0 0 24px rgba(212,175,55,.6));text-shadow:0 0 30px rgba(212,175,55,.3)} }
+@keyframes coin-flip { 0%{transform:rotateY(0) rotateX(0)}25%{transform:rotateY(180deg) rotateX(20deg)}50%{transform:rotateY(360deg) rotateX(0)}75%{transform:rotateY(540deg) rotateX(-20deg)}to{transform:rotateY(720deg) rotateX(0)} }
+@keyframes coin-bounce { 0%,to{transform:translateY(0)}30%{transform:translateY(-30px)}50%{transform:translateY(-15px)}70%{transform:translateY(-5px)} }
+@keyframes ink-spread { 0%{opacity:.8;filter:blur(0);transform:scale(0)}40%{opacity:.5;filter:blur(4px)}to{opacity:0;filter:blur(12px);transform:scale(2.5)} }
+@keyframes anchor-radiate { 0%{opacity:.55;transform:scale(1)}85%{opacity:0}to{opacity:0;transform:scale(1.14)} }
+@keyframes trinity-flow { to{stroke-dashoffset:-16px} }
+@keyframes ring-rotate { to{transform:rotate(360deg)} }
+@keyframes ring-rotate-rev { to{transform:rotate(-360deg)} }
+@keyframes hecan-pulse { 0%,to{transform:scale(1)}50%{transform:scale(1.035)} }
+@keyframes tk-charm-swing { 0%{transform:rotate(0)}30%{transform:rotate(5deg)}60%{transform:rotate(-3.2deg)}82%{transform:rotate(1.6deg)}to{transform:rotate(0)} }
+@keyframes tk-pouch-sway { 0%,to{transform:rotate(0)}25%{transform:rotate(1.8deg)}75%{transform:rotate(-1.8deg)} }
+@keyframes md-ink-in { 0%{opacity:.12;filter:blur(3px);transform:translateY(4px)}to{opacity:1;filter:blur(0);transform:none} }
+@keyframes qn-rise { 0%{transform:translateY(10px)} }
+@keyframes qn-bar-grow { 0%{transform:scaleX(0)} }
+@keyframes qn-ring-draw { 0%{stroke-dashoffset:var(--qn-ring-len)} }
+@keyframes hero-title-in { 0%{transform:translateY(30px) scale(.92)} }
+@keyframes hero-track { 0%{letter-spacing:.1em} }
+@keyframes hero-up { 0%{transform:translateY(20px)} }
+@keyframes marquee-scroll { to{transform:translateX(-50%)} }
+
+/* ---------- 1. 鎏金扫光（按钮 / 卡片） ---------- */
+.sheen-btn{
+  position:relative; overflow:hidden; font-family:inherit; cursor:pointer;
+  border:1px solid var(--color-hu-po-jin); color:var(--color-hu-po-jin);
+  background:linear-gradient(135deg,var(--color-dai-qing),var(--color-dai-qing-dark));
+  border-radius:999px; padding:12px 34px; font-size:14px; letter-spacing:.15em;
+}
+.sheen-btn::after{
+  content:""; position:absolute; top:0; left:0; width:40%; height:100%;
+  background:linear-gradient(90deg,transparent,rgba(232,200,74,.55),transparent);
+  animation:btn-sheen-sweep 4.8s ease-in-out infinite;
+}
+/* ---------- 2. 呼吸光晕 ---------- */
+.breathe{font-size:26px; font-weight:700; color:var(--color-hu-po-jin); animation:3s ease-in-out infinite glow-breathe;}
+/* ---------- 3. 起卦铜钱翻转 ---------- */
+.coin{width:64px; height:64px; perspective:600px;}
+.coin-inner{position:relative; width:100%; height:100%; transform-style:preserve-3d; animation:1.2s ease-in-out infinite coin-flip;}
+.coin-face{position:absolute; inset:0; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:30px; font-weight:700; color:#3a2a00;
+  background:radial-gradient(circle at 35% 30%,#f4e08a,var(--color-hu-po-jin) 60%,var(--color-hu-po-jin-dark));
+  backface-visibility:hidden; border:2px solid var(--color-hu-po-jin-dark);}
+.coin-back{transform:rotateY(180deg);}
+.coin-bounce{animation:.8s ease-out infinite coin-bounce;}
+
+/* ---------- 4. 三盘互证流动（SVG dash 流光） ---------- */
+.trinity{width:100%; height:60px;}
+.trinity path{fill:none; stroke:var(--color-hu-po-jin); stroke-width:2; stroke-dasharray:4 12; animation:1.8s linear infinite trinity-flow;}
+
+/* ---------- 5. 墨晕晕开 ---------- */
+.ink-box{position:relative; width:80px; height:80px; display:flex; align-items:center; justify-content:center; color:var(--color-hu-po-jin);}
+.ink-box::after{content:""; position:absolute; inset:0; border-radius:50%; background:radial-gradient(circle,rgba(212,175,55,.6),transparent 70%); animation:2.5s ease-out infinite ink-spread;}
+
+/* ---------- 6. 悬停挂件摆动 ---------- */
+.charm{transform-origin:top center; display:inline-block; font-size:34px; animation:.9s var(--ease-swing) infinite tk-charm-swing;}
+.pouch{transform-origin:top center; display:inline-block; font-size:34px; animation:7s ease-in-out infinite tk-pouch-sway;}
+
+/* ---------- 7. 锚点辐射（选中态） ---------- */
+.anchor{position:relative; padding:14px 26px; border:1px solid var(--color-hu-po-jin); border-radius:12px; color:var(--color-hu-po-jin);}
+.anchor::after{content:""; position:absolute; inset:-3px; border:1.5px solid rgba(212,175,55,.55); border-radius:14px; animation:2.8s var(--ease-smooth) infinite anchor-radiate;}
+
+/* ---------- 8. 进场上升（列表/阅读） ---------- */
+.rise-list span{display:block; font-size:15px; color:var(--color-xuan-zhi-dark); padding:4px 0; animation:.4s var(--ease-smooth) both qn-rise;}
+.rise-list span:nth-child(1){animation-delay:.05s}.rise-list span:nth-child(2){animation-delay:.1s}.rise-list span:nth-child(3){animation-delay:.15s}
+.ink-text{font-size:14px; line-height:1.9; color:var(--color-xuan-zhi); animation:.55s var(--ease-smooth) both md-ink-in;}
+
+/* ---------- 9. 旋转环（环境装饰） ---------- */
+.rings{position:relative; width:84px; height:84px;}
+.rings .r1,.rings .r2{position:absolute; inset:0; border-radius:50%;}
+.rings .r1{border:1px solid rgba(212,175,55,.5); border-top-color:var(--color-hu-po-jin); animation:75s linear infinite ring-rotate;}
+.rings .r2{inset:10px; border:1px solid rgba(143,176,190,.4); border-bottom-color:var(--color-lan-dian); animation:60s linear infinite ring-rotate-rev;}
+
+/* ---------- 10. 古籍滚动带 ---------- */
+.marquee{overflow:hidden; white-space:nowrap; border-top:1px solid rgba(212,175,55,.2); border-bottom:1px solid rgba(212,175,55,.2); padding:10px 0; width:100%;}
+.marquee div{display:inline-block; animation:64s linear infinite marquee-scroll; font-size:13px; letter-spacing:.2em; color:rgba(242,236,218,.6);}
+.marquee span{margin:0 28px;}
+
+/* ---------- 11. 进度生长 / 圆环描绘 ---------- */
+.bar{width:100%; height:10px; background:rgba(242,236,218,.12); border-radius:999px; overflow:hidden;}
+.bar i{display:block; height:100%; width:100%; background:linear-gradient(90deg,var(--color-hu-po-jin-dark),var(--color-hu-po-jin-light)); transform-origin:0; animation:.72s var(--ease-smooth) qn-bar-grow;}
+.ring-draw{width:80px; height:80px;}
+.ring-draw circle{fill:none; stroke:var(--color-hu-po-jin); stroke-width:3; --qn-ring-len:226; stroke-dasharray:226; animation:.9s var(--ease-smooth) qn-ring-draw;}
+
+/* 令牌面板 */
+.tokens{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+.tok{display:flex; align-items:center; gap:8px; font-size:12px; color:var(--color-xuan-zhi-dark);}
+.dot{width:18px; height:18px; border-radius:5px; border:1px solid rgba(255,255,255,.15);}
+
+footer{margin-top:60px; padding-top:24px; border-top:1px solid rgba(0,77,77,.4); color:rgba(242,236,218,.5); font-size:12px; line-height:1.9; text-align:center;}
+
+/* 青囊的核心工程点：prefers-reduced-motion 全面门控。点按钮可模拟关闭动效。 */
+body.reduced-motion *{animation:none !important;}
+</style>
+</head>
+<body>
+<nav class="qn-navbar">
+  <div class="brand">青囊 · 拆解</div>
+  <div class="nav-tools">
+    <button id="themeBtn">切换主题 zen / zen-dark</button>
+    <button id="rmBtn">模拟 减弱动效 (reduced-motion)</button>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section class="hero">
+    <h1>古籍为根 · AI 参详</h1>
+    <div class="track">AETHER&nbsp;POUCH&nbsp;·&nbsp;视觉与交互动画拆解</div>
+    <p class="sub">青囊（qingnang.cc）与「玄机阁」同赛道。它的设计语言高度契合我们已有的「墨青＋鎏金」方向，<br>并在<b>主题化令牌</b>、<b>模块专属色</b>、<b>动效缓动统一</b>、<b>无障碍门控</b>上做得更系统。下面是逐条可运行的拆解。</p>
+  </section>
+
+  <div class="marquee"><div>
+    <span>周易</span><span>滴天髓</span><span>三命通会</span><span>子平真诠</span><span>穷通宝鉴</span><span>渊海子平</span><span>紫微斗数全书</span><span>果老星宗</span><span>增删卜易</span><span>卜筮正宗</span><span>六壬大全</span><span>烟波钓叟歌</span>
+    <span>周易</span><span>滴天髓</span><span>三命通会</span><span>子平真诠</span><span>穷通宝鉴</span><span>渊海子平</span><span>紫微斗数全书</span><span>果老星宗</span><span>增删卜易</span><span>卜筮正宗</span><span>六壬大全</span><span>烟波钓叟歌</span>
+  </div></div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="en">gilt-sheen / btn-sheen-sweep</div>
+      <h3>① 鎏金扫光</h3>
+      <div class="stage"><button class="sheen-btn">参 详</button></div>
+      <div class="desc">金色光带以 skew(-18deg) 斜切扫过按钮/卡片，4.8s 一轮。克制不刺眼，是它「高级感」的来源。</div>
+      <div class="port">→ 玄机阁移植：直接套到现有鎏金按钮、塔罗卡 hover、模块入口。</div>
+    </div>
+
+    <div class="card">
+      <div class="en">glow-breathe</div>
+      <h3>② 呼吸光晕</h3>
+      <div class="stage"><div class="breathe">命</div></div>
+      <div class="desc">文字/图标 drop-shadow 8px↔24px 缓慢呼吸（3s）。让静止的金字「活着」。</div>
+      <div class="port">→ 移植：标题、LOGO、当前选中模块；比持续闪烁更耐看。</div>
+    </div>
+
+    <div class="card">
+      <div class="en">coin-flip + coin-bounce</div>
+      <h3>③ 起卦铜钱翻转</h3>
+      <div class="stage"><div class="coin"><div class="coin-inner"><div class="coin-face">正</div><div class="coin-face coin-back">反</div></div></div></div>
+      <div class="desc">rotateY 0→720° 带 rotateX 微抖（1.2s），模拟掷钱。coin-bounce 另做落下回弹。</div>
+      <div class="port">→ 移植：六爻/梅花起卦的「逐爻掷钱」仪式感，可直接用。</div>
+    </div>
+
+    <div class="card">
+      <div class="en">trinity-flow</div>
+      <h3>④ 三盘互证流光</h3>
+      <div class="stage"><svg class="trinity" viewBox="0 0 300 60"><path d="M10,30 C80,-10 220,70 290,30"/></svg></div>
+      <div class="desc">八字×紫微×七政 三盘互证旗舰功能的流动描边（dasharray + dashoffset 流动，1.8s）。</div>
+      <div class="port">→ 移植：玄机阁「合盘/合参」模块的连接线、加载态。</div>
+    </div>
+
+    <div class="card">
+      <div class="en">ink-spread</div>
+      <h3>⑤ 墨晕晕开</h3>
+      <div class="stage"><div class="ink-box">易</div></div>
+      <div class="desc">径向墨点 scale(0)→2.5、blur 0→12px、透明度淡出（2.5s）。古籍质感的进场/点击涟漪。</div>
+      <div class="port">→ 移植：按钮点击涟漪、卦象生成瞬间、章节分隔。</div>
+    </div>
+
+    <div class="card">
+      <div class="en">tk-charm-swing / tk-pouch-sway</div>
+      <h3>⑥ 挂件摆动</h3>
+      <div class="stage"><span class="charm">🔔</span>&nbsp;&nbsp;<span class="pouch">💰</span></div>
+      <div class="desc">charm-swing 在 hover 时 0.9s 钟摆式回弹；pouch-sway 常驻 7s 极慢轻摆（±1.8°）。</div>
+      <div class="port">→ 移植：百宝袋/小工具图标、吉祥物；微交互「活」的关键。</div>
+    </div>
+
+    <div class="card">
+      <div class="en">anchor-radiate</div>
+      <h3>⑦ 锚点辐射（选中态）</h3>
+      <div class="stage"><div class="anchor">当 前</div></div>
+      <div class="desc">选中项外圈 2.8s 向外扩散淡出一次（scale 1→1.14），提示「锚定」。</div>
+      <div class="port">→ 移植：导航当前项、Tabs 激活、表单聚焦态。</div>
+    </div>
+
+    <div class="card">
+      <div class="en">qn-rise + md-ink-in</div>
+      <h3>⑧ 进场上升 / 墨入</h3>
+      <div class="stage" style="flex-direction:column;align-items:flex-start;">
+        <div class="rise-list"><span>八字 · 四柱排盘</span><span>紫微 · 十二宫</span><span>六爻 · 纳甲断事</span></div>
+      </div>
+      <div class="desc">列表项 0.4s 错峰上浮（延迟 .05/.1/.15s）；阅读文本用 md-ink-in 模糊+上浮「落墨」。</div>
+      <div class="port">→ 移植：结果列表、AI 流式输出逐段「落墨」。</div>
+    </div>
+
+    <div class="card">
+      <div class="en">ring-rotate / ring-rotate-rev</div>
+      <h3>⑨ 旋转环（环境装饰）</h3>
+      <div class="stage"><div class="rings"><div class="r1"></div><div class="r2"></div></div></div>
+      <div class="desc">双环反向极慢旋转（60–160s），几乎不可察却让页面「有生气」。</div>
+      <div class="port">→ 移植：loading、罗盘背景、章节角标。</div>
+    </div>
+
+    <div class="card">
+      <div class="en">qn-bar-grow / qn-ring-draw</div>
+      <h3>⑩ 进度生长 / 圆环描绘</h3>
+      <div class="stage">
+        <div style="width:60%"><div class="bar"><i></i></div>
+        <svg class="ring-draw" viewBox="0 0 80 80" style="margin-top:14px"><circle cx="40" cy="40" r="36"/></svg></div>
+      </div>
+      <div class="desc">scaleX(0)→1 条形生长（.72s）；圆环用 stroke-dashoffset 描绘（.9s）。</div>
+      <div class="port">→ 移植：五行强弱条、信度评分、加载进度。</div>
+    </div>
+
+    <div class="card" style="grid-column:1/-1">
+      <div class="en">design tokens</div>
+      <h3>⑪ 色彩令牌（可直接照搬的语义变量）</h3>
+      <div class="desc">青囊用 CSS 变量做整组主题，且五行、各术数模块各有专属色——这是玄机阁最该补的系统能力。</div>
+      <div class="tokens">
+        <div class="tok"><span class="dot" style="background:#004d4d"></span>黛青 dai-qing</div>
+        <div class="tok"><span class="dot" style="background:#d4af37"></span>护魄金 hu-po-jin</div>
+        <div class="tok"><span class="dot" style="background:#f2ecda"></span>宣纸 xuan-zhi</div>
+        <div class="tok"><span class="dot" style="background:#1b2a5e"></span>蓝靛 lan-dian</div>
+        <div class="tok"><span class="dot" style="background:#16a34a"></span>木 wx-mu</div>
+        <div class="tok"><span class="dot" style="background:#dc2626"></span>火 wx-huo</div>
+        <div class="tok"><span class="dot" style="background:#92400e"></span>土 wx-tu</div>
+        <div class="tok"><span class="dot" style="background:#ca8a04"></span>金 wx-jin</div>
+        <div class="tok"><span class="dot" style="background:#2563eb"></span>水 wx-shui</div>
+        <div class="tok"><span class="dot" style="background:#6a4ba8"></span>紫微 mod-ziwei</div>
+        <div class="tok"><span class="dot" style="background:#5c6b3a"></span>六爻 mod-liuyao</div>
+        <div class="tok"><span class="dot" style="background:#1e6b45"></span>奇门 mod-qimen</div>
+        <div class="tok"><span class="dot" style="background:#e087a0"></span>三术合参 mod-hecan</div>
+      </div>
+      <div class="port">→ 移植：把玄机阁 19 个模块的「配色」从散落写死改为 <code>var(--mod-xxx)</code>；换肤/暗亮主题只需覆盖一组变量。</div>
+    </div>
+
+  </div>
+
+  <footer>
+    拆解自 qingnang.cc 真实生产 CSS（Next.js / Tailwind / CSS Variables）。动效代码为原站 @keyframes 提取，未做品牌复制，仅供学习借鉴。<br>
+    统一缓动 cubic-bezier(.16,1,.3,1) ｜ 全部动画受 <code>prefers-reduced-motion</code> 门控（点右上「模拟减弱动效」可体验）。
+  </footer>
+</div>
+
+<script>
+  const body=document.body;
+  document.getElementById('themeBtn').onclick=()=>{
+    const cur=body.getAttribute('data-theme');
+    body.setAttribute('data-theme', cur==='zen-dark'?'zen':'zen-dark');
+  };
+  document.getElementById('rmBtn').onclick=(e)=>{
+    body.classList.toggle('reduced-motion');
+    e.target.textContent = body.classList.contains('reduced-motion') ? '恢复动效' : '模拟 减弱动效 (reduced-motion)';
+  };
+</script>
+</body>
+</html>

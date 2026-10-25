@@ -71,6 +71,10 @@ async function compress(html) {
   while ((m = re2.exec(out))) { c++; try { new Function(m[1]); } catch (e) { console.error('✗ 压缩后第 ' + c + ' 段脚本语法错误：' + e.message); process.exit(1); } }
 
   fs.mkdirSync(DEPLOY, { recursive: true });
+  /* 字五行字典外置文件随产物拷贝 */
+  const cwSrc = path.join(__dirname, 'charwu.js');
+  if (fs.existsSync(cwSrc)) fs.copyFileSync(cwSrc, path.join(DEPLOY, 'charwu.js'));
+  else { console.error('✗ 缺少 charwu.js（字五行字典外置文件）'); process.exit(1); }
 
   /* sw.js 缓存版本随内容自动递增，避免线上用户命中旧缓存 */
   const swPath = path.join(DEPLOY, 'sw.js');

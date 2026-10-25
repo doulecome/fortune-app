@@ -1,5 +1,5 @@
-const CACHE = 'xuanji-v44';
-const ASSETS = ['./index.html','./manifest.json','./icon.svg'];
+const CACHE = 'xuanji-v65';
+const ASSETS = ['./index.html','./manifest.json','./icon.svg','./charwu.js'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
