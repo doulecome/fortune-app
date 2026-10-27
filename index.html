@@ -1963,7 +1963,7 @@
       <button type="button" data-t="tarot">国外塔罗</button>
     </div>
     <input type="search" id="globalSearch" class="global-search" placeholder="搜索功能…" aria-label="搜索功能" style="background:var(--surface-2);color:inherit;border:1px solid rgba(128,128,128,.35);border-radius:8px;padding:6px 10px;font-size:13px;width:150px;max-width:42vw;outline:none">
-    <button type="button" id="allFuncBtn" title="全部功能" aria-label="全部功能" style="background:transparent;border:1px solid rgba(128,128,128,.35);border-radius:8px;color:inherit;font-size:12.5px;padding:6px 10px;cursor:pointer;white-space:nowrap">☰ 全部</button>
+    <button type="button" id="allFuncBtn" title="全部功能" aria-label="全部功能" style="background:transparent;border:1px solid rgba(128,128,128,.35);border-radius:8px;color:inherit;font-size:12.5px;padding:6px 10px;cursor:pointer;white-space:nowrap">☰</button>
     </div><!-- /hero-toolbar -->
     <button type="button" id="topSettings" class="top-settings" title="参数设置" aria-label="参数设置">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -1976,7 +1976,7 @@
     <button type="button" class="qk" data-go="bazi"><span class="qk-ic">命</span>我的盘</button>
     <button type="button" class="qk" data-go="wen"><span class="qk-ic">问</span>问一事</button>
     <button type="button" class="qk" data-go="hehun"><span class="qk-ic">合</span>合参</button>
-    <button type="button" class="qk" id="qkAll"><span class="qk-ic">☰</span>全部</button>
+    <button type="button" class="qk" id="qkAll"><span class="qk-ic">全</span>全部</button>
   </div>
   <div id="onboardBar"></div>
   <div class="subcats" id="subcats">
@@ -11552,6 +11552,134 @@ const JIA60=(function(){const a=[];for(let i=0;i<60;i++){a.push(GAN[i%10]+ZHI[i%
 function gz60(s){return JIA60.indexOf(s);}
 /* 确定性字符串哈希：同输入恒同输出，用于按出生数据选词（同人不重样、异人不同句） */
 function _hashStr(s){ let n=0; for(let i=0;i<s.length;i++) n=(n*131+s.charCodeAt(i))>>>0; return n; }
+/* ---------- 神煞内景库：15 神煞按五团分组（贵人/情缘/锋芒/漂泊/孤高），供内景图与详情卡 ---------- */
+const SS_INFO={
+ '天乙贵人':{grp:'贵人',ic:'贵',img:'扶助与善缘的意象——危难处总有人搭手，代表支持、理解与互相成全。',form:'执卷引路的长者',basis:'以年干、日干查地支（甲戊庚牛羊）'},
+ '太极贵人':{grp:'贵人',ic:'极',img:'思辨与探源的意象——对原理、秩序与深层问题有天生的亲近。',form:'阴阳相抱的双鱼环',basis:'以日干查地支（甲乙生人子午）'},
+ '文昌':{grp:'贵人',ic:'文',img:'学习与表达的意象——展开的书卷承载阅读、整理与清晰传达。',form:'展开的书卷',basis:'以年干、日干查地支（甲乙巳午报君知）'},
+ '禄神':{grp:'贵人',ic:'禄',img:'自食其力的意象——本分之中的俸禄，踏实做事即有回报。',form:'稳坐的俸禄几案',basis:'以日干查临官位（甲禄在寅）'},
+ '金舆':{grp:'贵人',ic:'舆',img:'仪仗与承载的意象——举止得体，善用资源与身份带来的便利。',form:'鎏金的马车',basis:'以日干查禄前二位（甲禄寅则舆辰）'},
+ '将星':{grp:'贵人',ic:'将',img:'统摄与定盘的意象——群动之中能坐镇中军的那颗星。',form:'帐中执旗的将领',basis:'以年支、日支查三合中位（申子辰见子）'},
+ '红鸾':{grp:'情缘',ic:'鸾',img:'婚恋与喜讯的意象——心动的信号，缘分散发的引力。',form:'衔信的红鸾鸟',basis:'以年支起子逆数（卯上起子逆行）'},
+ '天喜':{grp:'情缘',ic:'喜',img:'欢庆与好消息的意象——喜事临门的回声，与红鸾互为对望。',form:'对望的喜鹊桥',basis:'红鸾对冲之位'},
+ '桃花':{grp:'情缘',ic:'桃',img:'魅力与人缘的意象——吸引力的源泉，艺术与浪漫的底色。',form:'春水畔的桃枝',basis:'以年支、日支查三合咸池（申子辰在酉）'},
+ '羊刃':{grp:'锋芒',ic:'刃',img:'锋芒与决断的意象——刀刃向外的魄力，用对处是杀伐果断。',form:'出鞘的弯刀',basis:'以日干查帝旺位（甲刃在卯）'},
+ '劫煞':{grp:'锋芒',ic:'劫',img:'竞争与考验的意象——急流处的暗礁，练的是临危的胆气。',form:'暗礁边的涡流',basis:'以年支、日支查三合绝位（申子辰在巳）'},
+ '驿马':{grp:'漂泊',ic:'马',img:'远行与变动的意象——马蹄声一响，环境或心态就要换新。',form:'踏尘而去的骏马',basis:'以年支、日支查三合马位（申子辰在寅）'},
+ '华盖':{grp:'孤高',ic:'华',img:'孤高与灵性的意象——帝王车盖般的孤峰，艺术、玄学与独处的亲密。',form:'孤峰上的华盖',basis:'以年支、日支查三合库位（申子辰在辰）'},
+ '孤辰':{grp:'孤高',ic:'孤',img:'独立时空的意象——习惯自己的节奏，独处是充电不是孤单。',form:'雪夜独钓的舟',basis:'以年支查（亥子丑人见寅）'},
+ '寡宿':{grp:'孤高',ic:'寡',img:'清静自守的意象——把热闹留在远处，把自己还给深夜与星空。',form:'空阶上的月',basis:'以年支查（亥子丑人见戌）'}
+};
+const SS_GRP_COLOR={'贵人':'#d8b86a','情缘':'#c98a9a','锋芒':'#b3574a','漂泊':'#7d94b8','孤高':'#9a8fb8'};
+/* ---------- 神煞内景 canvas（元境式：人形居中 + 神煞星官沿轨道环绕 + 点击详情卡） ---------- */
+window.ssSceneInit=function(root){
+  (root||document).querySelectorAll('.ss-canvas').forEach(cv=>{
+    if(cv.dataset.ssd==='1') return;
+    if(cv.offsetParent===null) return;           /* 档位隐藏时跳过，切换到专业档会再调 */
+    cv.dataset.ssd='1';
+    const list=window.__ssList||[];
+    const wrap=cv.parentElement, card=wrap.querySelector('.ss-card');
+    const dpr=Math.min(2,window.devicePixelRatio||1);
+    let W=0,H=0,raf=0;
+    const nodes=[];
+    const groups=[...new Set(list.map(n=>SS_INFO[n.name]?SS_INFO[n.name].grp:'孤高'))];
+    const orbits={}; groups.forEach((g,i)=>{ orbits[g]=.42+.20*((i*2+1)%5)/4.6; });
+    list.forEach((n,i)=>{
+      const info=SS_INFO[n.name]||{grp:'孤高',ic:'煞'};
+      nodes.push({...n, info, base:i*2.39996+ (SS_INFO[n.name]?groups.indexOf(SS_INFO[n.name].grp)*1.1:0), orb:orbits[info.grp], col:SS_GRP_COLOR[info.grp]||'#9a8fb8', a:0});
+    });
+    function size(){
+      W=wrap.clientWidth||320; H=300;
+      cv.width=W*dpr; cv.height=H*dpr; cv.style.height=H+'px';
+      cv.getContext('2d').setTransform(dpr,0,0,dpr,0,0);
+    }
+    function geom(){ return { cx: W / 2, cy: H / 2 + 6, R: Math.min(W, H) / 2 - 30 }; }
+    function nodePos(nd, tt){
+      const G2 = geom();
+      const ang = nd.base + tt * (nd.orb > .6 ? .05 : .08) * (groups.indexOf(nd.info.grp) % 2 ? -1 : 1);
+      return { x: G2.cx + Math.cos(ang) * G2.R * nd.orb, y: G2.cy + Math.sin(ang) * G2.R * nd.orb * .86 };
+    }
+    function draw(t){
+      const g=cv.getContext('2d');
+      g.clearRect(0,0,W,H);
+      const cx=W/2, cy=H/2+6, R=Math.min(W,H)/2-30;
+      /* 星幕（确定性） */
+      const seed=_hashStr((window.__ssPillars||'')+'star');
+      g.fillStyle='rgba(232,217,184,.5)';
+      for(let k=0;k<46;k++){ const sx=((seed*(k+3)*97)%1000)/1000*W, sy=((seed*(k+7)*131)%1000)/1000*H;
+        g.globalAlpha=.12+.3*(((seed+k*37)%100)/100); g.fillRect(sx,sy,1.4,1.4); }
+      g.globalAlpha=1;
+      /* 轨道圈（按团） */
+      groups.forEach(gg=>{ g.beginPath(); g.arc(cx,cy,R*orbits[gg],0,6.2832); g.strokeStyle=SS_GRP_COLOR[gg]; g.globalAlpha=.14; g.stroke(); g.globalAlpha=1; });
+      /* 人形（打坐剪影） */
+      g.strokeStyle='rgba(216,184,106,.75)'; g.lineWidth=1.6; g.fillStyle='rgba(216,184,106,.10)';
+      g.beginPath(); g.arc(cx,cy-R*.30,13,0,6.2832); g.fill(); g.stroke();          /* 头 */
+      g.beginPath(); g.moveTo(cx-4,cy-R*.30+11); g.bezierCurveTo(cx-22,cy-R*.02,cx-30,cy+R*.16,cx-34,cy+R*.20);
+      g.lineTo(cx+34,cy+R*.20); g.bezierCurveTo(cx+30,cy+R*.16,cx+22,cy-R*.02,cx+4,cy-R*.30+11); g.closePath(); g.fill(); g.stroke();  /* 身 */
+      g.beginPath(); g.moveTo(cx-40,cy+R*.22); g.quadraticCurveTo(cx,cy+R*.34,cx+40,cy+R*.22); g.stroke();   /* 盘腿 */
+      /* 神煞节点（沿团轨道缓转） */
+      const tt=window.__ssStill?0:t/1000;
+      nodes.forEach(nd=>{
+        const p=nodePos(nd,tt);
+        const x=p.x, y=p.y;
+        nd.sx=x; nd.sy=y;
+        g.beginPath(); g.arc(x,y,12,0,6.2832);
+        g.fillStyle='rgba(0,0,0,.35)'; g.fill();
+        g.strokeStyle=nd.col; g.lineWidth=1.2; g.stroke();
+        g.beginPath(); g.arc(x,y,12,0,6.2832); g.fillStyle=nd.col+'2b'; g.fill();
+        g.fillStyle=nd.col; g.font='700 11px serif'; g.textAlign='center'; g.textBaseline='middle'; g.fillText(nd.info.ic,x,y+.5);
+        g.fillStyle='rgba(232,217,184,.78)'; g.font='9.5px sans-serif'; g.fillText(nd.name,x,y+20);
+      });
+      cv.__nodes=nodes;
+    }
+    function loop(t){ if(!cv.isConnected){ cancelAnimationFrame(raf); return; }
+      if(document.hidden){ raf=requestAnimationFrame(loop); return; }
+      draw(t||0); raf=requestAnimationFrame(loop); }
+    size();
+    const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ window.__ssStill=true; draw(0); }
+    else raf=requestAnimationFrame(loop);
+    window.addEventListener('resize',()=>{ if(cv.isConnected){ size(); draw(0); } },{passive:true});
+    /* 首帧保底：可见性恢复/后台节流时也能拿到 __nodes 坐标 */
+    setTimeout(()=>{ if(cv.isConnected){ try{ draw(0); }catch(e){} } },80);
+    /* 点击 → 详情卡 */
+    cv.addEventListener('click',e=>{
+      const rc=cv.getBoundingClientRect(); const mx=e.clientX-rc.left, my=e.clientY-rc.top;
+      const tt=window.__ssStill?0:performance.now()/1000;
+      let best=null,bd=24;
+      nodes.forEach(nd=>{ const p=nodePos(nd,tt); const d=Math.hypot(p.x-mx,p.y-my); if(d<bd){ bd=d; best=nd; } });
+      if(!best){ card.style.display='none'; return; }
+      const info=SS_INFO[best.name];
+      card.innerHTML='<div class="ss-card-h"><span class="ss-card-tag" style="color:'+best.col+'">'+info.grp+'团</span><span class="ss-card-ic">'+info.ic+'</span><b>'+best.name+'</b><button type="button" class="ss-card-x">✕</button></div>'
+        +'<p>'+info.img+'</p>'
+        +'<div class="ss-card-basis">'+best.pillar+'逢'+(best.zhi||'')+' · '+info.basis+'</div>'
+        +'<div class="ss-card-form">造型意象 · '+info.form+'</div>'
+        +'<div class="ss-card-disc">传统符号的艺术解读，仅供参考。</div>';
+      card.style.display='block';
+      const x=card.querySelector('.ss-card-x'); if(x) x.onclick=()=>{ card.style.display='none'; };
+    });
+  });
+};
+const ELEM_PAIR={
+ '火火':{s:5,t:'同属火——两个燃料库互借火势，热情与野心同频，注意别一起烧过头。'},
+ '火风':{s:5,t:'风助火势——天生互旺，越聊越燃，是能一起做事的组合。'},
+ '火土':{s:2,t:'火压土——冲劲与务实互为刹车，谈好节奏是互补，谈崩是互拖。'},
+ '火水':{s:1,t:'水火对冲——激情与情绪的拉锯，火花大蒸发也快，忌翻旧账。'},
+ '土土':{s:4,t:'同属土——稳上加稳，把日子过成复利；忌一成不变。'},
+ '土水':{s:3,t:'水润土——情绪滋养务实，一方给深度一方给底盘。'},
+ '土风':{s:2,t:'风蚀土——理性与务实的语速不同步，多翻译少猜心。'},
+ '风风':{s:5,t:'同属风——思想共振，聊不完是这段关系的呼吸。'},
+ '风水':{s:3,t:'风起水波——想法搅动情绪，聊得来也容易起涟漪。'},
+ '水水':{s:4,t:'同属水——情绪同频到不用说话；忌一起沉进情绪里。'}
+};
+function _starPairHtml(s1,s2){
+  const a1=STAR_ATTR[s1],a2=STAR_ATTR[s2]; if(!a1||!a2) return '';
+  const hit=ELEM_PAIR[a1.el+a2.el]||ELEM_PAIR[a2.el+a1.el];
+  const sc=hit?hit.s:3, txt=hit?hit.t:'元素互动中性，看点在具体相处。';
+  const col=sc>=4?'var(--good)':sc<=2?'var(--bad)':'var(--gold2)';
+  return '<div style="margin-top:10px;padding:8px 12px;border-left:3px solid '+col+';background:var(--r-subbg);font-size:12.5px;line-height:1.9"><b style="color:var(--gold2)">西式合参 · 星座</b>　'+s1+'（'+a1.el+'）× '+s2+'（'+a2.el+'）——'+txt+'</div>';
+}
+
 /* HTML 转义：用户自由文本（姓名/问事/所问/城市）拼入 innerHTML 前必须先过此函数，防注入破版 */
 function _esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 /* 60甲子纳音五行（专业紫微·五行局用） */
@@ -11718,6 +11846,7 @@ function openReadModal(r){
   body.appendChild(clone);
   /* 克隆副本不带监听：K 线点柱/方向键/展开收起等交互需在克隆件上重绑 */
   if(window.bindKline){ try{ window.bindKline(clone); }catch(e){} }
+  try{ window.ssSceneInit&&window.ssSceneInit(clone); }catch(e){}
   m.classList.add('show');
   if(window.holdAmbient) window.holdAmbient();
   if(!m.dataset.bound){
@@ -13172,8 +13301,24 @@ document.getElementById('baziBtn').onclick=()=>{
   try{
     const pzList=[...pillars].map(g=>g.charAt(1));
     const ss=shenSha(dayGan,pzList[0],pzList);
+    /* 神煞内景数据：解析 "名·X支" → {name,pillar,zhi}；pzList 为四柱地支 */
+    try{
+      window.__ssList=(ss||[]).map(entry=>{
+        const m=/^(.+)·(年|月|日|时)支$/.exec(entry); if(!m) return null;
+        return {name:m[1],pillar:m[2],zhi:pzList[['年','月','日','时'].indexOf(m[2])]||''};
+      }).filter(Boolean);
+      window.__ssPillars=pillars.join('');
+    }catch(e){}
     if(ss.length) shenHtml=`<p style="margin-top:8px">神煞：<b style="color:var(--gold2)">${ss.join(' · ')}</b></p>`;
   }catch(e){ shenHtml=''; }
+  /* 神煞内景（元境式）：专业档展示，canvas 点击节点看意象与推算依据 */
+  let ssSceneHtml='';
+  try{
+    if(window.__ssList&&window.__ssList.length){
+      ssSceneHtml='<div style="margin-top:12px"><div style="font-size:12px;color:var(--muted);margin-bottom:4px">神煞内景 · '+window.__ssList.length+' 位星官按团绕命（'+[...new Set(window.__ssList.map(n=>SS_INFO[n.name]?SS_INFO[n.name].grp:'孤高'))].join(' / ')+'）</div>'
+        +'<div class="ss-scene-wrap"><canvas class="ss-canvas"></canvas><div class="ss-card"></div><div class="ss-hint">✦ 点按星官，看神煞意象与推算依据</div></div></div>';
+    }
+  }catch(e){}
   // 最佳大运（五行对日主生扶评分最高的一步，白话点睛）
   let bestYun='';
   try{
@@ -13529,11 +13674,13 @@ document.getElementById('baziBtn').onclick=()=>{
         ${kline}
         ${taiHtml}
         ${shenHtml}
+        ${ssSceneHtml}
         ${sceneHtml}
       </div>
       <p style="color:var(--muted);font-size:12px;margin-top:8px">* 四柱干支、五行、十神、藏干、纳音、大运、流年、太岁均由 lunar 历法库按天文历法推算；大运十神以日主为基准、起运按出生至节气日时差三日折一年（精确到月）；旺衰按得令·得地·得势·得助（含藏干加权与十二长生）推演；喜忌另以子平格局、滴天髓旺衰两派合参（详"两派合参"卡）</p>
     </div>`;
   bindKline(document.getElementById('baziResult'));
+  try{ window.ssSceneInit&&window.ssSceneInit(document.getElementById('baziResult')); }catch(e){}
   enhanceBazi(document.querySelector('#baziResult .sc-svg'));
   enhanceBazi(document.querySelector('#baziResult .bz-disc'));
   const baziRes=document.getElementById('baziResult').querySelector('.result');
@@ -15633,6 +15780,31 @@ function _phPLANET(jd0,key){
 }
 const PH_ORDER=['太阳','月亮','水星','金星','火星','木星','土星','天王星','海王星','冥王星'];
 /* 十大行星黄经：太阳/月亮用天体公式，八大行星用轨道根数近似 */
+/* 水星逆行判定：逐日采样水星黄经，连续两日黄经减小即逆行（地心视运动，黄经 unwrap 处理） */
+function _mercRetroYears(year){
+  const out=[]; let prev=null, seg=null;
+  for(let k=0;k<=366;k++){
+    const dt=new Date(Date.UTC(year,0,1,0,0,0)+k*86400000);
+    const jd=dt.getTime()/86400000+2440587.5;
+    const L=(((PH_LONS(jd)['水星']%360)+360)%360);
+    if(prev!==null){
+      let dl=L-prev.l; if(dl>180)dl-=360; if(dl<-180)dl+=360;
+      const retro=dl<0;
+      const dstr=dt.toISOString().slice(0,10);
+      if(retro&&!seg) seg={s:dstr};
+      if(!retro&&seg){ seg.e=dstr; out.push(seg); seg=null; }
+    }
+    prev={l:L};
+  }
+  if(seg){ seg.e=year+'-12-31'; out.push(seg); }
+  return out;
+}
+/* 月相：日月黄经差 → 八相 */
+function _moonPhase(jd0){
+  const diff=((PH_LONS(jd0)['月亮']-PH_LONS(jd0)['太阳'])%360+360)%360;
+  const names=['新月','娥眉月','上弦月','盈凸月','满月','亏凸月','下弦月','残月'];
+  return {deg:diff, name:names[Math.floor(((diff+22.5)%360)/45)]};
+}
 function PH_LONS(jd0){
   var o={}; PH_ORDER.forEach(function(n,i){ o[n]= i===0?_phSUN(jd0) : i===1?_phMOON(jd0) : _phPLANET(jd0,n); });
   return o;
@@ -15738,6 +15910,49 @@ const MARS_WAY={
  '水瓶':'打法清奇，规则内钻缝外开新；为理念而战比为私利更猛。',
  '双鱼':'柔性攻势，以退为进；情绪来了先躲进小世界，出来再战。'
 };
+/* 水星＝思考与表达，木星＝幸运与扩张，土星＝纪律与课题（同一黄经引擎取座） */
+const MERC_WAY={
+ '白羊':'想到就说，语速快过思考；直觉型表达，先喊出来再补逻辑。',
+ '金牛':'说话慢但每句算数；学得慢忘得也慢，务实派沟通。',
+ '双子':'信息海绵，一心三用；天生的连线者，忌浅尝辄止。',
+ '巨蟹':'话里带情绪温度，记性极佳；谈事情先谈感受。',
+ '狮子':'表达有舞台感，善于镇场；听不进当众的反驳。',
+ '处女':'逻辑缜密、挑错一绝；适合做功课型沟通，忌碎念。',
+ '天秤':'措辞讲究，先找共识再谈分歧；天生的和事佬。',
+ '天蝎':'话少而准，一眼看穿话外音；适合调查与谈判。',
+ '射手':'大框架讲得妙，细节懒得管；用故事讲道理的高手。',
+ '摩羯':'言简意赅，说出口即承诺；学东西按部就班。',
+ '水瓶':'想法清奇，跳跃式表达；适合前沿与新解法。',
+ '双鱼':'表达靠感觉流动，会说话也会走神；创意型思维。'
+};
+const JUP_WAY={
+ '白羊':'幸运在敢闯里——先手优势是你的福地，畏缩反而没运。',
+ '金牛':'福在积累——稳稳变现的能力，理财与品味是老天赏饭。',
+ '双子':'福在信息——人脉与消息网越广越旺，学什么都快。',
+ '巨蟹':'福在滋养——家人与归宿是你的充电桩，置业有福。',
+ '狮子':'福在舞台——越被看见越旺，慷慨会翻倍回流。',
+ '处女':'福在手艺——把一件事做到精细就是你的贵人运。',
+ '天秤':'福在关系——贵人多从合作与联姻式的伙伴中来。',
+ '天蝎':'福在深水——危机里翻身的本事，忌与人合伙赌局。',
+ '射手':'福在远方——外地、外文、高等教育都是你的扩张通道。',
+ '摩羯':'福在时序——大器晚成格局，年龄越大越值钱。',
+ '水瓶':'福在异见——别人不认同的路往往是你的金矿。',
+ '双鱼':'福在慈悲——帮人时运气最好，直觉是你的导航。'
+};
+const SAT_WAY={
+ '白羊':'课题是"慢"——冲劲要补纪律，学会收尾才算毕业。',
+ '金牛':'课题是"变"——安全感的功课，练会放手反而更稳。',
+ '双子':'课题是"深"——信息太多，练一门手艺扎到底。',
+ '巨蟹':'课题是"硬"——情绪柔软是天赋，边界感是必修。',
+ '狮子':'课题是"谦"——要面子更要里子，掌声之外立自己。',
+ '处女':'课题是"松"——完美主义放一放，够好就是好。',
+ '天秤':'课题是"断"——关系里的和稀泥要练成有立场的平衡。',
+ '天蝎':'课题是"放"——掌控与信任的功课，最深也最值。',
+ '射手':'课题是"守"——远方之前先立足，承诺是你的学分。',
+ '摩羯':'课题是"闲"——责任感别压成孤岛，学会休整。',
+ '水瓶':'课题是"暖"——清醒是天赋，练习把关心说出口。',
+ '双鱼':'课题是"界"——共情别变成牺牲，学会说不。'
+};
 const STAR_ATTR={
  '白羊':{el:'火',ruler:'火星',trait:'热情冲动、行动力强、敢于开创'},
  '金牛':{el:'土',ruler:'金星',trait:'稳健务实、重感官、有耐心与占有欲'},
@@ -15799,8 +16014,66 @@ document.getElementById('starBtn').onclick=()=>{
     const _vs=ZODIAC_ORDER[Math.floor((((_pl['金星']%360)+360)%360)/30)];
     const _ms=ZODIAC_ORDER[Math.floor((((_pl['火星']%360)+360)%360)/30)];
     if(VENUS_WAY[_vs]) vmHtml+='<div style="margin-top:8px;padding:6px 10px;background:var(--r-subbg);border-left:3px solid #c98a9a"><b style="color:var(--gold2)">金星 · ' + _vs + '</b>（爱的方式）'+VENUS_WAY[_vs]+'</div>';
-    if(MARS_WAY[_ms]) vmHtml+='<div style="margin-top:6px;padding:6px 10px;background:var(--r-subbg);border-left:3px solid #b3574a"><b style="color:var(--gold2)">火星 · ' + _ms + '</b>（行动与脾气）'+MARS_WAY[_ms]+'</div>';
+    const _ms2=ZODIAC_ORDER[Math.floor((((_pl['水星']%360)+360)%360)/30)];
+    const _mj=ZODIAC_ORDER[Math.floor((((_pl['木星']%360)+360)%360)/30)];
+    const _mt=ZODIAC_ORDER[Math.floor((((_pl['土星']%360)+360)%360)/30)];
+    if(MERC_WAY[_ms2]) vmHtml+='<div style="margin-top:6px;padding:6px 10px;background:var(--r-subbg);border-left:3px solid #7d94b8"><b style="color:var(--gold2)">水星 · ' + _ms2 + '</b>（思考与表达）'+MERC_WAY[_ms2]+'</div>';
+    if(JUP_WAY[_mj]) vmHtml+='<div style="margin-top:6px;padding:6px 10px;background:var(--r-subbg);border-left:3px solid #b89a5a"><b style="color:var(--gold2)">木星 · ' + _mj + '</b>（幸运与扩张）'+JUP_WAY[_mj]+'</div>';
+    if(SAT_WAY[_mt]) vmHtml+='<div style="margin-top:6px;padding:6px 10px;background:var(--r-subbg);border-left:3px solid #8a8a8a"><b style="color:var(--gold2)">土星 · ' + _mt + '</b>（纪律与课题）'+SAT_WAY[_mt]+'</div>';
   }catch(e){}
+  /* 今日星象：月亮落座/月相/水星顺逆 + 十二星座今日运势 + 今年水逆时段（全部真算） */
+  let skyHtml='';
+  try{
+    const NOW=new Date();
+    const jdNow=NOW.getTime()/86400000+2440587.5;
+    const plNow=PH_LONS(jdNow);
+    const _zl=t=>ZODIAC_ORDER[Math.floor((((t%360)+360)%360)/30)];
+    const moonNow=_zl(plNow['月亮']);
+    const ph=_moonPhase(jdNow);
+    const a1=plNow['水星'], b1=PH_LONS(jdNow+1)['水星'];
+    let dl1=b1-a1; if(dl1>180)dl1-=360; if(dl1<-180)dl1+=360;
+    const retroToday=dl1<0;
+    const NOWSTR=NOW.getFullYear()+'-'+String(NOW.getMonth()+1).padStart(2,'0')+'-'+String(NOW.getDate()).padStart(2,'0');
+    skyHtml='<div style="margin-top:14px;padding:9px 12px;background:var(--r-subbg);border:1px solid var(--r-line);border-radius:10px">'
+      +'<div style="font-size:12.5px;color:var(--gold2);letter-spacing:1px;margin-bottom:5px">✦ 今日星象 · '+NOWSTR+'</div>'
+      +'<p style="margin:2px 0;font-size:12.5px;line-height:1.8">月亮行至 <b style="color:var(--gold2)">'+moonNow+'</b>（今日情绪基调）· '+ph.name+'</p>'
+      +'<p style="margin:2px 0;font-size:12.5px;line-height:1.8">水星 <b style="color:'+(retroToday?'var(--bad)':'var(--good)')+'">'+(retroToday?'逆行':'顺行')+'</b>'+(retroToday?'——沟通、签约、出行留 double-check 的余量':'——沟通与签约的窗口良好')+'</p>'
+      +'<div id="starSignDaily"></div>'
+      +'<div style="margin-top:8px;font-size:12px;color:var(--muted)">今年水星逆行时段：<span id="mercRetroList">推算中…</span></div>'
+      +'</div>';
+  }catch(e){}
+  Promise.resolve().then(()=>{ try{ if(window._starDaily&&sign) window._starDaily(sign); if(window._mercRetroFill) window._mercRetroFill(); }catch(e){} });
+  window._starDaily=function(sg){
+    try{
+      const NOW=new Date();
+      const jdNow=NOW.getTime()/86400000+2440587.5;
+      const plNow=PH_LONS(jdNow);
+      const moonNow=ZODIAC_ORDER[Math.floor((((plNow['月亮']%360)+360)%360)/30)];
+      const box=document.getElementById('starSignDaily'); if(!box) return;
+      box.innerHTML='<div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--r-line)">'
+        +'<select id="starDailySel" style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--r-line);background:var(--glass-strong);color:var(--ink);font-size:13px">'
+        +ZODIAC_ORDER.map(z=>'<option value="'+z+'"'+(z===sg?' selected':'')+'>'+z+(STAR_ATTR[z]?'·'+STAR_ATTR[z].el:'')+'</option>').join('')
+        +'</select><div id="starDailyOut" style="margin-top:8px"></div></div>';
+      const render=()=>{
+        const cur=document.getElementById('starDailySel').value;
+        const a=STAR_ATTR[cur], am=STAR_ATTR[moonNow];
+        const hit=ELEM_PAIR[a.el+am.el]||ELEM_PAIR[am.el+a.el]||{s:3,t:'今日月亮与你的元素互动中性。'};
+        const col=hit.s>=4?'var(--good)':hit.s<=2?'var(--bad)':'var(--gold2)';
+        const seed=_hashStr(cur+NOW.toISOString().slice(0,10));
+        const act=['宜主动开口，把想法说出口。','宜慢半拍，把节奏放稳。','宜整理桌面与思路，清空再装。'][seed%3];
+        document.getElementById('starDailyOut').innerHTML='<div style="font-size:12.5px;line-height:1.9"><b style="color:'+col+'">'+cur+'（'+a.el+'）× 今日月亮 '+moonNow+'（'+am.el+'）</b>——'+hit.t+'<br><span style="color:var(--muted)">'+act+'</span></div>';
+      };
+      render();
+      document.getElementById('starDailySel').onchange=render;
+    }catch(e){}
+  };
+  window._mercRetroFill=function(){
+    try{
+      const segs=_mercRetroYears(new Date().getFullYear());
+      const el=document.getElementById('mercRetroList'); if(!el) return;
+      el.innerHTML=segs.length?segs.map(g=>'<b style="color:var(--gold2)">'+g.s.slice(5)+'</b>—'+g.e.slice(5)).join('、'):'今年无';
+    }catch(e){}
+  };
   document.getElementById('starResult').innerHTML=
     `<div class="result">
       <h3>${sign}座</h3>
@@ -15814,8 +16087,9 @@ document.getElementById('starBtn').onclick=()=>{
       <p>今日建议：${ADVICE[idx]}</p>
       ${moonHtml}${ascHtml}${triHtml}
       ${vmHtml}
+      ${skyHtml}
       ${PH_HTML_R}
-      <p style="color:var(--muted);font-size:12px;margin-top:6px">* 太阳星座由生日真实推算；${tVal?'月亮按时刻月黄经公式推算（经新月实况校验），上升按日出+2小时一宫的通俗近似，仅供趣味参考；':'补填「出生时间」可解锁月亮 / 上升星座与本命三要素综合；'}建议为按日期确定的固定项。</p>
+      <p style="color:var(--muted);font-size:12px;margin-top:6px">* 太阳星座由生日真实推算；${tVal?'月亮按时刻月黄经公式推算（经新月实况校验），上升按日出+2小时一宫的通俗近似；金木水火土由轨道根数黄经直取（已对权威星历回归至±1°内）；':'补填「出生时间」可解锁月亮 / 上升 / 金木水火土与本命三要素综合；'}建议为按日期确定的固定项。</p>
     </div>`;
 };
 
@@ -18960,6 +19234,7 @@ document.addEventListener('click',e=>{
   const res=b.closest('.result'); if(!res) return;
   res.dataset.lv=b.dataset.lv;
   res.querySelectorAll('.bz-lv button').forEach(x=>x.classList.toggle('active',x===b));
+  if(b.dataset.lv==='3'){ try{ window.ssSceneInit&&window.ssSceneInit(res); }catch(e){} }
   if(typeof sfx==='function'){ try{ sfx('switch'); }catch(_){} }
 });
 /* 回到顶部（滚动显示，平滑显隐） */
@@ -20506,25 +20781,6 @@ document.getElementById('hehunBtn').onclick=()=>{
   /* 关系分流：同一对盘，夫妻重姻缘相合、朋友重互补同频、合伙重干合互补、亲子重同源稳定 */
   const REL=document.getElementById('hhRel')?document.getElementById('hhRel').value:'couple';
   /* 西式合参：四元素（火土风水）配对——同元素互旺、火风相生、土水相生、火水对冲、其余相斥 */
-const ELEM_PAIR={
- '火火':{s:5,t:'同属火——两个燃料库互借火势，热情与野心同频，注意别一起烧过头。'},
- '火风':{s:5,t:'风助火势——天生互旺，越聊越燃，是能一起做事的组合。'},
- '火土':{s:2,t:'火压土——冲劲与务实互为刹车，谈好节奏是互补，谈崩是互拖。'},
- '火水':{s:1,t:'水火对冲——激情与情绪的拉锯，火花大蒸发也快，忌翻旧账。'},
- '土土':{s:4,t:'同属土——稳上加稳，把日子过成复利；忌一成不变。'},
- '土水':{s:3,t:'水润土——情绪滋养务实，一方给深度一方给底盘。'},
- '土风':{s:2,t:'风蚀土——理性与务实的语速不同步，多翻译少猜心。'},
- '风风':{s:5,t:'同属风——思想共振，聊不完是这段关系的呼吸。'},
- '风水':{s:3,t:'风起水波——想法搅动情绪，聊得来也容易起涟漪。'},
- '水水':{s:4,t:'同属水——情绪同频到不用说话；忌一起沉进情绪里。'}
-};
-function _starPairHtml(s1,s2){
-  const a1=STAR_ATTR[s1],a2=STAR_ATTR[s2]; if(!a1||!a2) return '';
-  const hit=ELEM_PAIR[a1.el+a2.el]||ELEM_PAIR[a2.el+a1.el];
-  const sc=hit?hit.s:3, txt=hit?hit.t:'元素互动中性，看点在具体相处。';
-  const col=sc>=4?'var(--good)':sc<=2?'var(--bad)':'var(--gold2)';
-  return '<div style="margin-top:10px;padding:8px 12px;border-left:3px solid '+col+';background:var(--r-subbg);font-size:12.5px;line-height:1.9"><b style="color:var(--gold2)">西式合参 · 星座</b>　'+s1+'（'+a1.el+'）× '+s2+'（'+a2.el+'）——'+txt+'</div>';
-}
 const REL_CONF={
     couple:{ name:'夫妻 / 姻缘', w:{he:20,chong:-20,ganHe:20,wuComp:10},
       adv:['天作之合，宜珍重经营。','良缘可成，互补中见温情。','平平之缘，磨合为上。','缘分较浅，宜多理解包容。'],
@@ -22635,6 +22891,44 @@ function shareCard(){
     #globalSearch{width:96px;padding:5px 8px;font-size:12px}
   }
 
+  /* ===================== UI 精修层（首屏紧凑化 · 视觉降噪 · 2026-10） ===================== */
+  .sec-intro{display:none!important}
+  .todayline{font-size:12px;opacity:.88;margin:4px 0 2px}
+  .wxchip{display:inline-flex;gap:5px;margin:2px 0 8px}
+  .wxchip span{width:20px;height:20px;line-height:20px;font-size:10.5px;border-radius:6px}
+  .hero-toolbar{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:nowrap}
+  .theme-switch{flex:0 0 auto}
+  .theme-switch button{white-space:nowrap;padding:6px 10px;font-size:12px}
+  .hero-toolbar .global-search{flex:1 1 60px;min-width:0;width:auto}
+  .hero-toolbar .global-search{width:118px;flex:0 1 auto}
+  #allFuncBtn{flex:0 0 auto;padding:6px 9px;font-size:14px;line-height:1}
+  body.theme-dark .tab.active{color:var(--gold2);background:rgba(201,162,77,.13);border:1px solid rgba(201,162,77,.45);box-shadow:none;font-weight:600}
+  .tab{padding:6px 13px;font-size:12.5px;border-radius:14px}
+  .subcats{gap:7px;margin:8px 0 10px}
+  .subcat{padding:4px 12px;font-size:11px;letter-spacing:1.5px;border-radius:12px;opacity:.92}
+  .quick-row{gap:9px;margin:14px 0 6px}
+  .qk{padding:10px 2px 8px;border-radius:13px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border-color:rgba(201,162,77,.22)}
+  .qk:active{transform:translateY(1px) scale(.97)}
+  .qk-ic{width:32px;height:32px;line-height:32px;border-radius:9px;font-size:15px;background:linear-gradient(160deg,#d8b86a,#a97f3c);box-shadow:inset 0 1px 0 rgba(255,240,210,.45),0 2px 6px rgba(40,30,10,.35)}
+  .onboard{border:none;border-left:3px solid var(--gold2);border-radius:8px;background:rgba(201,162,77,.07);padding:8px 12px}
+  .today-slip{border-color:rgba(201,162,77,.28);box-shadow:0 6px 20px rgba(0,0,0,.22)}
+  .today-slip .slip-head{letter-spacing:2.5px}
+  .result h3{border-left:3px solid var(--gold2);padding-left:9px;line-height:1.5}
+  .btn.cta,.btn.primary{box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  /* ===================== /UI 精修层 ===================== */
+  /* 神煞内景 */
+  .ss-scene-wrap{position:relative;border:1px solid rgba(201,162,77,.22);border-radius:14px;background:radial-gradient(120% 90% at 50% 40%,rgba(20,30,28,.5),rgba(8,14,13,.85));overflow:hidden}
+  .ss-scene-wrap canvas{display:block;width:100%;cursor:pointer}
+  .ss-hint{position:absolute;left:10px;bottom:8px;font-size:10.5px;color:rgba(232,217,184,.5);letter-spacing:1px;pointer-events:none}
+  .ss-card{display:none;position:absolute;left:10px;top:10px;right:10px;max-width:320px;background:rgba(10,18,17,.92);border:1px solid rgba(201,162,77,.4);border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.85;color:var(--cream,#e8d9b8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:3}
+  .ss-card-h{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .ss-card-tag{font-size:11px;letter-spacing:1px}
+  .ss-card-ic{width:22px;height:22px;line-height:22px;text-align:center;border-radius:6px;background:var(--gold);color:var(--paper);font-family:var(--serif);font-weight:700;font-size:12px}
+  .ss-card-x{margin-left:auto;background:transparent;border:none;color:rgba(232,217,184,.6);font-size:13px;cursor:pointer;padding:2px 4px}
+  .ss-card p{margin:2px 0}
+  .ss-card-basis{margin-top:6px;padding-top:6px;border-top:1px dashed rgba(201,162,77,.3);font-size:11.5px;color:rgba(232,217,184,.72)}
+  .ss-card-form{font-size:11.5px;color:var(--gold2)}
+  .ss-card-disc{margin-top:6px;font-size:10.5px;color:rgba(232,217,184,.4)}
   .tic{display:inline-flex;align-items:center;justify-content:center;min-width:17px;height:17px;font-size:11px;font-weight:500;border-radius:5px;background:var(--gold);color:var(--paper);margin-right:5px;vertical-align:1px;line-height:1}
   @keyframes coinShake{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
   .coin-shake{animation:coinShake .35s infinite alternate}
